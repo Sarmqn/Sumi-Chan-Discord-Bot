@@ -1,10 +1,8 @@
 import discord
 
-
 intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents=intents)
-
 
 @client.event
 async def on_messge_join(member):
