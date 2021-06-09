@@ -6,7 +6,7 @@ import os
 import random
 
 bot = commands.Bot(command_prefix="sc!", case_insentive = True, description = "Nice handy bot that will help around") #Bot prefix
-bot.help_command = PrettyHelp(navigation=nav, color=discord.Colour.green()
+bot.help_command = PrettyHelp(navigation=nav, color=discord.Colour.DARK_VIVID_PINK()
 
 @bot.event
 async def on_ready():
