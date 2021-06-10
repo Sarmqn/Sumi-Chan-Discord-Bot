@@ -6,13 +6,10 @@ import os
 import random
 
 bot = commands.Bot(command_prefix="sc!", case_insentive = True, description = "Nice handy bot that will help around") #Bot prefix
-bot.help_command = PrettyHelp(navigation=nav, color=discord.Colour.DARK_VIVID_PINK()
+bot.help_command = PrettyHelp(navigation=nav, color=discord.Colour.DARK_VIVID_PINK)
 
 @bot.event
 async def on_ready():
-    print("Ready to work haha") #Says in console whether bot is ready to recieve commands
-def run():
-    bot.run('TOKEN') #Bot token code
-                              
-if __name__ == "__main__":
-  run()   
+    print("Ready to work haha") # Lets the bot owner know when the bot is ready
+
+bot.run('TOKEN')
