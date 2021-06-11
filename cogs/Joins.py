@@ -8,6 +8,6 @@ client = discord.Client(intents=intents)
 async def on_messge_join(member):
     channel = client.get_channel(channel_id)
     JoinEmbed = discord.Embed(title=f"Welcome {member}", description = f"Thanks for joining {member.guild.name}!")
-    JoinEmbed.set_thumbnail(url=member.avata_url) # Embed's thumbnail = Users PFP
+    JoinEmbed.set_thumbnail(url=member.avatar_url) # Embed's thumbnail = Users PFP
 
     await channel.send(embed=JoinEmbed)
