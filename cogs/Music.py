@@ -18,7 +18,7 @@ async def leave(ctx):
     Voice_client = client.voice_channel_in(server)
     await Voice_client.disconnect()
 
-@commands.Cog.listener(pass_context=True)
+@commands.Cog.listener(pass_context=Truealiases = ["p"])
 async def play(ctx, url):
     server = ctx.message.server
     Voice_client = client.Voice_client_in(server)
