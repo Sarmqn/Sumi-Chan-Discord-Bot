@@ -2,6 +2,9 @@ import discord
 from discord.ext import commands
 
 class Logs(commands.Cog):
+    """
+    Moderation commands/listeners for log channels
+    """
     def __init__(self, bot):
         self.bot = bot
         self.log_channel_id = 699909552757276732
@@ -11,15 +14,6 @@ class Logs(commands.Cog):
         if not message.author.bot and 'discord.gg/' in message.content:
             await message.delete()
             await message.channel.send(f"This is forbidden to send {message.author.mention}!")
-
-    @commands.command(name='invite', description='Creates an invite link for the server')
-    @commands.guild_only() # Restricts the command to the guild only
-    async def invite(self, ctx):
-        invite = await ctx.channel.create_invite()
-        await ctx.author.send(str(invite)) #This will send the invite link to the user who asked for it
-        loggingchannel = self.bot.get_channel(self.log_channel_id)
-        embed = discord.Embed(title= "New Invite", description=f"Invite created by {ctx.author}\nCode: {str(invite)}")
-        await loggingchannel.send(embed=embed) #Logs who created the invite link
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
@@ -31,6 +25,18 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         print (f"{member} has left this server :-(")
+
+    @commands.command(name='invite')
+    @commands.guild_only() # Restricts the command to the guild only
+    async def invite(self, ctx):
+        """
+        Creates an invite link for the server
+        """
+        invite = await ctx.channel.create_invite()
+        await ctx.author.send(str(invite)) #This will send the invite link to the user who asked for it
+        loggingchannel = self.bot.get_channel(self.log_channel_id)
+        embed = discord.Embed(title= "New Invite", description=f"Invite created by {ctx.author}\nCode: {str(invite)}")
+        await loggingchannel.send(embed=embed) #Logs who created the invite link
 
 
 def setup(bot):
