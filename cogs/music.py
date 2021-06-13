@@ -4,7 +4,7 @@ from discord.ext import commands
 
 players = {}
 
-class Music(commands.Cog):
+class music(commands.Cog):
     """
     Music Commands to join a VC, play music within that VC, and leave the VC.
     """
