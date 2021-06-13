@@ -1,2 +1,2 @@
 discord.py
-pretty_help
+discord-pretty-help
