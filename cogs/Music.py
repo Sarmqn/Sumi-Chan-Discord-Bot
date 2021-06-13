@@ -6,7 +6,7 @@ players = {}
 
 class Music(commands.Cog):
     """
-    Moderation commands/listeners for log channels
+    Music Commands to join a VC, play music within that VC, and leave the VC.
     """
     def __init__(self, bot):
         self.bot = bot
