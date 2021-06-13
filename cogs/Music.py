@@ -25,3 +25,6 @@ async def play(ctx, url):
     player = await Voice_client.create.ytdl_player(url)
     players[server.id] = player
     player.start()
+
+    def setup(bot):
+    bot.add_cog(Music(bot))
