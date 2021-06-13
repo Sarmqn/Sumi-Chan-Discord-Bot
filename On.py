@@ -13,6 +13,18 @@ bot.help_command = PrettyHelp(navigation=nav, color=discord.Colour.dark_purple()
 @bot.event
 async def on_ready():
     print("Ready to work haha") # Lets the bot owner know when the bot is ready
+    
+cogs = [
+    "Delete msg",
+    "Joins",
+    "Ping",
+    "invite log + check",
+    "leaving"
+]
+
+for cog in cogs:
+    bot.load_extension("cogs." + cog)
+    print("Loaded: " + cog)
 
 bot_token = os.environ.get("TOKEN")
 bot.run(bot_token)
