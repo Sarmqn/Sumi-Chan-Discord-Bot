@@ -2,9 +2,6 @@ from discord import voice_client
 from discord.channel import VoiceChannel
 from discord.ext import commands
 
-intents = discord.Intents.default()
-intents.members = True
-
 players = {}
 
 @commands.Cog.listener(pass_context=True, aliases = ["Connect", "JoinVC"])
