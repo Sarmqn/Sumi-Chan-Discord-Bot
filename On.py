@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from pretty_help import Navigation, PrettyHelp
+from pretty_help import PrettyHelp
 from asyncio import sleep
 import os
 import random
