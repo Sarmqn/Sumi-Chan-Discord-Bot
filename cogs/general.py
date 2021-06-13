@@ -10,7 +10,7 @@ class General(commands.Cog):
     @commands.command(name = 'ping')
     async def ping(self, ctx):
         """
-        Checks the current ping
+        Checks the current ping for the bot
         """
         await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms') # Says in chat what the current ping is and rounds it to the nearest whole number
 
