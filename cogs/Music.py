@@ -29,6 +29,6 @@ class Music(commands.Cog):
                                player = await Voice_client.create.ytdl_player(url)
                                players[server.id] = player
                                player.start()
-
+                               
 def setup(bot):
-                               bot.add_cog(Music(bot))
+    bot.add_cog(Logs(bot))
