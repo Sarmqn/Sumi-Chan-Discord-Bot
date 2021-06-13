@@ -12,4 +12,5 @@ bot.help_command = PrettyHelp(navigation=nav, color=discord.Colour.DARK_VIVID_PI
 async def on_ready():
     print("Ready to work haha") # Lets the bot owner know when the bot is ready
 
-bot.run('TOKEN')
+bot_token = os.environ.get("TOKEN")
+bot.run(bot_token)
