@@ -31,4 +31,4 @@ class Music(commands.Cog):
                                player.start()
                                
 def setup(bot):
-    bot.add_cog(Logs(bot))
+    bot.add_cog(music(bot))
