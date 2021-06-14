@@ -1,4 +1,4 @@
 discord.py
 discord-pretty-help
 youtube_dl
-PyNaC
+PyNaCl
