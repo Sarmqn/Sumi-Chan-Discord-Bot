@@ -11,7 +11,7 @@ class music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
-    @commands.command(pass_context=True, aliases = ["Connect", "JoinVC", "j"])
+    @commands.command(pass_context=True, aliases = ["Connect", "JoinVC", "join", "j"])
     async def Join(self, ctx):
         channel = ctx.message.author.voice.voice_channel
         await client.join_Voice_Channel(channel)
