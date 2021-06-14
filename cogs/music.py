@@ -1,6 +1,7 @@
 from discord import voice_client
 from discord.channel import VoiceChannel
 from discord.ext import commands
+import PyNaCl
 
 players = {}
 
