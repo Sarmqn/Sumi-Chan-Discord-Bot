@@ -21,7 +21,7 @@ class music(commands.Cog):
     async def leave(self, ctx):
         server = ctx.guild
         channel = ctx.author.voice.channel
-        await Voice_client.disconnect()
+        Voice_client = await channel.disconnect()
 
     @commands.command(aliases = ["p"])
     async def play(self, ctx, url):
