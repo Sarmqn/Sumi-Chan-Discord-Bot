@@ -20,6 +20,7 @@ class music(commands.Cog):
     @commands.command(aliases = ["fuckoff", "dc", "disconnect", "LeaveVC"])
     async def leave(self, ctx):
         server = ctx.guild
+        channel = ctx.author.voice.channel
         await Voice_client.disconnect()
 
     @commands.command(aliases = ["p"])
