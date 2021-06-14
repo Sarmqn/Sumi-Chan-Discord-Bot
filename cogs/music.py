@@ -13,7 +13,7 @@ class music(commands.Cog):
 
     @commands.command(aliases = ["Connect", "JoinVC", "Join", "j"])
     async def join(self, ctx):
-        channel = ctx.message.author.voice.voice_channel
+        channel = ctx.message.author.voice.channel
         await client.join_Voice_Channel(channel)
 
     @commands.command(aliases = ["fuckoff", "dc", "disconnect", "LeaveVC"])
