@@ -11,10 +11,10 @@ class music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases = ["Connect", "JoinVC", "Join", "j"])
-    async def join(self, ctx):
-        channel = ctx.message.author.voice.channel
-        await client.join_Voice.Channel(channel)
+    @bot.command()
+    async def join(ctx):
+        channel = ctx.author.voice.channel
+        await channel.connect()
 
     @commands.command(aliases = ["fuckoff", "dc", "disconnect", "LeaveVC"])
     async def leave(self, ctx):
