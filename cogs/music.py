@@ -25,7 +25,7 @@ class music(commands.Cog):
 
     @commands.command(aliases = ["p"])
     async def play(self, ctx, url):
-        server = ctx.message.server
+        server = ctx.server
         Voice_client = client.Voice_client_in(server)
         player = await Voice_client.create.ytdl_player(url)
         players[server.id] = player
