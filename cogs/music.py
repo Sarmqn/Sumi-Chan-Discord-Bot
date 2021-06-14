@@ -20,13 +20,13 @@ class music(commands.Cog):
     @commands.command(aliases = ["fuckoff", "dc", "disconnect", "LeaveVC"])
     async def leave(self, ctx):
         server = ctx.guild
-        Voice_client = self.bot.voice_channel_in(server)
+        Voice_client = ctx.author.voice.channel
         await Voice_client.disconnect()
 
     @commands.command(aliases = ["p"])
     async def play(self, ctx, url):
         server = ctx.guild
-        Voice_client = self.bot.Voice_client_in(server)
+        Voice_client = ctx.author.voice.channel
         player = await Voice_client.create.ytdl_player(url)
         players[server.id] = player
         player.start()
