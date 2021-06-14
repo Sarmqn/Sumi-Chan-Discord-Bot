@@ -10,7 +10,7 @@ class music(commands.Cog):
     """
     def __init__(self, bot):
         self.bot = bot
-        
+
     @commands.command(aliases = ["Connect", "JoinVC", "join", "j"])
     async def Join(self, ctx):
         channel = ctx.message.author.voice.voice_channel
@@ -29,6 +29,6 @@ class music(commands.Cog):
         player = await Voice_client.create.ytdl_player(url)
         players[server.id] = player
         player.start()
-                               
+
 def setup(bot):
     bot.add_cog(music(bot))
