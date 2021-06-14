@@ -1,5 +1,5 @@
 discord.py
 discord-pretty-help
 youtube_dl
-discord-PyNaCl
+PyNaCl
 discord.py[voice]
