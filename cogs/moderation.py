@@ -22,7 +22,7 @@ class Logs(commands.Cog):
         JoinEmbed.set_thumbnail(url=member.avatar_url) # Embed's thumbnail = Users PFP
         await channel.send(embed=JoinEmbed)
         role = discord.utils.get(member.server.roles, name='Member') #gets an object when given certain criteria and a source to look from
-        await client.add_roles(member, role)
+        await self.bot.add_roles(member, role)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
