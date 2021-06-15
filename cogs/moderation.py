@@ -26,7 +26,9 @@ class Logs(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
+        channel = self.bot.get_channel(self.log_channel_id)
         print (f"{member} has left this server :-(")
+
 
     @commands.command(name='invite')
     @commands.guild_only() # Restricts the command to the guild only
