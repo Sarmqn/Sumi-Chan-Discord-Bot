@@ -37,6 +37,11 @@ class Logs(commands.Cog):
         loggingchannel = self.bot.get_channel(self.log_channel_id)
         embed = discord.Embed(title= "New Invite", description=f"Invite created by {ctx.author}\nCode: {str(invite)}")
         await loggingchannel.send(embed=embed) #Logs who created the invite link
+        
+    @client.event #Activity
+    async def on_member_join(member): #When a member joins, pass through member
+        role = discord.utils.get(member.server.roles, name='Member') #gets an object when given certain criteria and a source to look from
+        await client.add_roles(member, role)
 
 
 def setup(bot):
