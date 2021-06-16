@@ -5,7 +5,7 @@ I will work to continously post updates on this repository. I hope to expand it 
 
 Powerful bot that will soon be able to complete many tasks, essentially an all purpose bot hosted on the Heroku Cloud Platform. {Discord.py}
 
-```Requirements:
+``` Requirement to use:
 Python -3 -m pip install -U discord.py
 
 py -3 -m pip install -U discord.py[voice]
