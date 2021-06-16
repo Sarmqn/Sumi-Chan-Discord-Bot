@@ -22,4 +22,7 @@ py -3 -m pip install -U discord.py[voice]
 
 - Leaving Voice Channels
 - Playing Music
+- Skipping Music
+- Pausing / Stopping Music
 - Setting auto role to "Member" role
+- Moderation Purposes
