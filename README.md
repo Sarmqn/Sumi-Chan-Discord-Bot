@@ -4,6 +4,6 @@ This bot is for the discord server Social Hub owned by me and used mainly for pe
 I will work to continously post updates on this repository
 
 ``Requirements:
-Python -3 -m pip install -U discord.py
+Python -3 -m pip install -U discord.py./n
 py -3 -m pip install -U discord.py[voice]
 ``
