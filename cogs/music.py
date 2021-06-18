@@ -59,6 +59,7 @@ class music(commands.Cog):
        if voice_client.is_plying():
            await voice_clien.stop()
        else:
-           await ctx.send('There was not anything playing earlier to stop')                      
+           await ctx.send('There was not anything playing earlier to stop')   
+                                 
 def setup(bot):
     bot.add_cog(music(bot))
