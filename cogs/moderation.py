@@ -42,7 +42,12 @@ class Logs(commands.Cog):
         loggingchannel = self.bot.get_channel(self.log_channel_id)
         embed = discord.Embed(title= "New Invite", description=f"Invite created by {ctx.author}\nCode: {str(invite)}")
         await loggingchannel.send(embed=embed) #Logs who created the invite link
-
-
+"""
+    @commands.command(name = 'Ban Hammer')
+    async def ban(member: discord.Member, days: int = 1):
+        if "" in [role.id for role in message.author.oles]:
+            await bot.ban(member, days, reason)
+        else:
+"""
 def setup(bot):
     bot.add_cog(Logs(bot))
