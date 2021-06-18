@@ -16,8 +16,11 @@ class General(commands.Cog):
 
     @commands.command(name = 'nickname', aliases=["Nickname", "nick"])
     async def nickname(ctx, member: discord.Member, nick):
+        """
+        Helps user change nickname using command sc!nick or the aliases too
+        """
         await member.edit(nick=nick)
-        await ctx.send(f"{member.mention]'s nickname has been changed!")
+        await ctx.send(f"{member.mention]'s nickname has been changed!") # prints and pings the user that changed nickname
         
                 
 def setup(bot):
