@@ -1,5 +1,8 @@
 discord.py
 discord-pretty-help
-youtube_dl
-PyNaCl
 discord.py[voice]
+asyncio
+re
+math
+ksoftapi
+lavalink
