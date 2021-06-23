@@ -3,6 +3,4 @@ discord-pretty-help
 discord.py[voice]
 asyncio
 re
-math
-ksoftapi
 lavalink

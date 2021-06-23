@@ -1,11 +1,8 @@
 import asyncio
 import re
-import math
 import discord
-from dpymenus import Page, PaginatedMenu
-import ksoftapi
 import lavalink
-from discord.ext import commands, menus
+from discord.ext import forms, commands
 url_rx = re.compile(r'https?://(?:www\.)?.+')
 ytrx = re.compile(r'https?:\/\/(?:www)?youtu(\.be|be\.com)')
 spotifyuri = re.compile(r'spotify\:(track|album)\:.+')
@@ -231,13 +228,10 @@ class Music(commands.Cog):
                 end += 5
                 emlist.append(embed)
             if len(emlist) > 2:
-                menu = PaginatedMenu(ctx)
-                menu.allow_multisession()
+                menu = forms.ReactionMenu(ctx, emlist)
                 menu.set_timeout(60)
-                menu.show_page_numbers()
                 menu.add_pages(emlist)
-                menu.show_command_message()
-                await menu.open()
+                await menu.start()
             else:
                 await ctx.send(embed=emlist[0])
 
