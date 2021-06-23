@@ -42,3 +42,4 @@ class EcoGame(commands.Cog):
         maxMoney = DB["maxMoney"]
         money = random.randit(minMoney, maxMoney)
        
+"""
