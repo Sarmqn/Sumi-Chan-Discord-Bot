@@ -1,3 +1,4 @@
+"""
 import discord
 from discord.ext import commands
 from discord.ext.commans mort is_owner, has_permissions
