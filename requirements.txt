@@ -4,3 +4,4 @@ discord.py[voice]
 asyncio
 lavalink
 discord-ext-forms
+dblpy
