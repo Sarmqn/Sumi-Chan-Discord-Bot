@@ -14,7 +14,7 @@ que = {}
 class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.dbl = bot.dbl
+        "self.dbl = bot.dbl"
         if not hasattr(bot, 'lavalink'):  # This ensures the client isn't overwritten during cog reloads.
             bot.lavalink = lavalink.Client(bot.user.id)
             bot.lavalink.add_node('lavalink-repl.isige.repl.co', 2333, 'myk#y', 'us', 'sumichan')  # Host, Port, Password, Region, Name
