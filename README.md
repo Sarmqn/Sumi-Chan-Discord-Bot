@@ -21,6 +21,7 @@ py -3 -m pip install -U discord.py[voice]
 ## **Work In Progress Features(WIP)**
 
 - Leaving Voice Channels
+- Setting up new music features removing old one
 - Playing Music
 - Skipping Music
 - Pausing / Stopping Music
