@@ -3,7 +3,7 @@ import re
 import discord
 import lavalink
 from discord.ext import commands
-from discord.ext.forms import forms
+from discord.ext.forms import Form
 url_rx = re.compile(r'https?://(?:www\.)?.+')
 ytrx = re.compile(r'https?:\/\/(?:www)?youtu(\.be|be\.com)')
 spotifyuri = re.compile(r'spotify\:(track|album)\:.+')
