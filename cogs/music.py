@@ -2,7 +2,8 @@ import asyncio
 import re
 import discord
 import lavalink
-from discord.ext import forms, commands
+from discord.ext import commands
+from discord.ext.forms import forms
 url_rx = re.compile(r'https?://(?:www\.)?.+')
 ytrx = re.compile(r'https?:\/\/(?:www)?youtu(\.be|be\.com)')
 spotifyuri = re.compile(r'spotify\:(track|album)\:.+')
