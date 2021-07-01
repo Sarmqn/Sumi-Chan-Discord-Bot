@@ -32,6 +32,11 @@ class General(commands.Cog):
         await context.send(f'Serder ID: {id = str(ctx.guild.id)}')
     
     @bot.event
+    async def on_message(message):
+         if message.context == "test":
+                await message.channel.send("Testing 1, 2, 3!")
+         if message.context == "hello":
+                await message.channel.send("Hewo!")
     
 def setup(bot):
     bot.add_cog(General(bot))
