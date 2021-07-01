@@ -22,7 +22,8 @@ async def on_ready():
 cogs = [
     "moderation",
     "general",
-    "music"
+    "music",
+    "hypixel"
 ]
 
 for cog in cogs:
