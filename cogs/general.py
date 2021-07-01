@@ -29,7 +29,9 @@ class General(commands.Cog):
         await context.send(f'Server Name: {guild.name}')
         await context.send(f'Owner Name: {guild.owner.display_name}')
         await context.send(f'Server Size: {len(guild.members)}')
-        await context.send(f'Serder ID: {id = str(ctx.guild.id)}')    
-                
+        await context.send(f'Serder ID: {id = str(ctx.guild.id)}')
+    
+    @bot.event
+    
 def setup(bot):
     bot.add_cog(General(bot))
