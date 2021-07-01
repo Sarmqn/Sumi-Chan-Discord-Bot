@@ -33,3 +33,4 @@ def get_level(player_name):
             
  def setup(bot):
     bot.add_cog(Hypixel(bot))
+"""
