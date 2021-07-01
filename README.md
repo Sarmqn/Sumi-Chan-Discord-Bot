@@ -28,3 +28,4 @@ py -3 -m pip install -U discord.py[voice]
 - Setting auto role to "Member" role
 - Moderation Purposes
 - Economy Game with a Database
+- Hypixel API!!!
