@@ -3,6 +3,14 @@ import math
 import discord
 from discord.ext import commands
 
+@commands.command()
+async def level(ctx, name):
+  lvl = hypixel.get_level(name)
+  if lvl is None:
+    await ctx.send("Player could not be found, please check for errors and try again. Thank you!")
+  els:
+    await ctx.send(f"Level for {name}: {lvel})
+
 API_KEY = 
 
 #Network Level Calculator
