@@ -27,9 +27,9 @@ class General(commands.Cog):
     async def fetchServerInfo(context):
         guild = context.guild
         await context.send(f'Server Name: {guild.name}')
+        await context.send(f'Owner Name: {guild.owner.display_name}')
         await context.send(f'Server Size: {len(guild.members)}')
-        await context.send(f'Server Name: {guild.owner.display_name}')
-    
+        await context.send(f'Serder ID: {id = str(ctx.guild.id)}')    
                 
 def setup(bot):
     bot.add_cog(General(bot))
