@@ -37,7 +37,7 @@ class General(commands.Cog):
         await context.send(f'Server Size: {len(guild.members)}')
     
     @commands.Cog.listener()
-    async def on_message(message):
+    async def on_message(self, message):
          if message.context == "test":
                 await message.channel.send("Testing 1, 2, 3!")
          if message.context == "hello":
