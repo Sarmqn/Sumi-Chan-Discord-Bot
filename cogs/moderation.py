@@ -43,6 +43,8 @@ class Logs(commands.Cog):
         embed = discord.Embed(title= "New Invite", description=f"Invite created by {ctx.author}\nCode: {str(invite)}")
         await loggingchannel.send(embed=embed) #Logs who created the invite link
         
+        #  ---BAN---
+        
     @commands.command('ban')
     async def ban(ctx: commands.Context, member: discord.Member):
         if member == ctx.guild.me:
@@ -53,7 +55,9 @@ class Logs(commands.Cog):
             await member.send(f"{ctx.author} Banned")
             await member.ban()
             
-    @commands.command('mute')
+        #  ---MUTE---    
+            
+    @commands.command('mute') # Mute command
     async def mute(ctx: commands.Context, member: discord.Member):
         role_members = discord.utils.get(ctx.guild.roles, name='Members')
         role_muted = discord.utils.get(ctx.guild.roles, name='Members')
@@ -61,7 +65,9 @@ class Logs(commands.Cog):
         await member.add_roles(role_muted)
         await context.send("User Was Muted")
             
-    @commands.command('unmute')
+        #  ---UNMUTE---    
+            
+    @commands.command('unmute') # Unmute command
     async def unmute(ctx, member: discord.Member):
         role_members = discord.utils.get(ctx.guild.roles, name='Members')
         role_muted = discord.utils.get(ctx.guild.roles, name='Members')
