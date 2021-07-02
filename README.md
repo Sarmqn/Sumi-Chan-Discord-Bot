@@ -52,7 +52,7 @@ py -3 -m pip install -U discord.py[voice]
 - Movie Streaming
 - Anagrams
 
-##You can contact me via 💙 :
+## You can contact me via 💙 :
 
 Form of Contact | Contact
 ------------ | -------------
