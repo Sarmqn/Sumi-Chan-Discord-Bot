@@ -16,7 +16,6 @@ py -3 -m pip install -U discord.py[voice]
 - Logging those who join the server in an embed in Mod Log's channel (Currently only my server)
 - Log's who creates invites to the server and also sends invites to people
 - Deletes any "discord.gg/" links in chat to stop any server advertisement in all channels if prohibited
-- Join Voice Channels (VC's) when requested
 
 ## **Work In Progress Features(WIP)**
 
@@ -29,3 +28,4 @@ py -3 -m pip install -U discord.py[voice]
 - Moderation Purposes
 - Economy Game with a Database
 - Hypixel API!!!
+- Re-doing the music player
