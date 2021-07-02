@@ -30,19 +30,19 @@ class General(commands.Cog):
         await ctx.send(f"{member.mention}'s nickname has been changed!") # prints and pings the user that changed nickname
     
     @commands.command(name='server')
-    async def fetchServerInfo(self, ctx):
-        guild = ctx.guild
-        await ctx.send(f'Server Name: {guild.name}')
-        await ctx.send(f'Owner Name: {guild.owner.display_name}')
-        await ctx.send(f'Server Size: {len(guild.members)}')
-    
+    async def fetchServerInfo(context):
+        guild = context.guild
+        await context.send(f'Server Name: {guild.name}')
+        await context.send(f'Owner Name: {guild.owner.display_name}')
+        await context.send(f'Server Size: {len(guild.members)}')
+    """
     @commands.Cog.listener()
     async def on_message(self, message):
          if message.context == "test":
                 await message.channel.send("Testing 1, 2, 3!")
          if message.context == "hello":
                 await message.channel.send("Hewo!")
-    
+    """
 def setup(bot):
     bot.add_cog(General(bot))
 

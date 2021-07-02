@@ -14,8 +14,7 @@ bot.help_command = PrettyHelp(navigation=nav, color=discord.Colour.dark_purple()
 @bot.event
 async def on_ready():
     print("Online") # Lets the bot owner know when the bot is ready
-    await bot.change_presence(activity = discord.Game("Matane")) # Sets the dicord rich presence to "Matane"
-    
+    await bot.change_presence(activity = discord.Activity(type=discord.ActivityType.listening, name='Matane!'))
 # --Load cogs--
 cogs = [
     "moderation",
