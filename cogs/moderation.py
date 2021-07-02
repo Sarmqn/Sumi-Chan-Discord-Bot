@@ -52,6 +52,27 @@ class Logs(commands.Cog):
         else:
             await member.send(f"{ctx.author} Banned")
             await member.ban()
+            
+    @commands.command('mute')
+    async def mute(ctx: commands.Context, member: discord.Member):
+        if member == ctx.guild.me:
+            return await ctx.send("Lol, you failed")
+        if member.guild_permissions.administrator==True:
+            return await ctx.send("Too powerful")
+        else:
+            role_members = discord.utils.get(ctx.guild.roles, name='Members')
+            role_muted = discord.utils.get(ctx.guild.roles, name='Members')
+            await member.remove_roles(role_members)
+            await member.add_roles(role_muted)
+            await context.send("User Was Muted")
+            
+    @commands.command('unmute')
+    async def unmute(ctx, member: discord.Member):
+    role_members = discord.utils.get(ctx.guild.roles, name='Members')
+    role_muted = discord.utils.get(ctx.guild.roles, name='Members')
+    await member.remove_roles(role_muted)
+    await member.add_roles(role_members)
+
 
 def setup(bot):
     bot.add_cog(Logs(bot))
