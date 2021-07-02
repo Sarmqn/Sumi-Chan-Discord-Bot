@@ -64,6 +64,6 @@ Dev.to | @Sarmqn
 
 Thank you all who have helped and taught me a few things about making the discord.py bot's I am truly grateful of your efforts 💙
 
-- @Dawood
+- @14685-562
 - @Adam C
 - @Mikey
