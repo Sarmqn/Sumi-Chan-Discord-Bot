@@ -2,6 +2,8 @@
 import discord
 from discord.ext import commands
 
+bot = commands.Bot(command_prefix="sc!", case_insentive = True, description = "Nice handy bot that will help around", intents=intents) #Bot prefix
+
 class General(commands.Cog):
     """
     General commands that server members can use
