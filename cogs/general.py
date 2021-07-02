@@ -35,14 +35,14 @@ class General(commands.Cog):
         await context.send(f'Server Name: {guild.name}')
         await context.send(f'Owner Name: {guild.owner.display_name}')
         await context.send(f'Server Size: {len(guild.members)}')
-    """
+
     @commands.Cog.listener()
     async def on_message(self, message):
-         if message.context == "test":
+         if message.content == "test":
                 await message.channel.send("Testing 1, 2, 3!")
-         if message.context == "hello":
+         if message.content == "hello":
                 await message.channel.send("Hewo!")
-    """
+
 def setup(bot):
     bot.add_cog(General(bot))
 
