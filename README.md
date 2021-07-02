@@ -51,3 +51,8 @@ py -3 -m pip install -U discord.py[voice]
 - Google Searches
 - Movie Streaming
 - Anagrams
+
+Form of Contact | Contact
+------------ | -------------
+Email | sarmanchowdhury@gmail.com
+Discord | Sarman#4515
