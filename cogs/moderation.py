@@ -67,6 +67,8 @@ class Logs(commands.Cog):
         role_muted = discord.utils.get(ctx.guild.roles, name='Members')
         await member.remove_roles(role_muted)
         await member.add_roles(role_members)
+        await context.send("User Was Unmuted")
+
 
 
 def setup(bot):
