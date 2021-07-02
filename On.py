@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from pretty_help import PrettyHelp, DefaultMenu
+import os
 
 # --Load intents--
 intents = discord.Intents.default()
@@ -16,19 +17,19 @@ bot.help_command =
 
 @bot.event
 async def on_ready():
-    bot.load_extension("cogs.music")
-    print("Ready to work haha") # Lets the bot owner know when the bot is ready
+    print("Online") # Lets the bot owner know when the bot is ready
+    await bot.change_presence(activity = discord.Game("Matane")) # Sets the dicord rich presence to "Matane"
     
 # --Load cogs--
 cogs = [
     "moderation",
-    "general",
+    "general"
 ]
 
 for cog in cogs:
     bot.load_extension("cogs." + cog)
     print("Loaded: " + cog)
 
-bot.load_extension("jishaku")
-bot_token = 'NzkxMjkwMDg1MzU3MTI1NjMz.X-NAUQ.oYNL-1HvGbsPQERCskJB8tZj3wg'
+# --Start bot--
+bot_token = os.environ.get("TOKEN")
 bot.run(bot_token)

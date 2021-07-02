@@ -42,12 +42,40 @@ class Logs(commands.Cog):
         loggingchannel = self.bot.get_channel(self.log_channel_id)
         embed = discord.Embed(title= "New Invite", description=f"Invite created by {ctx.author}\nCode: {str(invite)}")
         await loggingchannel.send(embed=embed) #Logs who created the invite link
-"""
-    @commands.command(name = 'Ban Hammer')
-    async def ban(member: discord.Member, days: int = 1):
-        if "" in [role.id for role in message.author.oles]:
-            await bot.ban(member, days, reason)
+        
+        #  ---BAN---
+        
+    @commands.command('ban')
+    async def ban(self, ctx, member: discord.Member):
+        if member == ctx.guild.me:
+            return await ctx.send("Nice try")
+        if member.guild_permissions.administrator==True:
+            return await ctx.send("Whoops! You can't ban them...")
         else:
-"""
+            await member.send(f"{ctx.author} Banned")
+            await member.ban()
+            
+        #  ---MUTE---    
+            
+    @commands.command('mute') # Mute command
+    async def mute(self, ctx, member: discord.Member):
+        role_members = discord.utils.get(ctx.guild.roles, name='Members')
+        role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
+        await member.remove_roles(role_members)
+        await member.add_roles(role_muted)
+        await ctx.send("User Was Muted")
+            
+        #  ---UNMUTE---    
+            
+    @commands.command('unmute') # Unmute command
+    async def unmute(self, ctx, member: discord.Member):
+        role_members = discord.utils.get(ctx.guild.roles, name='Members')
+        role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
+        await member.remove_roles(role_muted)
+        await member.add_roles(role_members)
+        await ctx.send("User Was Unmuted")
+
+
+
 def setup(bot):
     bot.add_cog(Logs(bot))

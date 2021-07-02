@@ -4,3 +4,4 @@ discord.py[voice]
 asyncio
 lavalink
 jishaku
+discord-ext-forms

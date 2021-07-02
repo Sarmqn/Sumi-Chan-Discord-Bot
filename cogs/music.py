@@ -1,8 +1,10 @@
+
 import asyncio
 import re
 import discord
 import lavalink
-from discord.ext import forms, commands
+from discord.ext import commands
+from discord.ext.forms import Form
 url_rx = re.compile(r'https?://(?:www\.)?.+')
 ytrx = re.compile(r'https?:\/\/(?:www)?youtu(\.be|be\.com)')
 spotifyuri = re.compile(r'spotify\:(track|album)\:.+')
@@ -21,7 +23,7 @@ class Music(commands.Cog):
         lavalink.add_event_hook(self.track_hook)
 
     def cog_unload(self):
-        """ Cog unload handler. This removes any event hooks that were registered. """
+        # Cog unload handler. This removes any event hooks that were registered.
         self.bot.lavalink._event_hooks.clear()
 
     async def cog_before_invoke(self, ctx):
@@ -245,7 +247,7 @@ class Music(commands.Cog):
 
     @commands.command(name="disconnect",description="Disconnect the bot from the current voice channel.",usage="disconnect",aliases=['dc','stop'])
     async def disconnect(self, ctx):
-        """ Disconnects the player from the voice channel and clears its queue. """
+        #Disconnects the player from the voice channel and clears its queue.
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
 
         if not player.is_connected:

@@ -1,5 +1,12 @@
+
+import discord
 from discord.ext import commands
 import discord
+
+# --Load intents--
+intents = discord.Intents.default()
+intents.members = True
+bot = commands.Bot(command_prefix="sc!", case_insentive = True, description = "Nice handy bot that will help around", intents=intents) #Bot prefix
 
 class General(commands.Cog):
     """
@@ -22,7 +29,21 @@ class General(commands.Cog):
         """
         await member.edit(nick=nick)
         await ctx.send(f"{member.mention}'s nickname has been changed!") # prints and pings the user that changed nickname
-        
-                
+    
+    @commands.command(name='server')
+    async def fetchServerInfo(context):
+        guild = context.guild
+        await context.send(f'Server Name: {guild.name}')
+        await context.send(f'Owner Name: {guild.owner.display_name}')
+        await context.send(f'Server Size: {len(guild.members)}')
+    
+    @commands.Cog.listener()
+    async def on_message(message):
+         if message.context == "test":
+                await message.channel.send("Testing 1, 2, 3!")
+         if message.context == "hello":
+                await message.channel.send("Hewo!")
+    
 def setup(bot):
     bot.add_cog(General(bot))
+
