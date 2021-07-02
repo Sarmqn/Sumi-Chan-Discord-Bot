@@ -12,7 +12,8 @@ async def level(ctx, name):
   els:
     await ctx.send(f"Level for {name}: {lvel})
 
-API_KEY = 
+API_KEY = os.environ.get("API_KEY")
+bot.run(API_KEY)
 
 #Network Level Calculator
 
