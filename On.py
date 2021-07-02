@@ -21,8 +21,7 @@ async def on_ready():
 # --Load cogs--
 cogs = [
     "moderation",
-    "general",
-    "hypixel"
+    "general"
 ]
 
 for cog in cogs:
