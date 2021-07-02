@@ -59,3 +59,11 @@ Form of Contact | Contact
 Email | sarmanchowdhury@gmail.com
 Discord | Sarman#4515
 Dev.to | @Sarmqn
+
+## Credits ❤️:
+
+Thank you all who have helped and taught me a few things about making the discord.py bot's I am truly grateful of your efforts 💙
+
+- @Dawood
+- @Adam C
+- @Mikey
