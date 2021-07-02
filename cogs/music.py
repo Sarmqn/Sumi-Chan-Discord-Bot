@@ -1,3 +1,4 @@
+"""
 import asyncio
 import re
 import discord
@@ -269,3 +270,4 @@ class Music(commands.Cog):
 
 def setup(bot):
     bot.add_cog(Music(bot))
+"""
