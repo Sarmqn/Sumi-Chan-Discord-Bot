@@ -32,3 +32,22 @@ py -3 -m pip install -U discord.py[voice]
 - Economy Game with a Database
 - Hypixel API!!!
 - Re-doing the music player
+
+## **Requirements set for the bot**
+
+- Music
+- Moderation
+- Bot responding to messages
+- Hypixel API
+- Timers
+- Tests like Trivia
+- Reaction Roles
+- Voice Control
+- Calculator
+- Math Helper
+- Economy
+- Anime Releases
+- Server Management
+- Google Searches
+- Movie Streaming
+- Anagrams
