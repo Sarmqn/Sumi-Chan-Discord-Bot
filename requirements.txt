@@ -3,5 +3,5 @@ discord-pretty-help
 discord.py[voice]
 asyncio
 lavalink
-discord-ext-forms
+discord.ext.forms
 dblpy
