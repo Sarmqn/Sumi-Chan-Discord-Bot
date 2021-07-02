@@ -11,12 +11,11 @@ global que
 que = {}
 
 class Music(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
-        self.dbl = bot.dbl
         if not hasattr(bot, 'lavalink'):  # This ensures the client isn't overwritten during cog reloads.
             bot.lavalink = lavalink.Client(bot.user.id)
-            bot.lavalink.add_node('lavalink-repl.isige.repl.co', 2333, 'myk#y', 'us', 'sumichan')  # Host, Port, Password, Region, Name
+            bot.lavalink.add_node('lava.link', 80, 'joemama', 'eu', 'sumichan')  # Host, Port, Password, Region, Name
             bot.add_listener(bot.lavalink.voice_update_handler, 'on_socket_response')
 
         lavalink.add_event_hook(self.track_hook)
@@ -39,7 +38,7 @@ class Music(commands.Cog):
 
         return guild_check and voice
 
-    async def ensure_voice(self, ctx):
+    async def ensure_voice(self, ctx: commands.Context):
         """ This check ensures that the bot and command author are in the same voicechannel. """
         player = self.bot.lavalink.player_manager.create(ctx.guild.id, endpoint=str(ctx.guild.region))
         # Create returns a player if one exists, otherwise creates.
@@ -119,6 +118,7 @@ class Music(commands.Cog):
         empty = []
         try:
             test = str(que[ctx.guild.id])
+            print(test)
         except:
             que[ctx.guild.id] = empty
         """ Searches and plays a song from a given query. """

@@ -1,4 +1,5 @@
 from discord.ext import commands
+import discord
 
 class General(commands.Cog):
     """
@@ -20,7 +21,7 @@ class General(commands.Cog):
         Helps user change nickname using command sc!nick or the aliases too
         """
         await member.edit(nick=nick)
-        await ctx.send(f"{member.mention]'s nickname has been changed!") # prints and pings the user that changed nickname
+        await ctx.send(f"{member.mention}'s nickname has been changed!") # prints and pings the user that changed nickname
         
                 
 def setup(bot):
