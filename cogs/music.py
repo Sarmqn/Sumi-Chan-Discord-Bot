@@ -247,7 +247,7 @@ class Music(commands.Cog):
 
     @commands.command(name="disconnect",description="Disconnect the bot from the current voice channel.",usage="disconnect",aliases=['dc','stop'])
     async def disconnect(self, ctx):
-        """ Disconnects the player from the voice channel and clears its queue. """
+        #Disconnects the player from the voice channel and clears its queue.
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
 
         if not player.is_connected:
