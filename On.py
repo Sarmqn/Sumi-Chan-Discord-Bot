@@ -1,9 +1,7 @@
 import discord
 from discord.ext import commands
 from pretty_help import PrettyHelp, DefaultMenu
-from asyncio import sleep
 import os
-import random
 
 # --Load intents--
 intents = discord.Intents.default()

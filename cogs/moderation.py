@@ -46,7 +46,7 @@ class Logs(commands.Cog):
         #  ---BAN---
         
     @commands.command('ban')
-    async def ban(ctx: commands.Context, member: discord.Member):
+    async def ban(self, ctx, member: discord.Member):
         if member == ctx.guild.me:
             return await ctx.send("Nice try")
         if member.guild_permissions.administrator==True:
@@ -58,22 +58,22 @@ class Logs(commands.Cog):
         #  ---MUTE---    
             
     @commands.command('mute') # Mute command
-    async def mute(ctx: commands.Context, member: discord.Member):
+    async def mute(self, ctx, member: discord.Member):
         role_members = discord.utils.get(ctx.guild.roles, name='Members')
-        role_muted = discord.utils.get(ctx.guild.roles, name='Members')
+        role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
         await member.remove_roles(role_members)
         await member.add_roles(role_muted)
-        await context.send("User Was Muted")
+        await ctx.send("User Was Muted")
             
         #  ---UNMUTE---    
             
     @commands.command('unmute') # Unmute command
-    async def unmute(ctx, member: discord.Member):
+    async def unmute(self, ctx, member: discord.Member):
         role_members = discord.utils.get(ctx.guild.roles, name='Members')
-        role_muted = discord.utils.get(ctx.guild.roles, name='Members')
+        role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
         await member.remove_roles(role_muted)
         await member.add_roles(role_members)
-        await context.send("User Was Unmuted")
+        await ctx.send("User Was Unmuted")
 
 
 

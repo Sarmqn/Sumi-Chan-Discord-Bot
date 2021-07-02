@@ -36,7 +36,7 @@ class General(commands.Cog):
         await context.send(f'Owner Name: {guild.owner.display_name}')
         await context.send(f'Server Size: {len(guild.members)}')
     
-    @bot.event
+    @commands.Cog.listener()
     async def on_message(message):
          if message.context == "test":
                 await message.channel.send("Testing 1, 2, 3!")
