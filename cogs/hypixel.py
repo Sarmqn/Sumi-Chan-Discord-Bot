@@ -10,7 +10,7 @@ async def level(ctx, name):
   if lvl is None:
     await ctx.send("Player could not be found, please check for errors and try again. Thank you!")
   else:
-    await ctx.send(f"Level for {name}: {lvel})
+    await ctx.send(f"Level for {name}: {lvel}")
 
 API_KEY = os.environ.get("API_KEY")
 bot.run(API_KEY)
