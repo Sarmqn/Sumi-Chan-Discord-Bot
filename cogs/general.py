@@ -23,7 +23,7 @@ class General(commands.Cog):
         await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms') # Says in chat what the current ping is and rounds it to the nearest whole number
 
     @commands.command(name = 'nickname', aliases=["Nickname", "nick"])
-    async def nickname(ctx, member: discord.Member, nick):
+    async def nickname(self, ctx, member: discord.Member, nick):
         """
         Helps user change nickname using command sc!nick or the aliases too
         """
@@ -38,12 +38,12 @@ class General(commands.Cog):
         await ctx.send(f'Server Size: {len(guild.members)}')
     
     @commands.Cog.listener()
-    async def on_message(message):
-         if message.context == "test":
+    async def on_message(self, message):
+         if message.content == "test":
                 await message.channel.send("Testing 1, 2, 3!")
-         if message.context == "hello":
+         if message.content == "hello":
                 await message.channel.send("Hewo!")
-    
+
 def setup(bot):
     bot.add_cog(General(bot))
 
