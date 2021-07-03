@@ -13,7 +13,6 @@ class SumiChan(commands.Bot):
 
 bot = commands.Bot(command_prefix="sc!", case_insentive = True, description = "Nice handy bot that will help around", intents=intents) #Bot prefix
 nav = DefaultMenu('◀️', '▶️', '❌')
-bot.help_command =
 
 @bot.event
 async def on_ready():
