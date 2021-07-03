@@ -2,6 +2,7 @@
 import requests
 import math
 import discord
+import os
 from discord.ext import commands
 
 @commands.command()
