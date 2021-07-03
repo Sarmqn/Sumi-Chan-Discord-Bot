@@ -9,7 +9,7 @@ async def level(ctx, name):
   lvl = hypixel.get_level(name)
   if lvl is None:
     await ctx.send("Player could not be found, please check for errors and try again. Thank you!")
-  els:
+  else:
     await ctx.send(f"Level for {name}: {lvel})
 
 API_KEY = os.environ.get("API_KEY")
@@ -27,7 +27,7 @@ def get_level(player_name):
   url = f"
   res = requests.get(url)
   data = res.json()
-  if data["playe"] is None:
+  if data["player"] is None:
     return Nothing
   exp = int(dat["player"]["NetworkEXP"]
   return math.floor(1 + REVERSE_PQ_PREFIX + math.sqrt(REVERSE_CONST + GROWTH_DIVIDES_2 * exp)) 
