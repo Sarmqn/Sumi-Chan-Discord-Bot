@@ -28,7 +28,7 @@ class Logs(commands.Cog):
     async def on_member_remove(self, member):
         channel = self.bot.get_channel(self.log_channel_id)
         LeaveEmbed = discord.Embed(title=f"Byee {member}", description = f"Cya next time ;-( {member.guild.name}!")
-        LeaveEmbed.se_thumbnail(url=member.avatar_url)
+        LeaveEmbed.set_thumbnail(url=member.avatar_url)
         await channel.send(embed=LeaveEmbed)
         
     @commands.command(name='invite')
@@ -52,7 +52,7 @@ class Logs(commands.Cog):
         if member.guild_permissions.administrator==True:
             return await ctx.send("Whoops! You can't ban them...")
         else:
-            await member.send(f"{ctx.author} Banned")
+            await member.send(f"You were banned from **{ctx.guild}** by **{ctx.author}**.")
             await member.ban()
             
         #  ---MUTE---    
