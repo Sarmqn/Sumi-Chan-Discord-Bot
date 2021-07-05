@@ -47,7 +47,7 @@ class Logs(commands.Cog):
         
     @commands.command('ban')
     async def ban(self, ctx, member: discord.Member):
-        if ctx.member.guild_permissions.ban_members==True:
+        if ctx.author.guild_permissions.ban_members==True:
             if member == ctx.guild.me:
                 return await ctx.send("Nice try")
             if member.guild_permissions.administrator==True:
@@ -60,7 +60,7 @@ class Logs(commands.Cog):
             
     @commands.command('mute') # Mute command
     async def mute(self, ctx, member: discord.Member):
-        if ctx.member.guild_permissions.administrator==True:
+        if ctx.author.guild_permissions.administrator==True:
             muted = False
             i = 0
             while (muted == False) and (i < len(member.roles)):
@@ -81,7 +81,7 @@ class Logs(commands.Cog):
             
     @commands.command('unmute') # Unmute command
     async def unmute(self, ctx, member: discord.Member):
-        if member.guild_permissions.administrator==True:
+        if ctx.author.guild_permissions.administrator==True:
             muted = False
             i = 0
             while (muted == False) and (i < len(member.roles)):
