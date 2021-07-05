@@ -73,7 +73,7 @@ class Logs(commands.Cog):
         if member.guild_permissions.administrator==True:
             muted = False
             i = 0
-            while muted == False:
+            while (muted == False) and (i < len(member.roles)):
                 if member.roles[i].name == 'Muted':
                     muted = True
                 else:
