@@ -71,12 +71,21 @@ class Logs(commands.Cog):
     @commands.command('unmute') # Unmute command
     async def unmute(self, ctx, member: discord.Member):
         if member.guild_permissions.administrator==True:
-            role_members = discord.utils.get(ctx.guild.roles, name='Member')
-            role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
-            await member.remove_roles(role_muted)
-            await member.add_roles(role_members)
-            await ctx.send(f"**{member}** was unmuted.")
-            print(f'{member.roles}')
+            muted = False
+            i = 0
+            while muted == False:
+                if member.roles[i].name == 'Muted':
+                    muted = True
+                 else:
+                    i += 1
+            if muted == True:
+                role_members = discord.utils.get(ctx.guild.roles, name='Member')
+                role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
+                await member.remove_roles(role_muted)
+                await member.add_roles(role_members)
+                await ctx.send(f"**{member}** was unmuted.")
+            else:
+                await ctx.send(f'**{member}** is not muted.')
 
 
 
