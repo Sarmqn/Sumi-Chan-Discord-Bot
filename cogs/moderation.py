@@ -76,7 +76,7 @@ class Logs(commands.Cog):
             while muted == False:
                 if member.roles[i].name == 'Muted':
                     muted = True
-                 else:
+                else:
                     i += 1
             if muted == True:
                 role_members = discord.utils.get(ctx.guild.roles, name='Member')
