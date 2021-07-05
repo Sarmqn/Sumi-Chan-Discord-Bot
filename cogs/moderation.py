@@ -64,7 +64,7 @@ class Logs(commands.Cog):
             role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
             await member.remove_roles(role_members)
             await member.add_roles(role_muted)
-            await ctx.send(f"{member} was muted.")
+            await ctx.send(f"**{member}** was muted.")
             
         #  ---UNMUTE---    
             
@@ -75,7 +75,8 @@ class Logs(commands.Cog):
             role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
             await member.remove_roles(role_muted)
             await member.add_roles(role_members)
-            await ctx.send(f"{member} was unmuted.")
+            await ctx.send(f"**{member}** was unmuted.")
+            print(f'{member.roles}')
 
 
 
