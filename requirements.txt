@@ -6,4 +6,4 @@ lavalink
 jishaku
 discord-ext-forms
 PyNaCl
-discord-youtube_dl
+Youtube_DL
