@@ -47,19 +47,20 @@ class Logs(commands.Cog):
         
     @commands.command('ban')
     async def ban(self, ctx, member: discord.Member):
-        if member == ctx.guild.me:
-            return await ctx.send("Nice try")
-        if member.guild_permissions.administrator==True:
-            return await ctx.send("Whoops! You can't ban them...")
-        else:
-            await member.send(f"You were banned from **{ctx.guild}** by **{ctx.author}**.")
-            await member.ban()
-            
+        if ctx.member.guild_permissions.ban_members==True:
+            if member == ctx.guild.me:
+                return await ctx.send("Nice try")
+            if member.guild_permissions.administrator==True:
+                return await ctx.send("Whoops! You can't ban them...")
+            else:
+                await member.send(f"You were banned from **{ctx.guild}** by **{ctx.author}**.")
+                await member.ban()
+
         #  ---MUTE---    
             
     @commands.command('mute') # Mute command
     async def mute(self, ctx, member: discord.Member):
-        if member.guild_permissions.administrator==True:
+        if ctx.member.guild_permissions.administrator==True:
             muted = False
             i = 0
             while (muted == False) and (i < len(member.roles)):
