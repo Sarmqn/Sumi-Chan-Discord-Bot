@@ -10,7 +10,7 @@ intents.members = True
 class SumiChan(commands.Bot):
     def __init__(self):
         nav = DefaultMenu('◀️', '▶️', '❌')
-        self.help_command = PrettyHelp(navigation=nav, color=discord.Colour.dark_purple())
+        self._help_command = PrettyHelp(navigation=nav, color=discord.Colour.dark_purple())
         super().__init__(command_prefix="sc!", description="Nice handy bot that will help around", intents=intents)
 
 bot = SumiChan()
