@@ -21,7 +21,7 @@ class Logs(commands.Cog):
         JoinEmbed = discord.Embed(title=f"Welcome {member}", description = f"Thanks for joining {member.guild.name}!")
         JoinEmbed.set_thumbnail(url=member.avatar_url) # Embed's thumbnail = Users PFP
         await channel.send(embed=JoinEmbed)
-        role = discord.utils.get(member.server.role, name='Member') #gets an object when given certain criteria and a source to look from
+        role = discord.utils.get(member.guild.role, name='Member') #gets an object when given certain criteria and a source to look from
         await self.bot.add_roles(member, role)
 
     @commands.Cog.listener()
