@@ -20,14 +20,6 @@ class General(commands.Cog):
         Checks the current ping for the bot
         """
         await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms') # Says in chat what the current ping is and rounds it to the nearest whole number
-
-    @commands.command(name = 'nickname', aliases=["Nickname", "nick"])
-    async def nickname(self, ctx, member: discord.Member, nick):
-        """
-        Helps user change nickname using command sc!nick or the aliases too
-        """
-        await member.edit(nick=nick)
-        await ctx.send(f"{member.mention}'s nickname has been changed!") # prints and pings the user that changed nickname
     
     @commands.command(name='server')
     async def server_info(ctx: commands.Context):
