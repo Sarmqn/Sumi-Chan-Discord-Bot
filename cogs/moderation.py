@@ -111,7 +111,7 @@ class Logs(commands.Cog):
                 await ctx.send(f'**{userID}** has been unbanned.')
         else:
             pass
-    @unban.error
+
         
 def setup(bot):
     bot.add_cog(Logs(bot))
