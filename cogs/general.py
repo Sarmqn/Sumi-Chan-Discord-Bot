@@ -1,9 +1,8 @@
 import discord
 from discord.ext import commands
-import discord
 
 # --Load intents--
-intents = discord.Intents.default()
+intents = discord.Intents.all()
 intents.members = True
 bot = commands.Bot(command_prefix="sc!", case_insentive = True, description = "Nice handy bot that will help around", intents=intents) #Bot prefix
 
