@@ -1,4 +1,5 @@
 import discord
+from discord import errors
 from discord.ext import commands
 
 class Logs(commands.Cog):
@@ -102,7 +103,15 @@ class Logs(commands.Cog):
     async def unban(self,ctx, id: int):
         if ctx.author.guild_permissions.ban_members==True:
             userID = await self.bot.fetch_user(id)
-            await ctx.guild.unban(userID)
+            try:
+                await ctx.guild.unban(userID)
+            except discord.errors.NotFound:
+                await ctx.send('User is not banned!')
+            else:
+                await ctx.send(f'**{userID}** has been unbanned.')
+        else:
+            pass
+    @unban.error
         
 def setup(bot):
     bot.add_cog(Logs(bot))
