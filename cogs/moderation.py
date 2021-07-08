@@ -98,10 +98,10 @@ class Logs(commands.Cog):
             else:
                 await ctx.send(f'**{member}** is not muted.')
        
-    @commands.command('unban') #Unban command
-    async def unban(self,ctx, id):
+    @commands.command('Unban') #Unban command
+    async def unban(self,ctx, member:discord.Member):
         if ctx.author.guild_permissions.ban_members==True:
-            userID = await bot.fetch_user(id)
+            userID = await self.bot.fetch_user(id)
             await ctx.guild.unban(userID)
 
         
