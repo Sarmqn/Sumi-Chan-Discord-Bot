@@ -29,7 +29,7 @@ class Help(commands.Cog):
                 else:
                     pass
             if found == False:
-            HelpMessage = await ctx.send(embed=discord.Embed(title='Misspelling?', description=f'I could not find {hargs} command in the list of commands {ctx.author.mention}!'))
+                HelpMessage = await ctx.send(embed=discord.Embed(title='Misspelling?', description=f'I could not find {hargs} command in the list of commands {ctx.author.mention}!'))
             else:
                 HelpEmbed=discord.Embed(title=f"Help for '{hargs}'!", description='', color=discord.Color.from_rgb(randint(0, 255),randint(0, 255),randint(0, 255)))
                 HelpEmbed.add_field(name="Description", value=f'{helplist[index][1]}', inline=False)
