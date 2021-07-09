@@ -6,8 +6,8 @@ helplist = [['ban', 'Bans a user.'], ['mute', 'Indefinitely mutes a user.'], ['u
 
 
 class Help(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command('help')
     async def help(self, ctx, *hargs, member=discord.Member):
