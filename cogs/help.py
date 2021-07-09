@@ -34,10 +34,9 @@ class Help(commands.Cog):
                     HelpEmbed=discord.Embed(title=f"Help for '{hargs}'!", description='', color=discord.Color.from_rgb(randint(0, 255),randint(0, 255),randint(0, 255)))
                     HelpEmbed.add_field(name="Description", value=f'{helplist[index][1]}', inline=False)
                 HelpMessage = await ctx.send(embed=HelpEmbed)
-
-            await ctx.message.delete()
-            await asyncio.sleep(120)
-            await HelpMessage.delete()
+                await ctx.message.delete()
+                await asyncio.sleep(120)
+                await HelpMessage.delete()
 
 
 def setup(bot):
