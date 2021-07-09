@@ -23,6 +23,7 @@ async def on_ready():
 cogs = [
     "moderation",
     "general",
+    "help"
 ]
 
 for cog in cogs:
