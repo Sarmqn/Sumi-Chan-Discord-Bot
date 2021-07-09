@@ -102,7 +102,7 @@ class Logs(commands.Cog):
     @commands.command('unban') #Unban command
     async def unban(self,ctx, id: int):
         if ctx.author.guild_permissions.ban_members==True:
-            userID = await ctx.self.bot.fetch_user(id)
+            userID = await ctx.self.bot.fetch_user(id) # Gets users ID
             try:
                 await ctx.guild.unban(userID)
             except discord.errors.NotFound:
