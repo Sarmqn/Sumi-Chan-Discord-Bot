@@ -10,7 +10,7 @@ class Help(commands.Cog):
         self.client = client
 
     @commands.command('help')
-    async def help(self, ctx, *hargs):
+    async def help(self, ctx, *hargs, member=discord.Member):
         hargs = ''.join(hargs)
         if hargs == '':
                 HelpEmbed=discord.Embed(title=f'Help for {ctx.guild.me.display_name}!', description='This message will self-destruct in 2 minutes so as to not take up too much space.', color=discord.Color.from_rgb(randint(0, 255),randint(0, 255),randint(0, 255)))
