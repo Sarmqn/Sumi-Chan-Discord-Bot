@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
 from random import randint
-helplist = [['ban', 'Bans a user.'], ['mute', 'Indefinitely mutes a user.'], ['unmute', 'Unmutes a muted user.'], ['invite', 'Creates an invite link for the server.'], ['ping', "Checks the bot's ping."], ['server', 'Sends information about the server.'], ['disconnect', 'Disconnects the user's voice channel.'], ['join', 'Joins the voice channel of the user.'], ['pause', 'Pauses the currently playing song.'], ['play', 'Plays a song!'], ['resume', 'Resumes the currently playing song!']]
+
+helplist = [['ban', 'Bans a user.'], ['mute', 'Indefinitely mutes a user.'], ['unmute', 'Unmutes a muted user.'], ['invite', 'Creates an invite link for the server.'], ['ping', "Checks the bot's ping."], ['server', 'Sends information about the server.'], ['disconnect', 'Disconnects the users voice channel.'], ['join', 'Joins the voice channel of the user.'], ['pause', 'Pauses the currently playing song.'], ['play', 'Plays a song!'], ['resume', 'Resumes the currently playing song!']]
 
 
 class Help(commands.Cog):
