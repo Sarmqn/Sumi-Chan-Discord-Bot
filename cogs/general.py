@@ -4,7 +4,7 @@ from discord.ext import commands
 # --Load intents--
 intents = discord.Intents.all()
 intents.members = True
-bot = commands.Bot(command_prefix="sc!", case_insentive = True, description = "Nice handy bot that will help around", intents=intents, help_command=None) #Bot prefix
+bot = commands.Bot(command_prefix="sc!", case_insentive = True, description = "Nice handy bot that will help around", intents=intents) #Bot prefix
 
 class General(commands.Cog):
     """
