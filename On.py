@@ -20,8 +20,7 @@ async def on_ready():
 # --Load cogs--
 cogs = [
     "moderation",
-    "general",
-    "help"
+    "general"
 ]
 
 for cog in cogs:
