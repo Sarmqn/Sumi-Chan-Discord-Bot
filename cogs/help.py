@@ -10,11 +10,11 @@ class Help(commands.Cog):
         self.bot = bot
 
     @commands.command('help')
-    async def help(self, ctx, *hargs, member=discord.Member):
+    async def help(self, ctx, *hargs):
         hargs = ''.join(hargs)
         if hargs == '':
                 HelpEmbed=discord.Embed(title=f'Help for {ctx.guild.me.display_name}!', description='This message will self-destruct in 2 minutes so as to not take up too much space.', color=discord.Color.from_rgb(randint(0, 255),randint(0, 255),randint(0, 255)))
-                if member.guild_permissions.administrator==True:
+                if ctx.message.author.server_permissions.administrator==True:
                     HelpEmbed.add_field(name="Admin", value="ban\nmute\nunmute", inline=True)
                     HelpEmbed.add_field(name="Utility", value="invite\nping\nserver", inline=True)
                     HelpEmbed.add_field(name="Music", value="disconnect\njoin\npause\nplay\nresume", inline=True)
