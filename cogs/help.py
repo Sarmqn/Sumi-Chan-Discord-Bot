@@ -20,7 +20,7 @@ class Help(commands.Cog):
                 HelpEmbed.add_field(name="Music", value="disconnect\njoin\npause\nplay\nresume", inline=True)
                 HelpMessage = await ctx.send(embed=HelpEmbed)
                 else:
-                found = False
+                    found = False
                 for i in helplist:
                     if i[0] == f'{hargs}':
                         index = helplist.index(i)
