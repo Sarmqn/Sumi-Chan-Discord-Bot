@@ -16,9 +16,9 @@ class Help(commands.Cog):
         if hargs == '': 
             HelpEmbed=discord.Embed(title=f'Help for {ctx.guild.me.display_name}!', description='This message will self-destruct in 2 minutes so as to not take up too much space.', color=discord.Color.from_rgb(randint(0, 255),randint(0, 255),randint(0, 255)))
             if ctx.message.author.guild_permissions.administrator==True:
-                HelpEmbed.add_field(name="Admin", value="ban\nmute\nunmute", inline=True)
-                HelpEmbed.add_field(name="Utility", value="invite\nping\nserver", inline=True)
-                HelpEmbed.add_field(name="Music", value="disconnect\njoin\npause\nplay\nresume", inline=True)
+                HelpEmbed.add_field(name="👑 Admin", value="```\nban\nmute\nunmute\n```", inline=True)
+                HelpEmbed.add_field(name="🔨 Utility", value="```\ninvite\nping\nserver\n```", inline=True)
+                HelpEmbed.add_field(name="🎵 Music", value="```\ndisconnect\njoin\npause\nplay\nresume\n```", inline=True)
         else:
             found = False
             for i in helplist:
