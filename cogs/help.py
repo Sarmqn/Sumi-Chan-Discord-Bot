@@ -12,31 +12,31 @@ class Help(commands.Cog):
     @commands.command('help')
     async def help(self, ctx, *hargs):
         hargs = ''.join(hargs)
-        if hargs == '':
-                HelpEmbed=discord.Embed(title=f'Help for {ctx.guild.me.display_name}!', description='This message will self-destruct in 2 minutes so as to not take up too much space.', color=discord.Color.from_rgb(randint(0, 255),randint(0, 255),randint(0, 255)))
-                if ctx.message.author.guild_permissions.administrator==True:
-                    HelpEmbed.add_field(name="Admin", value="ban\nmute\nunmute", inline=True)
-                    HelpEmbed.add_field(name="Utility", value="invite\nping\nserver", inline=True)
-                    HelpEmbed.add_field(name="Music", value="disconnect\njoin\npause\nplay\nresume", inline=True)
-                    HelpMessage = await ctx.send(embed=HelpEmbed)
-                else:
-                    found = False
-                for i in helplist:
-                    if i[0] == f'{hargs}':
-                        index = helplist.index(i)
-                        found = True
-                        break
-                    else:
-                        pass
-                if found == False:
-                    HelpMessage = await ctx.send(embed=discord.Embed(title='Misspelling?', description=f'I could not find {hargs} command in the list of commands {ctx.author.mention}!'))
-                else:
-                    HelpEmbed=discord.Embed(title=f"Help for '{hargs}'!", description='', color=discord.Color.from_rgb(randint(0, 255),randint(0, 255),randint(0, 255)))
-                    HelpEmbed.add_field(name="Description", value=f'{helplist[index][1]}', inline=False)
+        if hargs == '': 
+            HelpEmbed=discord.Embed(title=f'Help for {ctx.guild.me.display_name}!', description='This message will self-destruct in 2 minutes so as to not take up too much space.', color=discord.Color.from_rgb(randint(0, 255),randint(0, 255),randint(0, 255)))
+            if ctx.message.author.guild_permissions.administrator==True:
+                HelpEmbed.add_field(name="Admin", value="ban\nmute\nunmute", inline=True)
+                HelpEmbed.add_field(name="Utility", value="invite\nping\nserver", inline=True)
+                HelpEmbed.add_field(name="Music", value="disconnect\njoin\npause\nplay\nresume", inline=True)
                 HelpMessage = await ctx.send(embed=HelpEmbed)
-                await ctx.message.delete()
-                await asyncio.sleep(120)
-                await HelpMessage.delete()
+        else:
+            found = False
+            for i in helplist:
+                if i[0] == f'{hargs}':
+                    index = helplist.index(i)
+                    found = True
+                    break
+                else:
+                    pass
+            if found == False:
+            HelpMessage = await ctx.send(embed=discord.Embed(title='Misspelling?', description=f'I could not find {hargs} command in the list of commands {ctx.author.mention}!'))
+            else:
+                HelpEmbed=discord.Embed(title=f"Help for '{hargs}'!", description='', color=discord.Color.from_rgb(randint(0, 255),randint(0, 255),randint(0, 255)))
+                HelpEmbed.add_field(name="Description", value=f'{helplist[index][1]}', inline=False)
+        HelpMessage = await ctx.send(embed=HelpEmbed)
+        await ctx.message.delete()
+        await asyncio.sleep(120)
+        await HelpMessage.delete()
 
 
 def setup(bot):
