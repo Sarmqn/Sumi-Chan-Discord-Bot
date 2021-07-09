@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from random import randint
+import asyncio
 
 helplist = [['ban', 'Bans a user.'], ['mute', 'Indefinitely mutes a user.'], ['unmute', 'Unmutes a muted user.'], ['invite', 'Creates an invite link for the server.'], ['ping', "Checks the bot's ping."], ['server', 'Sends information about the server.'], ['disconnect', 'Disconnects the users voice channel.'], ['join', 'Joins the voice channel of the user.'], ['pause', 'Pauses the currently playing song.'], ['play', 'Plays a song!'], ['resume', 'Resumes the currently playing song!']]
 
@@ -18,7 +19,6 @@ class Help(commands.Cog):
                 HelpEmbed.add_field(name="Admin", value="ban\nmute\nunmute", inline=True)
                 HelpEmbed.add_field(name="Utility", value="invite\nping\nserver", inline=True)
                 HelpEmbed.add_field(name="Music", value="disconnect\njoin\npause\nplay\nresume", inline=True)
-                HelpMessage = await ctx.send(embed=HelpEmbed)
         else:
             found = False
             for i in helplist:
