@@ -49,7 +49,6 @@ py -3 -m pip install -U discord.py[voice]
 - Anime Releases
 - Server Management
 - Google Searches
-- Movie Streaming
 - Anagrams
 
 ## You can contact me via 💙 :
