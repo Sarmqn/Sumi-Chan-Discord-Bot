@@ -111,6 +111,11 @@ class Logs(commands.Cog):
                 await ctx.send(f'**{userID}** has been unbanned.')
         else:
             pass
+    """
+    @commands.command('purge') # Purges a channel based on where it is used.
+    async def purge(self, ctx):
+        if ctx.author.guild_permissions.administrator:
+       """    
 
         
 def setup(bot):
