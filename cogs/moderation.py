@@ -119,7 +119,8 @@ class Logs(commands.Cog):
             await member.kick()
             await ctx.message.add_reaction("👌")
             await ctx.send(f"{member.name} was kicked by {ctx.author.name}!"
-            await log_channel.send(f"{ctx.author.name} has kicked {member.display_name}")
+            loggingchannel = self.bot.get_channel(self.log_channel_id)
+            await loggingchannel.send() #Logs who created the invite link               
     """
     @commands.command('purge') # Purges a channel based on where it is used.
     async def purge(self, ctx):
