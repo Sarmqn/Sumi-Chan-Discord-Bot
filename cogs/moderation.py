@@ -111,6 +111,15 @@ class Logs(commands.Cog):
                 await ctx.send(f'**{userID}** has been unbanned.')
         else:
             pass
+        
+        
+    @commands.command('kick') # Kicks a user that is mentioned
+    async def kick(self, ctx, id: int, member: discord.Member):
+        if ctx.author.guild_permissions.administrator==True:
+            await member.kick()
+            await ctx.message.add_reaction("👌")
+            await ctx.send(f"{member.name} was kicked by {ctx.author.name}!"
+            await log_channel.send(f"{ctx.author.name} has kicked {member.display_name}")
     """
     @commands.command('purge') # Purges a channel based on where it is used.
     async def purge(self, ctx):
