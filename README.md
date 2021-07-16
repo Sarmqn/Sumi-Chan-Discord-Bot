@@ -1,4 +1,4 @@
-# **Sumi-Chan-Discord-Bot** 😀
+# **Sumi-Chan Discord Bot** 😀
 
 This bot has been created for the discord server Social Hub owned by Sarman#4515, for people who play on the Hypixel Server on the popular game Minecraft.
 I will work to continously post updates on this repository. I hope to expand it so it can be used by any server and hopefully become a hit.
