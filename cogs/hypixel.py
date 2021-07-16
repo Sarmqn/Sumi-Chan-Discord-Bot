@@ -39,7 +39,7 @@ def get_level(player_name):
  @commands.command(aliases = ['profile', 'profiles', 'prof', 'sbprof', 'sb'])
  async def sbprofile(ctx, name,):
    UniqueUserID = await hypixel.get_uuid('')
-   profiles = await hypixel.get_profiles(uuid)
+   profiles = await hypixel.get_profiles(UniqueUserID)
    print([str(profile) for profile in profiles]])
 
 loop = asyncio.get_event_loop()
