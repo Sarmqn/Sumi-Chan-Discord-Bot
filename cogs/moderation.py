@@ -1,4 +1,5 @@
 import discord
+from discord import errors
 from discord.ext import commands
 
 class Logs(commands.Cog):
@@ -21,14 +22,14 @@ class Logs(commands.Cog):
         JoinEmbed = discord.Embed(title=f"Welcome {member}", description = f"Thanks for joining {member.guild.name}!")
         JoinEmbed.set_thumbnail(url=member.avatar_url) # Embed's thumbnail = Users PFP
         await channel.send(embed=JoinEmbed)
-        role = discord.utils.get(member.server.role, name='Member') #gets an object when given certain criteria and a source to look from
+        role = discord.utils.get(member.guild.role, name='Member') #gets an object when given certain criteria and a source to look from
         await self.bot.add_roles(member, role)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         channel = self.bot.get_channel(self.log_channel_id)
         LeaveEmbed = discord.Embed(title=f"Byee {member}", description = f"Cya next time ;-( {member.guild.name}!")
-        LeaveEmbed.se_thumbnail(url=member.avatar_url)
+        LeaveEmbed.set_thumbnail(url=member.avatar_url)
         await channel.send(embed=LeaveEmbed)
         
     @commands.command(name='invite')
@@ -47,37 +48,84 @@ class Logs(commands.Cog):
         
     @commands.command('ban')
     async def ban(self, ctx, member: discord.Member):
-        if member == ctx.guild.me:
-            return await ctx.send("Nice try")
-        if member.guild_permissions.administrator==True:
-            return await ctx.send("Whoops! You can't ban them...")
-        else:
-            await member.send(f"{ctx.author} Banned")
-            await member.ban()
-            
+        if ctx.author.guild_permissions.ban_members==True:
+            if member == ctx.guild.me:
+                return await ctx.send("Nice try")
+            if member.guild_permissions.administrator==True:
+                return await ctx.send("Whoops! You can't ban them...")
+            else:
+                await member.send(f"You were banned from **{ctx.guild}** by **{ctx.author}**.")
+                await member.ban()
+
         #  ---MUTE---    
             
     @commands.command('mute') # Mute command
     async def mute(self, ctx, member: discord.Member):
-        if member.guild_permissions.administrator==True:
-            role_members = discord.utils.get(ctx.guild.roles, name='Members')
-            role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
-            await member.remove_roles(role_members)
-            await member.add_roles(role_muted)
-            await ctx.send("User Was Muted")
+        if ctx.author.guild_permissions.administrator==True:
+            muted = False
+            i = 0
+            while (muted == False) and (i < len(member.roles)):
+                if member.roles[i].name == 'Muted':
+                    muted = True
+                else:
+                    i += 1
+            if muted == False:
+                role_members = discord.utils.get(ctx.guild.roles, name='Member')
+                role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
+                await member.remove_roles(role_members)
+                await member.add_roles(role_muted)
+                await ctx.send(f"**{member}** was muted.")
+            else:
+                await ctx.send(f'**{member}** is already muted.')
             
         #  ---UNMUTE---    
             
     @commands.command('unmute') # Unmute command
     async def unmute(self, ctx, member: discord.Member):
-        if member.guild_permissions.administrator==True:
-            role_members = discord.utils.get(ctx.guild.roles, name='Members')
-            role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
-            await member.remove_roles(role_muted)
-            await member.add_roles(role_members)
-            await ctx.send("User Was Unmuted")
+        if ctx.author.guild_permissions.administrator==True:
+            muted = False
+            i = 0
+            while (muted == False) and (i < len(member.roles)):
+                if member.roles[i].name == 'Muted':
+                    muted = True
+                else:
+                    i += 1
+            if muted == True:
+                role_members = discord.utils.get(ctx.guild.roles, name='Member')
+                role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
+                await member.remove_roles(role_muted)
+                await member.add_roles(role_members)
+                await ctx.send(f"**{member}** was unmuted.")
+            else:
+                await ctx.send(f'**{member}** is not muted.')
+    
+    @commands.command('unban') #Unban command
+    async def unban(self,ctx, id: int):
+        if ctx.author.guild_permissions.ban_members==True:
+            userID = await ctx.self.bot.fetch_user(id) # Gets users ID
+            try:
+                await ctx.guild.unban(userID)
+            except discord.errors.NotFound:
+                await ctx.send('User is not banned!')
+            else:
+                await ctx.send(f'**{userID}** has been unbanned.')
+        else:
+            pass
+        
+        """
+    @commands.command('kick') # Kicks a user that is mentioned
+    async def kick(self, ctx, id: int, member: discord.Member):
+        if ctx.author.guild_permissions.administrator==True:
+            await member.kick()
+            await ctx.message.add_reaction("👌")
+            await ctx.send(f"{member.name} was kicked by {ctx.author.name}!"
+           """  
+    """
+    @commands.command('purge') # Purges a channel based on where it is used.
+    async def purge(self, ctx):
+        if ctx.author.guild_permissions.administrator:
+       """    
 
-
-
+        
 def setup(bot):
     bot.add_cog(Logs(bot))

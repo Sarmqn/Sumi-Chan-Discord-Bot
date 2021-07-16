@@ -9,9 +9,7 @@ intents.members = True
 
 class SumiChan(commands.Bot):
     def __init__(self):
-        nav = DefaultMenu('◀️', '▶️', '❌')
-        self.help_command = PrettyHelp(navigation=nav, color=discord.Colour.dark_purple())
-        super().__init__(command_prefix="sc!", description="Nice handy bot that will help around", intents=intents)
+        super().__init__(command_prefix="sc!", description="Nice handy bot that will help around", intents=intents, help_command=None)
 
 bot = SumiChan()
 
@@ -22,7 +20,8 @@ async def on_ready():
 # --Load cogs--
 cogs = [
     "moderation",
-    "general"
+    "general",
+    "help"
 ]
 
 for cog in cogs:

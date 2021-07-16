@@ -1,7 +1,5 @@
-
 import discord
 from discord.ext import commands
-import discord
 
 class General(commands.Cog):
     """
@@ -15,17 +13,8 @@ class General(commands.Cog):
         """
         Checks the current ping for the bot
         """
-        embed = self.bot.embed(title="Pong!", description=f"Bot latency is {round(self.bot.latency * 1000)}ms") # this works because of the custom class
-        await ctx.reply(embed=embed)
-
-    @commands.command(name = 'nickname', aliases=["Nickname", "nick"])
-    async def nickname(self, ctx, member: discord.Member, nick):
-        """
-        Helps user change nickname using command sc!nick or the aliases too
-        """
-        await member.edit(nick=nick)
-        await ctx.send(f"{member.mention}'s nickname has been changed!") # prints and pings the user that changed nickname
-
+        await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms') # Says in chat what the current ping is and rounds it to the nearest whole number
+    
     @commands.command(name='server')
     async def server_info(ctx: commands.Context):
         guild = ctx.guild
