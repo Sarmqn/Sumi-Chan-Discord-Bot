@@ -122,7 +122,7 @@ class Logs(commands.Cog):
                 user = guild.get_member(int(userid))
                 await user.kick()
             await ctx.message.add_reaction("👌")
-            await ctx.send(f"{usertokick.name} was kicked by {ctx.author.name}!")
+            await ctx.send(f"{user.name} was kicked by {ctx.author.name}!")
         else:
             pass
             
