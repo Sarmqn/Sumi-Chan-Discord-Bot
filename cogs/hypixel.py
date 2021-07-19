@@ -14,9 +14,11 @@ GROWTH = 2_500
 RPQPRE = -(BASE - 0.5 * GROWTH) / GROWTH
 REVERSE_CONST = RPQPRE
 GROWTH_DIVIDES_2 = 2 / GROWTH
+API_KEY = os.environ.get("API_KEY")
+hypixel = PyPixel.Hypixel(API_KEY=f"{API_KEY}")
+bot.run(API_KEY)
 
 def get_level(player_name: str):
-  API_KEY = os.environ.get("API_KEY")
   url = "https://api.hypixel.net/player?key=" + API_KEY +  "&name=" + player_name
   
   # From https://hypixel.net/threads/python-how-to-get-a-person%E2%80%99s-network-level-from-their-network-exp.3242392/
@@ -34,26 +36,25 @@ def get_level(player_name: str):
   
   
 @commands.command()
-async def level(ctx, name):
-  lvl = hypixel.get_level(name)
+async def level(ctx, name: str):
+  lvl = get_level(name)
   if lvl is None:
     await ctx.send("Player could not be found, please check for errors and try again. Thank you!")
   else:
     await ctx.send(f"Level for {name}: {lvl}")
 
-API_KEY = os.environ.get("API_KEY")
-hypixel = PyPixel.Hypixel(API_KEY="API_KEY")
-bot.run(API_KEY)
+
+
 
 #Network Level Calculator
  
- #Get Skyblock Profiles of a user          
+#Get Skyblock Profiles of a user          
             
- @commands.command(aliases = ['profile', 'profiles', 'prof', 'sbprof', 'sb'])
- async def sbprofile(ctx, name,):
-   UniqueUserID = await hypixel.get_uuid('')
-   profiles = await hypixel.get_profiles(UniqueUserID)
-   print([str(profile) for profile in profiles]])
+@commands.command(aliases = ['profile', 'profiles', 'prof', 'sbprof', 'sb'])
+    async def sbprofile(ctx, name: str):
+        UniqueUserID = await hypixel.get_uuid(f'name')
+        profiles = await hypixel.get_profiles(UniqueUserID)
+        print([str(profile) for profile in profiles])
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
