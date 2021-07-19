@@ -114,11 +114,21 @@ class Logs(commands.Cog):
         
         
     @commands.command('kick') # Kicks a user that is mentioned
-    async def kick(self, ctx, id: int, member: discord.Member):
-        if ctx.author.guild_permissions.administrator==True:
-            await member.kick()
+    async def kick(self, ctx, user):
+        if ctx.author.guild_permissions.kick_members==True:
+            try:
+                userid = int(user)
+            except ValueError:
+                await user.kick()
+            else:
+                user = guild.get_member(int(userid))
+                await user.kick()
             await ctx.message.add_reaction("👌")
-            await ctx.send(f"{member.name} was kicked by {ctx.author.name}!"
+            await ctx.send(f"{usertokick.name} was kicked by {ctx.author.name}!")
+        else:
+            pass
+            
+
            
     """
     @commands.command('purge') # Purges a channel based on where it is used.
