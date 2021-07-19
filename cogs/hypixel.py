@@ -32,7 +32,7 @@ def get_level(player_name):
   if data["player"] is None:
     return Nothing
   exp = int(dat["player"]["NetworkEXP"]
-  return math.floor(1 + REVERSE_PQ_PREFIX + math.sqrt(REVERSE_CONST + GROWTH_DIVIDES_2 * exp)) 
+  return math.floor(1 + RPQPRE + math.sqrt(REVERSE_CONST + GROWTH_DIVIDES_2 * exp)) 
  
  #Get Skyblock Profiles of a user          
             
