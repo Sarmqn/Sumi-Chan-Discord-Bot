@@ -1,6 +1,8 @@
 import discord
 from discord import errors
 from discord.ext import commands
+import discord.utils
+from discord.utils import get
 
 class Logs(commands.Cog):
     """
