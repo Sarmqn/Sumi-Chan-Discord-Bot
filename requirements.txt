@@ -7,3 +7,4 @@ jishaku
 discord-ext-forms
 PyNaCl
 youtube_dl
+requests
