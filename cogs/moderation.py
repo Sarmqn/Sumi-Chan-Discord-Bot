@@ -114,8 +114,8 @@ class Logs(commands.Cog):
         
         
     @commands.command('kick') # Kicks a user that is mentioned
-    async def kick(self, ctx, user):
-        if ctx.author.guild_permissions.kick_members==True:
+    async def kick(self, ctx, user: discord.Member):
+        if ctx.author.guild_permissions.kick_members==True or ctx.author.guild_permissions.administrator==True:
             try:
                 userid = int(user)
             except ValueError:
