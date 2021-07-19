@@ -5,6 +5,10 @@ import os
 import PyPixel
 from discord.ext import commands
 
+class Hypixel(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
 BASE = 10_000
 GROWTH = 2_500
 RPQPRE = -(BASE - 0.5 * GROWTH) / GROWTH
@@ -42,8 +46,6 @@ hypixel = PyPixel.Hypixel(API_KEY="API_KEY")
 bot.run(API_KEY)
 
 #Network Level Calculator
-
-
  
  #Get Skyblock Profiles of a user          
             
