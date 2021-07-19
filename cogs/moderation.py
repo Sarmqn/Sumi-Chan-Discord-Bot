@@ -25,13 +25,13 @@ class Logs(commands.Cog):
         JoinEmbed = discord.Embed(title=f"Welcome {member}", description = f"Thanks for joining {member.guild.name}!")
         JoinEmbed.set_thumbnail(url=member.avatar_url) # Embed's thumbnail = Users PFP
         await channel.send(embed=JoinEmbed)
-        role = discord.utils.get(member.guild.roles, name='Member') #gets an object when given certain criteria and a source to look from
+        role = discord.utils.get(member.guild.roles, id=678551601740251136) #gets an object when given certain criteria and a source to look from
         await member.add_roles(member, role)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         channel = self.bot.get_channel(self.log_channel_id)
-        LeaveEmbed = discord.Embed(title=f"Byee {member}", description = f"Cya next time ;-( {member.guild.name}!")
+        LeaveEmbed = discord.Embed(title=f"See you next time, {member}", description = f"Thanks for being a part of {member.guild.name}!")
         LeaveEmbed.set_thumbnail(url=member.avatar_url)
         await channel.send(embed=LeaveEmbed)
         
@@ -126,6 +126,7 @@ class Logs(commands.Cog):
                 await user.kick()
             await ctx.message.add_reaction("👌")
             await ctx.send(f"{user.name} was kicked by {ctx.author.name}!")
+            await user.send(f"You were kicked from **{ctx.guild}** by **{ctx.author}**.")
         else:
             pass
             
