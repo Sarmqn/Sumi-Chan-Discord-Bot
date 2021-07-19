@@ -50,10 +50,10 @@ async def level(ctx, name: str):
 #Get Skyblock Profiles of a user          
             
 @commands.command(aliases = ['profile', 'profiles', 'prof', 'sbprof', 'sb'])
-    async def sbprofile(ctx, name: str):
-        UniqueUserID = await hypixel.get_uuid(f'name')
-        profiles = await hypixel.get_profiles(UniqueUserID)
-        print([str(profile) for profile in profiles])
+async def sbprofile(ctx, name: str):
+    UniqueUserID = await hypixel.get_uuid(f'name')
+    profiles = await hypixel.get_profiles(UniqueUserID)
+    print([str(profile) for profile in profiles])
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
