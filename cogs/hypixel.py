@@ -58,6 +58,5 @@ async def sbprofile(ctx, name: str):
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
             
-            
- def setup(bot):
+def setup(bot):
     bot.add_cog(Hypixel(bot))
