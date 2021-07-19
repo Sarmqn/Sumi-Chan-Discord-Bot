@@ -8,9 +8,10 @@ It will be a powerful bot that will be able to complete many tasks, essentially 
 
 ## Required installs
 ```
+py3 -m pip install asyncio
 py3 -m pip install discord.py
 py3 -m pip install discord.py[voice]
-py3 -m pip install asyncio
+py3 -m pip install requests
 py3 -m pip install youtube_dl
 ```
 
