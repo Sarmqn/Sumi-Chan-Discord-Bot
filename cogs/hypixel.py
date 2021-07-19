@@ -16,7 +16,6 @@ REVERSE_CONST = RPQPRE
 GROWTH_DIVIDES_2 = 2 / GROWTH
 API_KEY = os.environ.get("API_KEY")
 hypixel = PyPixel.Hypixel(API_KEY=f"{API_KEY}")
-bot.run(API_KEY)
 
 def get_level(player_name: str):
   url = "https://api.hypixel.net/player?key=" + API_KEY +  "&name=" + player_name
