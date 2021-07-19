@@ -5,6 +5,30 @@ import os
 import PyPixel
 from discord.ext import commands
 
+BASE = 10_000
+GROWTH = 2_500
+RPQPRE = -(BASE - 0.5 * GROWTH) / GROWTH
+REVERSE_CONST = RPQPRE
+GROWTH_DIVIDES_2 = 2 / GROWTH
+
+def get_level(player_name: str):
+  API_KEY = os.environ.get("API_KEY")
+  url = "https://api.hypixel.net/player?key=" + API_KEY +  "&name=" + player_name
+  
+  # From https://hypixel.net/threads/python-how-to-get-a-person%E2%80%99s-network-level-from-their-network-exp.3242392/
+  hypixel_data = requests.get(url).json()
+  network_experience = hypixel_data["player"]["networkExp"]
+  network_level = (math.sqrt((2 * network_experience) + 30625) / 50) - 2.5
+  network_level = round(network_level, 2)
+  return network_level
+  #res = requests.get(url, params = {auth: api_key, uuid='b0ab95fc29254fda9ce5d30af3111a84'})
+  #data = res.json()
+  #if data["player"] is None:
+  #  return Nothing
+  #exp = int(dat["player"]["NetworkEXP"]
+  #return math.floor(1 + RPQ_PREFIX + math.sqrt(REVERSE_CONST + GROWTH_DIVIDES_2 * exp)) 
+  
+  
 @commands.command()
 async def level(ctx, name):
   lvl = hypixel.get_level(name)
@@ -19,20 +43,7 @@ bot.run(API_KEY)
 
 #Network Level Calculator
 
-BASE = 10_000
-GROWTH = 2_500
-RPQPRE = -(BASE - 0.5 * GROWTH) / GROWTH
-REVERSE_CONST = RPQPRE
-GROWTH_DIVIDES_2 = 2 / GROWTH
 
-def get_level(player_name):
-  url = f"
-  res = requests.get(url)
-  data = res.json()
-  if data["player"] is None:
-    return Nothing
-  exp = int(dat["player"]["NetworkEXP"]
-  return math.floor(1 + RPQPRE + math.sqrt(REVERSE_CONST + GROWTH_DIVIDES_2 * exp)) 
  
  #Get Skyblock Profiles of a user          
             
