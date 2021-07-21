@@ -2,6 +2,14 @@ import discord
 from discord.ext import commands
 from pretty_help import PrettyHelp, DefaultMenu
 import os
+"""
+from routes.util import app
+from quart import Quart, redirect, url_for, render_template, request
+
+app = Quart(__name__)
+async def homePG():
+    return "Active Senpai!"
+"""
 
 # --Load intents--
 intents = discord.Intents.default()
