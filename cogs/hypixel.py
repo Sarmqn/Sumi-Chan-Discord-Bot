@@ -1,3 +1,4 @@
+"""
 import requests
 import math
 import discord, hypixel
@@ -60,3 +61,4 @@ loop.run_until_complete(main())
             
 def setup(bot):
     bot.add_cog(Hypixel(bot))
+"""
