@@ -1,6 +1,6 @@
 import requests
 import math
-import discord
+import discord, hypixel
 import os
 import PyPixel
 from discord.ext import commands
