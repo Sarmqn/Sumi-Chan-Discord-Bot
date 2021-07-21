@@ -9,6 +9,7 @@ discord-pretty-help = "*"
 asyncio = "*"
 lavalink = "*"
 jishaku = "*"
+requests = "*"
 
 [dev-packages]
 
