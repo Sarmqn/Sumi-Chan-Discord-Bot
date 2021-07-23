@@ -1,7 +1,6 @@
 discord.py
 discord-pretty-help
 discord.py[voice]
-asyncio
 lavalink
 jishaku
 discord-ext-forms
