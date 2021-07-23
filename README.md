@@ -6,15 +6,6 @@ I will work to continously post updates on this repository. I hope to expand it 
 It will be a powerful bot that will be able to complete many tasks, essentially an all-purpose bot hosted on GitHub Pages. {Discord.py}
 
 
-## Required installs
-```
-py3 -m pip install asyncio
-py3 -m pip install discord.py
-py3 -m pip install discord.py[voice]
-py3 -m pip install requests
-py3 -m pip install youtube_dl
-```
-
 ## **Current Features:**
 
 - Checking bot's latency when hosted
@@ -66,7 +57,6 @@ Dev.to | @Sarmqn
 
 Thank you to all who have helped and taught me about coding a discord.py bot, I am truly grateful for your efforts 💙
 
-- @14685-562
-- @adampy
-- @isigebengu-mikey
-
+- [@14685-562](https://github.com/14685-562)
+- [@adampy](https://github.com/adampy)
+- [@isigebengu-mikey](https://mikey.is-a.dev)
