@@ -19,7 +19,7 @@ class music(commands.Cog):
 
     @commands.command()
     async def disconnect(self,ctx):
-        await ctx.voice_cleint.disconnect()
+        await ctx.voice_client.disconnect()
 
     @commands.command()
     async def play(self, ctx):
