@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 from pretty_help import PrettyHelp, DefaultMenu
 import os
+from keep_alive import keep_alive
+
 """
 from routes.util import app
 from quart import Quart, redirect, url_for, render_template, request
