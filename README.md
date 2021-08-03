@@ -59,4 +59,4 @@ Thank you to all who have helped and taught me about coding a discord.py bot, I 
 
 - [@14685-562](https://github.com/14685-562)
 - [@adampy](https://github.com/adampy)
-- [@isigebengu-mikey](https://mikey.is-a.dev)
+- [@terabyte3](https://terabyteis.me)
