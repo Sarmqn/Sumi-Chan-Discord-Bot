@@ -28,6 +28,8 @@ for cog in cogs:
     bot.load_extension("cogs." + cog)
     print("Loaded: " + cog)
 
+    """
+    
 if __name__ == "__main__":
     bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(Str(bot.connection_url))
     bot.db = bot.mongo["Documents"]
@@ -37,7 +39,9 @@ if __name__ == "__main__":
 for file in os.listdir(cmd + "/cogs"):
     if file.endswith(".py") and not file.startswith("_"):
         bot.load_extension(f"cogs.{file[:-3]}")
-    
+  
+ """ 
+  
 # --Start bot--
 bot_token = os.environ.get("TOKEN")
 bot.run(bot_token)
