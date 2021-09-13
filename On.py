@@ -21,7 +21,8 @@ async def on_ready():
 cogs = [
     "moderation",
     "general",
-    "help"
+    "help",
+    "music"
 ]
 
 for cog in cogs:
