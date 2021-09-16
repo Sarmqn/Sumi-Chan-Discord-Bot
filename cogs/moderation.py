@@ -52,6 +52,14 @@ class Logs(commands.Cog):
     @commands.command('ban')
     async def ban(self, ctx, member: discord.Member):
         if ctx.author.guild_permissions.ban_members==True:
+            if isinstance(member, discord.Member):
+                pass
+            elif isinstance(member, int):
+                member = self.bot.get_user(member)
+            else:
+                await ctx.send('Not an ID/mention. Try again.')
+                break
+            # If they are trying to ban the bot
             if member == ctx.guild.me:
                 return await ctx.send("Nice try")
             if member.guild_permissions.administrator==True:
