@@ -5,11 +5,11 @@ class General(commands.Cog):
     """
     General commands that server members can use
     """
-    def __init__(self, bot): # Init constructor
+    def __init__(self, bot): # Defining the Init constructor
         self.bot = bot
 
     @commands.command(name = 'ping')
-    async def ping(self, ctx: commands.Context):
+    async def ping(self, ctx: commands.Context): # Defining the ping command
         """
         Checks the current ping for the bot
         """
@@ -17,20 +17,19 @@ class General(commands.Cog):
     
     # --Getting information about the server--
     @commands.command(name='server')
-    async def server_info(ctx: commands.Context):
-        guild = ctx.guild
-        await ctx.send(f'Server Name: {guild.name}')
-        await ctx.send(f'Owner Name: {guild.owner.display_name}')
-        await ctx.send(f'Server Size: {len(guild.members)}')
+    async def server_info(ctx: commands.Context): # When command is used it will:
+        guild = ctx.guild # Collect data about the server
+        await ctx.send(f'Server Name: {guild.name}') # Print out the Server's Name.
+        await ctx.send(f'Owner Name: {guild.owner.display_name}') # Print out the Server's Owner.
+        await ctx.send(f'Server Size: {len(guild.members)}') # Print out the member size of the server.
 
     # --Bot replying to a message if it contains a trigger word--    
     @commands.Cog.listener()
     async def on_message(self, message):
-         if message.content == "test":
-                await message.channel.send("Testing 1, 2, 3!")
-         if message.content == "hello":
-                await message.channel.send("Hewo!")
+         if message.content == "test": # If bot sees "test" in chat
+                await message.channel.send("Testing 1, 2, 3!") # It will print out "Testing 1, 2, 3!"
+         if message.content == "hello": # If bot sees "hello" in chat
+                await message.channel.send("Hewo!") # It will print out "Hewo!"
 
 def setup(bot):
     bot.add_cog(General(bot))
-
