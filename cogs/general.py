@@ -5,7 +5,7 @@ class General(commands.Cog):
     """
     General commands that server members can use
     """
-    def __init__(self, bot):
+    def __init__(self, bot): # Init constructor
         self.bot = bot
 
     @commands.command(name = 'ping')
@@ -15,6 +15,7 @@ class General(commands.Cog):
         """
         await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms') # Says in chat what the current ping is and rounds it to the nearest whole number
     
+    # --Getting information about the server--
     @commands.command(name='server')
     async def server_info(ctx: commands.Context):
         guild = ctx.guild
@@ -22,6 +23,7 @@ class General(commands.Cog):
         await ctx.send(f'Owner Name: {guild.owner.display_name}')
         await ctx.send(f'Server Size: {len(guild.members)}')
 
+    # --Bot replying to a message if it contains a trigger word--    
     @commands.Cog.listener()
     async def on_message(self, message):
          if message.content == "test":
