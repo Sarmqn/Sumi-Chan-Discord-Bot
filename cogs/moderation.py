@@ -137,3 +137,5 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
         
 def setup(bot):
     bot.add_cog(Logs(bot))
+
+# Mom's spagghetti
