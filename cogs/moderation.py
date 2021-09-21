@@ -4,7 +4,7 @@ from discord.ext import commands
 import discord.utils
 from discord.utils import get
 
-class Logs(commands.Cog):
+class Logs(commands.Cog): # Creates the class with an instance of Logs
     """
     Moderation commands/listeners for log channels
     """
@@ -12,11 +12,11 @@ class Logs(commands.Cog):
         self.bot = bot
         self.log_channel_id = 699909552757276732
 
-    @commands.Cog.listener() # Delete msg if invite
-    async def on_message(self, message):
+    @commands.Cog.listener() # Delete any invite links from the chat
+    async def on_message(self, message): 
         if not message.author.bot and 'discord.gg/' in message.content:
             await message.delete()
-            await message.channel.send(f"This is forbidden to send {message.author.mention}!")
+            await message.channel.send(f"This is forbidden to send within this server {message.author.mention}!")
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
