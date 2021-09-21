@@ -48,3 +48,5 @@ for file in os.listdir(cmd + "/cogs"):
 # --Start bot--
 bot_token = os.environ.get("TOKEN")
 bot.run(bot_token)
+
+# To drop bombs
