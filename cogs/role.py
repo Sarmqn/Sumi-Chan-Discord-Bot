@@ -200,3 +200,6 @@ class Reactions(commands.Cog, name = "ReactionRoles"):
 
         if role in member.roles:
             await member.remove_roles(role, reason="Reaction Role")
+            
+def setup(bot):
+bot.add_cog(role(bot))
