@@ -33,3 +33,5 @@ class General(commands.Cog):
 
 def setup(bot):
     bot.add_cog(General(bot))
+
+# Knees weak
