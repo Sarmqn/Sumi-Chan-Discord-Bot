@@ -202,4 +202,6 @@ class Reactions(commands.Cog, name = "ReactionRoles"):
             await member.remove_roles(role, reason="Reaction Role")
             
 def setup(bot):
-bot.add_cog(role(bot))
+    bot.add_cog(role(bot))
+
+# But on the surface he looks calm and ready
