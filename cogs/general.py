@@ -9,7 +9,7 @@ class General(commands.Cog):
         self.bot = bot
 
     @commands.command(name = 'ping')
-    async def ping(self, ctx: commands.Context): # Defining the ping command
+    async def ping(self, ctx: commands.Context): # When ping is in instance:
         """
         Checks the current ping for the bot
         """
@@ -17,7 +17,7 @@ class General(commands.Cog):
     
     # --Getting information about the server--
     @commands.command(name='server')
-    async def server_info(ctx: commands.Context): # When command is used it will:
+    async def server_info(ctx: commands.Context): # When server_info is in instance:
         guild = ctx.guild # Collect data about the server
         await ctx.send(f'Server Name: {guild.name}') # Print out the Server's Name.
         await ctx.send(f'Owner Name: {guild.owner.display_name}') # Print out the Server's Owner.
@@ -25,7 +25,7 @@ class General(commands.Cog):
 
     # --Bot replying to a message if it contains a trigger word--    
     @commands.Cog.listener()
-    async def on_message(self, message):
+    async def on_message(self, message): # When on_message is in instance:
          if message.content == "test": # If bot sees "test" in chat
                 await message.channel.send("Testing 1, 2, 3!") # It will print out "Testing 1, 2, 3!"
          if message.content == "hello": # If bot sees "hello" in chat
