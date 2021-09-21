@@ -61,3 +61,4 @@ loop.run_until_complete(main())
 def setup(bot):
     bot.add_cog(Hypixel(bot))
 
+# There's vomit on his sweater already
