@@ -1,2 +1,1 @@
-        nav = DefaultMenu('◀️', '▶️', '❌')
-        self._help_command = PrettyHelp(navigation=nav, color=discord.Colour.dark_purple())
+Goes so loud
