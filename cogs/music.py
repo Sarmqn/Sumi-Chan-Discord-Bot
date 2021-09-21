@@ -47,3 +47,5 @@ class music(commands.Cog):
     
 def setup(client):
     client.add_cog(music(client))
+
+# He's nervous
