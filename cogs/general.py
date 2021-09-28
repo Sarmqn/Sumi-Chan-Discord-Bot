@@ -13,7 +13,11 @@ class General(commands.Cog):
         """
         Checks the current ping for the bot
         """
-        await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms') # Says in chat what the current ping is and rounds it to the nearest whole number
+        if self.bot.latency > 125:
+            await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms. Might want to check this out <@701817552778559510>.')
+        else:
+            await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms') # Says in chat what the current ping is and rounds it to the nearest whole number
+        
     
     # --Getting information about the server--
     @commands.command(name='server')
