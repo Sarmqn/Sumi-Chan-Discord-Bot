@@ -26,7 +26,7 @@ class MyHelp(commands.HelpCommand):
         if command.signature == '':
             return '`{0.clean_prefix}{1.qualified_name}`'.format(self, command)
         else:
-           return '`{0.clean_prefix}{1.qualified_name}` `{1.signature}`'.format(self, command)
+            return '`{0.clean_prefix}{1.qualified_name}` `{1.signature}`'.format(self, command)
     
     # Used when someone only does `_help`
     async def send_bot_help(self, mapping):
@@ -37,7 +37,7 @@ class MyHelp(commands.HelpCommand):
             # Filter out the commands that the user isn't allowed to use and sort them alphabetically
             filtered = await self.filter_commands(commands, sort=True)
             # Put the signatures of those commands into an array (search 'List Comprehension' for this format)
-            command_signatures = [self.get_command_signature(c) for c in filtered]
+            command_signatures = [self.get_command_signature(command) for command in filtered]
             # If a value is returned (since `None` will be returned if nothing is found)
             if command_signatures:
                 # Get the attribute `qualified_name` of cog, putting "Miscellaneous" if not found
