@@ -55,17 +55,20 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
                 member = self.bot.get_user(member)
             else:
                 await ctx.send('Not an ID/mention. Try again.')
-                break
+                member = None
             # If they are trying to ban the bot
             if member == ctx.guild.me:
                 return await ctx.send("Nice try")
             if member.guild_permissions.administrator==True:
                 return await ctx.send("Whoops! You can't ban them...")
             else:
-                await member.send(f"You were banned from **{ctx.guild}** by **{ctx.author}**.")
-                await ctx.send(f"{member} has been banned.")
-                await self.log_channel.send(f"{member} has been banned by {ctx.author}.")
-                await member.ban()
+                if member == None:
+                    pass
+                else:
+                    await member.send(f"You were banned from **{ctx.guild}** by **{ctx.author}**.")
+                    await ctx.send(f"{member} has been banned.")
+                    await self.log_channel.send(f"{member} has been banned by {ctx.author}.")
+                    await member.ban()
                 
 
                 
