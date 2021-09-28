@@ -24,7 +24,6 @@ async def on_ready(): # When the bot turns on
 cogs = [
     "moderation",
     "general",
-    "help"
 ]
 
 for cog in cogs:
