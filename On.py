@@ -5,7 +5,7 @@ from pretty_help import PrettyHelp, DefaultMenu
 import os
 
 # --Load intents--
-intents = discord.Intents()
+intents = discord.Intents.default()
 intents.members = True
 
 # --Class for my bot Sumi-Chan--

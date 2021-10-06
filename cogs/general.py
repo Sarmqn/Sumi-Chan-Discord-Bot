@@ -26,7 +26,9 @@ class General(commands.Cog):
 
     # --Getting information about the server--
     @commands.command(name="server")
-    async def server_info(ctx: commands.Context):  # When server_info is in instance:
+    async def server_info(
+        self, ctx: commands.Context
+    ):  # When server_info is in instance:
         guild = ctx.guild  # Collect data about the server
         await ctx.send(f"Server Name: {guild.name}")  # Print out the Server's Name.
         await ctx.send(
@@ -38,7 +40,9 @@ class General(commands.Cog):
 
     # --Bot replying to a message if it contains a trigger word--
     @commands.Cog.listener()
-    async def on_message(self, message):  # When on_message is in instance:
+    async def on_message(
+        self, message: discord.Message
+    ):  # When on_message is in instance:
         if message.content == "test":  # If bot sees "test" in chat
             await message.channel.send(
                 "Testing 1, 2, 3!"
