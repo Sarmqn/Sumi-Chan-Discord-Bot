@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord_slash import cog_ext, SlashContext
 
 
 class General(commands.Cog):
@@ -10,8 +11,8 @@ class General(commands.Cog):
     def __init__(self, bot):  # Defining the Init constructor
         self.bot = bot
 
-    @commands.command(name="ping")
-    async def ping(self, ctx: commands.Context):  # When ping is in instance:
+    @cog_ext.cog_slash(name="ping")
+    async def ping(self, ctx: SlashContext):  # When ping is in instance:
         """
         Checks the current ping for the bot
         """
@@ -25,10 +26,8 @@ class General(commands.Cog):
             )  # Says in chat what the current ping is and rounds it to the nearest whole number
 
     # --Getting information about the server--
-    @commands.command(name="server")
-    async def server_info(
-        self, ctx: commands.Context
-    ):  # When server_info is in instance:
+    @cog_ext.cog_slash(name="server")
+    async def server_info(self, ctx: SlashContext):  # When server_info is in instance:
         guild = ctx.guild  # Collect data about the server
         await ctx.send(f"Server Name: {guild.name}")  # Print out the Server's Name.
         await ctx.send(

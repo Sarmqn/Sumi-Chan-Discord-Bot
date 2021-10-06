@@ -1,5 +1,6 @@
 # --Importing all necessary libraries--
 import discord
+from discord_slash import SlashCommand
 from discord.ext import commands
 from pretty_help import PrettyHelp, DefaultMenu
 import os
@@ -20,6 +21,7 @@ class SumiChan(commands.Bot):
 
 
 bot = SumiChan()
+slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 
 
 @bot.event
@@ -34,7 +36,7 @@ async def on_ready():  # When the bot turns on
 
 
 # --Loading all cogs--
-cogs = ["moderation", "general", "help"]
+cogs = ["moderation", "general"]  # don't need help command anymore
 
 for cog in cogs:
     bot.load_extension("cogs." + cog)

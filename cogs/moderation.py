@@ -3,6 +3,8 @@ from discord import errors
 from discord.ext import commands
 import discord.utils
 from discord.utils import get
+from discord_slash import cog_ext, SlashContext
+from discord_slash.utils.manage_commands import create_option
 
 
 class Logs(commands.Cog):  # Creates the class with an instance of Logs
@@ -10,13 +12,13 @@ class Logs(commands.Cog):  # Creates the class with an instance of Logs
     Moderation commands/listeners for log channels
     """
 
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.log_channel_id = 699909552757276732
         self.log_channel = bot.get_channel(699909552757276732)
 
     @commands.Cog.listener()  # Delete any invite links from the chat
-    async def on_message(self, message):
+    async def on_message(self, message: discord.Message):
         if (
             not message.author.bot
             and ("discord.gg/" in message.content)
@@ -28,7 +30,7 @@ class Logs(commands.Cog):  # Creates the class with an instance of Logs
             )
 
     @commands.Cog.listener()
-    async def on_member_join(self, member):
+    async def on_member_join(self, member: discord.Member):
         JoinEmbed = discord.Embed(
             title=f"Welcome {member}",
             description=f"Thanks for joining {member.guild.name}!",
@@ -41,7 +43,7 @@ class Logs(commands.Cog):  # Creates the class with an instance of Logs
         await member.add_roles(role)
 
     @commands.Cog.listener()
-    async def on_member_remove(self, member):
+    async def on_member_remove(self, member: discord.Member):
         LeaveEmbed = discord.Embed(
             title=f"See you next time, {member}",
             description=f"Thanks for being a part of {member.guild.name}!",
@@ -49,12 +51,15 @@ class Logs(commands.Cog):  # Creates the class with an instance of Logs
         LeaveEmbed.set_thumbnail(url=member.avatar_url)
         await self.log_channel.send(embed=LeaveEmbed)
 
-    @commands.command(name="invite")
-    @commands.guild_only()  # Restricts the command to the guild only
-    async def invite(self, ctx):
+    @cog_ext.cog_slash(name="invite")
+    async def invite(self, ctx: SlashContext):
         """
         Creates an invite link for the server
         """
+        if (
+            ctx.channel.type == discord.ChannelType.private
+        ):  # Restricts the command to the guild only
+            return
         invite = await ctx.channel.create_invite(
             reason=f"{ctx.author} used the invite command.", max_uses=1, unique=True
         )
@@ -69,8 +74,18 @@ class Logs(commands.Cog):  # Creates the class with an instance of Logs
 
         #  ---BAN---
 
-    @commands.command("ban")
-    async def ban(self, ctx, member: discord.Member):
+    @cog_ext.cog_slash(
+        "ban",
+        options=[
+            create_option(
+                name="member",
+                description="The member to ban",
+                option_type=6,  # Option type: member
+                required=True,
+            )
+        ],
+    )
+    async def ban(self, ctx: SlashContext, member: discord.Member):
         if ctx.author.guild_permissions.ban_members == True:
             if isinstance(member, discord.Member):
                 pass
@@ -99,8 +114,18 @@ class Logs(commands.Cog):  # Creates the class with an instance of Logs
 
         #  ---MUTE---
 
-    @commands.command("mute")  # Mute command
-    async def mute(self, ctx, member: discord.Member):
+    @cog_ext.cog_slash(
+        "mute",
+        options=[
+            create_option(
+                name="member",
+                description="The member to mute",
+                option_type=6,  # Option type: member
+                required=True,
+            )
+        ],
+    )  # Mute command
+    async def mute(self, ctx: SlashContext, member: discord.Member):
         if ctx.author.guild_permissions.administrator == True:
             role_muted = discord.utils.get(ctx.guild.roles, name="Muted")
             if role_muted in member.roles:
@@ -113,8 +138,18 @@ class Logs(commands.Cog):  # Creates the class with an instance of Logs
 
         #  ---UNMUTE---
 
-    @commands.command("unmute")  # Unmute command
-    async def unmute(self, ctx, member: discord.Member):
+    @cog_ext.cog_slash(
+        "unmute",
+        options=[
+            create_option(
+                name="member",
+                description="The member to unmute",
+                option_type=6,  # Option type: member
+                required=True,
+            )
+        ],
+    )  # Unmute command
+    async def unmute(self, ctx: SlashContext, member: discord.Member):
         if ctx.author.guild_permissions.administrator == True:
             role_muted = discord.utils.get(ctx.guild.roles, name="Muted")
             if role_muted in member.roles:
@@ -125,8 +160,18 @@ class Logs(commands.Cog):  # Creates the class with an instance of Logs
             else:
                 await ctx.send(f"**{member}** is not muted.")
 
-    @commands.command("unban")  # Unban command
-    async def unban(self, ctx, id: int):
+    @cog_ext.cog_slash(
+        "unban",
+        options=[
+            create_option(
+                name="member",
+                description="The member to ban",
+                option_type=6,  # Option type: member
+                required=True,
+            )
+        ],
+    )  # Unban command
+    async def unban(self, ctx: SlashContext, uid: int):
         if ctx.author.guild_permissions.ban_members == True:
             userID = await ctx.self.bot.fetch_user(id)  # Gets users ID
             try:
@@ -136,29 +181,39 @@ class Logs(commands.Cog):  # Creates the class with an instance of Logs
             else:
                 await ctx.send(f"**{userID}** has been unbanned.")
         else:
-            pass
+            await ctx.send("Uh oh, I don't have permissions!")
 
-    @commands.command("kick")  # Kicks a user that is mentioned
-    async def kick(self, ctx, user: discord.Member):
+    @cog_ext.cog_slash(
+        "kick",
+        options=[
+            create_option(
+                name="member",
+                description="The member to kick",
+                option_type=6,  # Option type: member
+                required=True,
+            )
+        ],
+    )  # Kicks a user that is mentioned
+    async def kick(self, ctx: SlashContext, member: discord.Member):
         if (
             ctx.author.guild_permissions.kick_members == True
             or ctx.author.guild_permissions.administrator == True
         ):
-            if isinstance(user, discord.Member):
-                await user.kick()
-            elif isinstance(user, int) or isinstance(user, str):
-                user = guild.get_member(int(userid))
-                await user.kick()
+            if isinstance(member, discord.Member):
+                await member.kick()
+            elif isinstance(member, int) or isinstance(member, str):
+                member = ctx.guild.get_member(member.id)
+                await member.kick()
             await ctx.message.add_reaction("👌")
-            await ctx.send(f"{user.name} was kicked by {ctx.author.name}!")
-            await user.send(
+            await ctx.send(f"{member.name} was kicked by {ctx.author.name}!")
+            await member.send(
                 f"You were kicked from **{ctx.guild}** by **{ctx.author}**."
             )
         else:
-            pass
+            return await ctx.send("I'm missing the `KICK_MEMBERS` permission!")
 
     """
-    @commands.command('purge') # Purges a channel based on where it is used.
+    @cog_ext.cog_slash('purge') # Purges a channel based on where it is used.
     async def purge(self, ctx):
         if ctx.author.guild_permissions.administrator:
        """
