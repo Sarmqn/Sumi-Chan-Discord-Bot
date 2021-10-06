@@ -3,6 +3,7 @@ from discord import errors
 from discord.ext import commands
 import discord.utils
 from discord.utils import get
+import asyncio
 
 class Logs(commands.Cog): # Creates the class with an instance of Logs
     """
@@ -129,12 +130,17 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
         else:
             pass
                        
-    """
-    @commands.command('purge') # Purges a channel based on where it is used.
-    async def purge(self, ctx):
-        if ctx.author.guild_permissions.administrator:
-       """    
-        
+    @commands.has_permissions(administrator=True)        
+    @commands.command('Purge') # Purge command
+    async def purge(self, ctx, amount, arg:str=None):
+        await ctx.message.delete() # Deletes messages using the command prefix and the parameter
+        await ctx.channel.purge(limit=int(amount)) # Purges messages in the channel based on the inputed amount
+        deletemsg = await ctx.send(f"{amount} messages have been deleted from the channel!") # prints a message stating that the messages have been purged
+        await asyncio.sleep(5) # Deletes the previous msg stating the purge in 5 seconds
+        await deletemsg.delete() # Deletes the deletemsg
+            
+    
+    
 def setup(bot):
     bot.add_cog(Logs(bot))
 
