@@ -2,11 +2,13 @@ import discord
 from discord.ext import commands
 from discord_slash import cog_ext, SlashContext
 
+
 class General(commands.Cog):
     """
     General commands that server members can use
     """
-    def __init__(self, bot): # Defining the Init constructor
+
+    def __init__(self, bot):  # Defining the Init constructor
         self.bot = bot
 
     @cog_ext.cog_slash(name="ping")
@@ -15,11 +17,14 @@ class General(commands.Cog):
         Checks the current ping for the bot
         """
         if self.bot.latency >= 0.125:
-            await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms. Might want to check this out <@701817552778559510>.') # Pings me if the ping is above 125ms
+            await ctx.send(
+                f"Pong! Bot latency is {round(self.bot.latency * 1000)}ms. Might want to check this out <@701817552778559510>."
+            )  # Pings me if the ping is above 125ms
         else:
-            await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms') # Says in chat what the current ping is and rounds it to the nearest whole number
-        
-    
+            await ctx.send(
+                f"Pong! Bot latency is {round(self.bot.latency * 1000)}ms"
+            )  # Says in chat what the current ping is and rounds it to the nearest whole number
+
     # --Getting information about the server--
     @cog_ext.cog_slash(name="server")
     async def server_info(self, ctx: SlashContext):  # When server_info is in instance:
@@ -34,13 +39,17 @@ class General(commands.Cog):
 
     # --Bot replying to a message if it contains a trigger word--
     @commands.Cog.listener()
-    async def on_message(self, message): # When on_message is in instance:
-         if message.content == "test": # If bot sees "test" in chat
-                await message.channel.send("Testing 1, 2, 3!") # It will print out "Testing 1, 2, 3!"
-         if message.content == "hello": # If bot sees "hello" in chat
-                await message.channel.send("Hewo!") # It will print out "Hewo!"
+    async def on_message(self, message):  # When on_message is in instance:
+        if message.content == "test":  # If bot sees "test" in chat
+            await message.channel.send(
+                "Testing 1, 2, 3!"
+            )  # It will print out "Testing 1, 2, 3!"
+        if message.content == "hello":  # If bot sees "hello" in chat
+            await message.channel.send("Hewo!")  # It will print out "Hewo!"
+
 
 def setup(bot):
     bot.add_cog(General(bot))
+
 
 # Knees weak

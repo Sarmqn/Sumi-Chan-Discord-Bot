@@ -118,7 +118,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
         ],
     )  # Mute command
     async def mute(self, ctx: SlashContext, member: discord.Member):
-        if ctx.author.guild_permissions.administrator == True:
+        if ctx.author.guild_permissions.manage_roles == True:
             role_muted = discord.utils.get(ctx.guild.roles, name="Muted")
             if role_muted in member.roles:
                 await ctx.send(f'**{member}** is already muted.')
@@ -142,7 +142,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
         ],
     )  # Unmute command
     async def unmute(self, ctx: SlashContext, member: discord.Member):
-        if ctx.author.guild_permissions.administrator == True:
+        if ctx.author.guild_permissions.manage_roles == True:
             role_muted = discord.utils.get(ctx.guild.roles, name="Muted")
             if role_muted in member.roles:
                 role_members = discord.utils.get(ctx.guild.roles, name='Member')
