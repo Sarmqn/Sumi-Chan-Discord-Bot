@@ -20,6 +20,13 @@ async def on_ready(): # When the bot turns on
     print("Roaring to go") # Lets the bot owner know when the bot is ready, it will print out that it's "Roaring to go".
     await bot.change_presence(activity = discord.Game(name="Matane!")) # A Discord Rich Presense that will say the bot is playing "Matane!"
     "await bot.change_presence(activity = discord.Activity(type=discord.ActivityType.listening, name='Matane!'))" # A Discord Rich Presense that will say, commented out to try a new one
+"""
+@bot.event
+async def on_member_join(member): # References member as they join
+    embed = discord.Embed(colour=discord.Colour.random), description = f"Welcome to Social Hub! You are the {len(list(member.guild.members))} member!!"
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/885197499319603242/895396695532265472/unknown.png")
+    embed.add_field
+"""
 # --Loading all cogs--
 cogs = [
     "moderation",
