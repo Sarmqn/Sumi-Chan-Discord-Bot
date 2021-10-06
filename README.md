@@ -50,7 +50,7 @@ It will be a powerful bot that will be able to complete many tasks, essentially 
 Form of Contact | Contact
 ------------ | -------------
 Email | sarmanchowdhury@gmail.com
-Discord | Sarman#4515
+Discord | Ramen Shop#4515
 Dev.to | @Sarmqn
 
 ## Credits ❤️:
