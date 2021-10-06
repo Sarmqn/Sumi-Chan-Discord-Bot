@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord_slash import cog_ext, SlashContext
 
 class General(commands.Cog):
     """
@@ -8,8 +9,8 @@ class General(commands.Cog):
     def __init__(self, bot): # Defining the Init constructor
         self.bot = bot
 
-    @commands.command(name = 'ping')
-    async def ping(self, ctx: commands.Context): # When ping is in instance:
+    @cog_ext.cog_slash(name="ping")
+    async def ping(self, ctx: SlashContext):  # When ping is in instance:
         """
         Checks the current ping for the bot
         """
@@ -20,14 +21,18 @@ class General(commands.Cog):
         
     
     # --Getting information about the server--
-    @commands.command(name='server')
-    async def server_info(ctx: commands.Context): # When server_info is in instance:
-        guild = ctx.guild # Collect data about the server
-        await ctx.send(f'Server Name: {guild.name}') # Print out the Server's Name.
-        await ctx.send(f'Owner Name: {guild.owner.display_name}') # Print out the Server's Owner.
-        await ctx.send(f'Server Size: {len(guild.members)}') # Print out the member size of the server.
+    @cog_ext.cog_slash(name="server")
+    async def server_info(self, ctx: SlashContext):  # When server_info is in instance:
+        guild = ctx.guild  # Collect data about the server
+        await ctx.send(f"Server Name: {guild.name}")  # Print out the Server's Name.
+        await ctx.send(
+            f"Owner Name: {guild.owner.display_name}"
+        )  # Print out the Server's Owner.
+        await ctx.send(
+            f"Server Size: {len(guild.members)}"
+        )  # Print out the member size of the server.
 
-    # --Bot replying to a message if it contains a trigger word--    
+    # --Bot replying to a message if it contains a trigger word--
     @commands.Cog.listener()
     async def on_message(self, message): # When on_message is in instance:
          if message.content == "test": # If bot sees "test" in chat

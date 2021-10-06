@@ -1,5 +1,6 @@
 # --Importing all necessary libraries--
 import discord
+from discord_slash import SlashCommand
 from discord.ext import commands
 from pretty_help import PrettyHelp, DefaultMenu
 import os
@@ -14,6 +15,7 @@ class SumiChan(commands.Bot):
         super().__init__(command_prefix="sc!", description="Nice handy bot that will help around", intents=intents, help_command=None) # Super class
 
 bot = SumiChan()
+slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 
 @bot.event
 async def on_ready(): # When the bot turns on
@@ -21,11 +23,7 @@ async def on_ready(): # When the bot turns on
     await bot.change_presence(activity = discord.Game(name="Matane!")) # A Discord Rich Presense that will say the bot is playing "Matane!"
     "await bot.change_presence(activity = discord.Activity(type=discord.ActivityType.listening, name='Matane!'))" # A Discord Rich Presense that will say, commented out to try a new one
 # --Loading all cogs--
-cogs = [
-    "moderation",
-    "general",
-    "help"
-]
+cogs = ["moderation", "general"]  # don't need help command anymore
 
 for cog in cogs:
     bot.load_extension("cogs." + cog)
