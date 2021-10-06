@@ -130,7 +130,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
         else:
             pass
                        
-    @commands.has_permissions(administrator=True)        
+    @commands.has_permissions(administrator=True) # checks for admin perms for the user who uses it        
     @commands.command('Purge') # Purge command
     async def purge(self, ctx, amount, arg:str=None):
         await ctx.message.delete() # Deletes messages using the command prefix and the parameter
