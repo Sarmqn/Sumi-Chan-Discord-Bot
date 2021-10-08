@@ -139,7 +139,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
         await asyncio.sleep(5) # Deletes the previous msg stating the purge in 5 seconds
         await deletemsg.delete() # Deletes the deletemsg
         if administrator = False:
-            await ctx.send(f"{user.name} does not have permission to do that)
+            await ctx.send(f"{user.name} does not have permission to do that")
         else:
             pass
                                            
