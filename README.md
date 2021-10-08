@@ -16,16 +16,11 @@ It will be a powerful bot that will be able to complete many tasks, essentially 
 
 ## **Work In Progress Features(WIP)**
 
-- Leaving Voice Channels
 - Setting up new music features removing old one
-- Playing Music
-- Skipping Music
-- Pausing / Stopping Music
 - Setting auto role to "Member" role
 - Warns
 - Economy Game with a Database
 - Hypixel API!!!
-- Re-doing the music player
 
 ## **Requirements set for the bot**
 
