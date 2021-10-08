@@ -12,7 +12,9 @@ It will be a powerful bot that will be able to complete many tasks, essentially 
 - Logging those who join the server in an embed in Mod Log's channel (Currently only my server)
 - Log's who creates invites to the server and also sends invites to people
 - Deletes any "discord.gg/" links in chat to stop any server advertisement in all channels if prohibited
-- General moderation (bans, mutes)
+- General moderation (bans, mutes, purge, kicks)
+- Help command displaying available commands
+- ServerInformation command
 
 ## **Work In Progress Features(WIP)**
 
