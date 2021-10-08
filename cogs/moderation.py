@@ -138,9 +138,11 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
         deletemsg = await ctx.send(f"{amount} messages have been deleted from the channel!") # prints a message stating that the messages have been purged
         await asyncio.sleep(5) # Deletes the previous msg stating the purge in 5 seconds
         await deletemsg.delete() # Deletes the deletemsg
-            
-    
-    
+        if administrator = False:
+            await ctx.send(f"{user.name} does not have permission to do that)
+        else:
+            pass
+                                           
 def setup(bot):
     bot.add_cog(Logs(bot))
 
