@@ -34,7 +34,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
         LeaveEmbed.set_thumbnail(url=member.avatar_url)
         await self.log_channel.send(embed=LeaveEmbed)
         
-    @commands.command(name='invite')
+    @commands.command('invite')
     @commands.guild_only() # Restricts the command to the guild only
     async def invite(self, ctx):
         """
@@ -47,7 +47,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
         
         #  ---BAN---
         
-    @commands.command('ban')
+    @commands.command('ban', aliases = ['goaway', 'Ban'])
     async def ban(self, ctx, member: discord.Member):
         if ctx.author.guild_permissions.ban_members==True:
             if isinstance(member, discord.Member):
@@ -75,7 +75,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
                 
         #  ---MUTE---    
             
-    @commands.command('mute') # Mute command
+    @commands.command('mute', aliases = ['Mute', 'Shut up', 'shutup', 'quiet']) # Mute command
     async def mute(self, ctx, member: discord.Member):
         if ctx.author.guild_permissions.administrator==True:
             role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
@@ -90,7 +90,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
                
         #  ---UNMUTE---    
             
-    @commands.command('unmute') # Unmute command
+    @commands.command('unmute', aliases = ['Unmute']) # Unmute command
     async def unmute(self, ctx, member: discord.Member):
         if ctx.author.guild_permissions.administrator==True:
             role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
@@ -102,7 +102,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
             else:
                 await ctx.send(f'**{member}** is not muted.')
     
-    @commands.command('unban') #Unban command
+    @commands.command('unban', aliases = ['Unban', 'comeback']) #Unban command
     async def unban(self,ctx, id: int):
         if ctx.author.guild_permissions.ban_members==True:
             userID = await ctx.self.bot.fetch_user(id) # Gets users ID
@@ -116,7 +116,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
             pass
         
         
-    @commands.command('kick') # Kicks a user that is mentioned
+    @commands.command('kick', aliases = ['Kick', 'remove', 'bye']) # Kicks a user that is mentioned
     async def kick(self, ctx, user: discord.Member):
         if ctx.author.guild_permissions.kick_members==True or ctx.author.guild_permissions.administrator==True:
             if isinstance(user, discord.Member):
@@ -130,7 +130,7 @@ class Logs(commands.Cog): # Creates the class with an instance of Logs
         else:
             pass
                        
-    @commands.command('Purge') # Purge command
+    @commands.command('Purge', aliases = ['purge', 'delete',]) # Purge command
     @commands.has_permissions(administrator=True) # checks for admin perms for the user who uses it        
     async def purge(self, ctx, amount, arg:str=None):
         await ctx.message.delete() # Deletes messages using the command prefix and the parameter
