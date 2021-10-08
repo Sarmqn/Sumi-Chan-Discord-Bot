@@ -23,9 +23,12 @@ class General(commands.Cog):
     @commands.command(name='server')
     async def server_info(ctx: commands.Context): # When server_info is in instance:
         guild = ctx.guild # Collect data about the server
-        await ctx.send(f'Server Name: {guild.name}') # Print out the Server's Name.
-        await ctx.send(f'Owner Name: {guild.owner.display_name}') # Print out the Server's Owner.
-        await ctx.send(f'Server Size: {len(guild.members)}') # Print out the member size of the server.
+        guildOwner = bot.get_user(int(ctx.guild.owner.id))
+        await ctx.send(f'Server Owner: {guildOwner}')
+        guildName = member.guild.name
+        await ctx.send(f'Server Name: {guildName}') # Print out the Server's Name.
+        guildMembers = len(guild.members)
+        await ctx.send(f'Server Size: {guildMembers}') # Print out the member size of the server.
 
     # --Bot replying to a message if it contains a trigger word--    
     @commands.Cog.listener()
