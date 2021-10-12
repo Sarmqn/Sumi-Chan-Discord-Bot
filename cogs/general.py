@@ -21,7 +21,7 @@ class General(commands.Cog):
     
     # --Getting information about the server--
     @commands.command(name='server')
-    async def server_info(self, ctx: commands.Context): # When server_info is in instance:
+    async def server_info(self, ctx): # When server_info is in instance:
         guild = ctx.guild # Collect data about the server
         guildOwner = self.bot.get_user(int(ctx.guild.owner.id))
         await ctx.send(f'Server Owner: {guildOwner}')
