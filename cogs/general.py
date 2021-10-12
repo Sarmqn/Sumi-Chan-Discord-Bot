@@ -25,10 +25,10 @@ class General(commands.Cog):
         embed = discord.Embed (title = 'Server Information', description='This embed shows information about the server you are currently in.', colour=discord.Colour.random())
         embed.set_thumbnail (url = 'https://media.discordapp.net/attachments/885197499319603242/895396695532265472/unknown.png')
         embed.set_author (name = 'Server Information', icon_url=ctx.author.avatar_url)
-        embed.add_field (name = 'Server Name', value = ctx.guild.name)
-        embed.add_field (name = 'Server Owner', value = ctx.guild.owner.mention)
-        embed.add_field (name = 'Server Member Count', value = len(ctx.guild.members))
-        embed.add_field (name = 'Bot Creator', value = '<@701817552778559510>')
+        embed.add_field (name = 'Server Name:', value = ctx.guild.name)
+        embed.add_field (name = 'Server Owner:', value = ctx.guild.owner.mention)
+        embed.add_field (name = 'Server Member Count:', value = len(ctx.guild.members))
+        embed.add_field (name = 'Bot Creator:', value = '<@701817552778559510>')
         await ctx.send(embed=embed)
 
     # --Bot replying to a message if it contains a trigger word--    
