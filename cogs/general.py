@@ -29,7 +29,7 @@ class General(commands.Cog):
         embed.add_field (name = 'Server Owner:', value = ctx.guild.owner.mention)
         embed.add_field (name = 'Server Member Count:', value = len(ctx.guild.members))
         embed.add_field (name = 'Bot Creator:', value = '<@701817552778559510>')
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     # --Bot replying to a message if it contains a trigger word--    
     @commands.Cog.listener()
