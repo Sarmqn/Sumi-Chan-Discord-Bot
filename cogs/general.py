@@ -25,9 +25,9 @@ class General(commands.Cog):
         guild = ctx.guild # Collect data about the server
         guildOwner = self.bot.get_user(int(ctx.guild.owner.id))
         await ctx.send(f'Server Owner: {guildOwner}')
-        guildName = self.bot.bet_ctx.member.guild.name
+        guildName = ctx.member.guild.name
         await ctx.send(f'Server Name: {guildName}') # Print out the Server's Name.
-        guildMembers = self.bot.get_len(guild.members)
+        guildMembers = len(guild.members)
         await ctx.send(f'Server Size: {guildMembers}') # Print out the member size of the server.
 
     # --Bot replying to a message if it contains a trigger word--    
