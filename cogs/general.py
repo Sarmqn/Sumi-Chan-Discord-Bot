@@ -20,15 +20,15 @@ class General(commands.Cog):
         
     
     # --Getting information about the server--
-    @commands.command(name='server')
-    async def server_info(self, ctx): # When server_info is in instance:
-        guild = ctx.guild # Collect data about the server
-        guildOwner = self.bot.get_user(int(guild.owner.id))
-        await ctx.send(f'Server Owner: {guildOwner}')
-        guildName = guild.name
-        await ctx.send(f'Server Name: {guildName}') # Print out the Server's Name.
-        guildMembers = len(guild.members)
-        await ctx.send(f'Server Size: {guildMembers}') # Print out the member size of the server.
+    @commands.command(name = 'ServerInfo', description='Server Information', aliases = ['si', 'info', 'serverinfo'])
+    async def server(self, ctx): # When server command is in instance, it will display and embed with the following information
+        embed = discord.Embed (title = 'Server Information', description='This embed shows information about the server you are currently in.', colour=discord.Colour.random)
+        embed.set_thumbnail (url = 'https://media.discordapp.net/attachments/885197499319603242/895396695532265472/unknown.png')
+        embed.set_author (name = 'Server Information', icon_url=ctx.author.avatar_url)
+        embed.add_field (name = 'Server Name', value = ctx.guild.name)
+        embed.add_field (name = 'Server Owner', value = ctx.guild.owner.mention)
+        embed.add_field (name = 'Server Member Count', value = len(ctx.guild.members))
+        embed.add_field (name = 'Bot Creator', value = '<@701817552778559510>')
 
     # --Bot replying to a message if it contains a trigger word--    
     @commands.Cog.listener()
