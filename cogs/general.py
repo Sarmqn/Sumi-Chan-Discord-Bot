@@ -5,7 +5,7 @@ class General(commands.Cog):
     """
     General commands that server members can use
     """
-    def __init__(self, bot, member): # Defining the Init constructor
+    def __init__(self, bot): # Defining the Init constructor
         self.bot = bot
 
     @commands.command(name = 'ping')
