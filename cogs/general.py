@@ -23,9 +23,9 @@ class General(commands.Cog):
     @commands.command(name='server')
     async def server_info(self, ctx): # When server_info is in instance:
         guild = ctx.guild # Collect data about the server
-        guildOwner = self.bot.get_user(int(ctx.guild.owner.id))
+        guildOwner = self.bot.get_user(int(guild.owner.id))
         await ctx.send(f'Server Owner: {guildOwner}')
-        guildName = ctx.member.guild.name
+        guildName = guild.name
         await ctx.send(f'Server Name: {guildName}') # Print out the Server's Name.
         guildMembers = len(guild.members)
         await ctx.send(f'Server Size: {guildMembers}') # Print out the member size of the server.
