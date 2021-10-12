@@ -153,7 +153,7 @@ class MyHelp(commands.HelpCommand):
             raise error
 
 # Create the cog for the help command to be in the bot
-class Help(commands.Cog, name='🤔 Help'):
+class Help(commands.Cog, name='Help'):
     """Get help with commands!"""
     def __init__(self, client):
         self.client = client
