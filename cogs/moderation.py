@@ -49,7 +49,7 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
         #  ---BAN---
     @commands.command(aliases = ['goaway', 'Ban'])
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member: discord.Member, *reason: str = None):
+    async def ban(self, ctx, member: discord.Member = None, eason: str = None):
         if isinstance(member, discord.Member): # Checks if the argument passed was a discord.Member object.
             pass
         elif isinstance(member, int):
