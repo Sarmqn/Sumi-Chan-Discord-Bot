@@ -29,7 +29,7 @@ class General(commands.Cog):
     # --Getting information about the server--
     # --Checks that the user is me--
     @commands.command(description='Server Information', aliases = ['si', 'info', 'serverinfo'])
-    @is_me
+    @is_me()
     async def server(self, ctx): # When server command is in instance, it will display and embed with the following information
         embed = discord.Embed (title = 'Server Information', description='This embed shows information about the server you are currently in.', colour=discord.Colour.random())
         embed.set_thumbnail (url = 'https://media.discordapp.net/attachments/885197499319603242/895396695532265472/unknown.png')
