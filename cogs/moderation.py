@@ -75,7 +75,7 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
                 await member.ban(reason=reason)
                 
         #  ---MUTE---    
-    @commands.command('mute', aliases = ['Mute', 'shutup', 'quiet']) # Mute command
+    @commands.command(aliases = ['Mute', 'shutup', 'quiet']) # Mute command
     @commands.has_permissions(manage_messages=True, manage_roles=True, mute_members=True)
     async def mute(self, ctx, member: discord.Member):
         role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
@@ -89,7 +89,7 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
 
                
         #  ---UNMUTE---    
-    @commands.command('unmute', aliases = ['Unmute']) # Unmute command
+    @commands.command(aliases = ['Unmute']) # Unmute command
     @commands.has_permissions(manage_messages=True, manage_roles=True, mute_members=True)
     async def unmute(self, ctx, member: discord.Member):
         role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
@@ -102,7 +102,7 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
             await ctx.send(f'**{member}** is not muted.')
 
         # ---UNBAN---
-    @commands.command('unban', aliases = ['Unban', 'comeback']) #Unban command
+    @commands.command(aliases = ['Unban', 'comeback']) #Unban command
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, id: int, *, reason: str = None):
         userID = await ctx.self.bot.fetch_user(id) # Gets user's ID
@@ -114,7 +114,7 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
             await ctx.send(f'**{userID}** has been unbanned.\nReason: {reason}.')
         
         # ---KICK---
-    @commands.command('kick', aliases = ['Kick', 'remove', 'bye']) # Kicks a user that is mentioned
+    @commands.command(aliases = ['Kick', 'remove', 'bye']) # Kicks a user that is mentioned
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, user: discord.Member):
         if isinstance(user, discord.Member):
@@ -127,9 +127,9 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
         await user.send(f"You were kicked from **{ctx.guild}** by **{ctx.author}**.")
                        
         # ---PURGE---
-    @commands.command('Purge', aliases = ['delete']) # Purge command
+    @commands.command(aliases = ['delete']) # Purge command
     @commands.has_permissions(administrator=True) # checks for admin perms for the user who uses it        
-    async def purge(self, ctx, amount, *arg:str = None):
+    async def purge(self, ctx, amount, *args = None):
         await ctx.message.delete() # Deletes messages using the command prefix and the parameter
         await ctx.channel.purge(limit=int(amount)) # Purges messages in the channel based on the inputed amount
         deletemsg = await ctx.send(f"{amount} messages have been deleted from the channel!") # prints a message stating that the messages have been purged
