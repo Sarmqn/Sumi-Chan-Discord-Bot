@@ -11,22 +11,23 @@ class General(commands.Cog):
     """
     General commands that server members can use
     """
-    def __init__(self, bot): # Defining the Init constructor
+    def __init__(self, bot): # Defining the constructor method
         self.bot = bot
 
+    # --Gets the latency of the bot--
     @commands.command(name = 'ping')
-    async def ping(self, ctx: commands.Context): # When ping is in instance:
+    async def ping(self, ctx: commands.Context): # When the command has been called:
         """
         Checks the current ping for the bot
         """
+        msg = f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms.' # Says in chat what the current ping is and rounds it to the nearest whole number
         if self.bot.latency >= 0.125:
-            await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms. Might want to check this out <@701817552778559510>.') # Pings me if the ping is above 125ms
-        else:
-            await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms') # Says in chat what the current ping is and rounds it to the nearest whole number
+            msg += ' Might want to check this out <@701817552778559510>.' # Pings me if the ping is above 125ms
+        await ctx.send(msg)
         
     
     # --Getting information about the server--
-    # --Checks that the user is me
+    # --Checks that the user is me--
     @commands.command(description='Server Information', aliases = ['si', 'info', 'serverinfo'])
     @is_me
     async def server(self, ctx): # When server command is in instance, it will display and embed with the following information
@@ -43,9 +44,9 @@ class General(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message): # When on_message is in instance:
          if message.content == "test": # If bot sees "test" in chat
-                await message.channel.send("Testing 1, 2, 3!") # It will print out "Testing 1, 2, 3!"
+                await message.reply("Testing, 1, 2, 3!") # It will reply with "Testing, 1, 2, 3!"
          if message.content == "hello": # If bot sees "hello" in chat
-                await message.channel.send("Hewo!") # It will print out "Hewo!"
+                await message.reply("Hewo!") # It will reply with "Hewo!"
 
 def setup(bot):
     bot.add_cog(General(bot))
