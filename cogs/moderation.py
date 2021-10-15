@@ -127,9 +127,9 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
         await user.send(f"You were kicked from **{ctx.guild}** by **{ctx.author}**.")
                        
         # ---PURGE---
-    @commands.command('Purge', aliases = ['purge', 'delete',]) # Purge command
+    @commands.command('Purge', aliases = ['delete']) # Purge command
     @commands.has_permissions(administrator=True) # checks for admin perms for the user who uses it        
-    async def purge(self, ctx, amount, *arg:str=None):
+    async def purge(self, ctx, amount, *arg:str = None):
         await ctx.message.delete() # Deletes messages using the command prefix and the parameter
         await ctx.channel.purge(limit=int(amount)) # Purges messages in the channel based on the inputed amount
         deletemsg = await ctx.send(f"{amount} messages have been deleted from the channel!") # prints a message stating that the messages have been purged
