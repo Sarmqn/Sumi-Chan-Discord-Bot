@@ -15,8 +15,8 @@ class General(commands.Cog):
         self.bot = bot
 
     # --Gets the latency of the bot--
-    @commands.command(name = 'ping')
-    async def ping(self, ctx: commands.Context): # When the command has been called:
+    @commands.command()
+    async def ping(self, ctx): # When the command has been called:
         """
         Checks the current ping for the bot
         """
@@ -34,21 +34,19 @@ class General(commands.Cog):
         embed = discord.Embed (title = 'Server Information', description='This embed shows information about the server you are currently in.', colour=discord.Colour.random())
         embed.set_thumbnail (url = 'https://media.discordapp.net/attachments/885197499319603242/895396695532265472/unknown.png')
         embed.set_author (name = 'Server Information', icon_url=ctx.author.avatar_url)
-        embed.add_field (name = 'Server Name:', value = ctx.guild.name)
-        embed.add_field (name = 'Server Owner:', value = ctx.guild.owner.mention)
-        embed.add_field (name = 'Server Member Count:', value = len(ctx.guild.members))
-        embed.add_field (name = 'Bot Creator:', value = '<@701817552778559510>')
-        await ctx.reply(embed=embed)
+        # For loop to add fields (More code efficient)
+        fieldlist = [['Server Name', ctx.guild.name], ['Server Owner', ctx.guild.owner.mention], ['Server Member Count', len([m for m in ctx.guild.members if not m.bot])], ['Bot Creator', '<@701817552778559510>']]
+        for i in fieldlist:
+            embed.add_field (name = fieldlist[0], value=fieldlist[1])
+        await ctx.reply (embed=embed)
 
     # --Bot replying to a message if it contains a trigger word--    
     @commands.Cog.listener()
-    async def on_message(self, message): # When on_message is in instance:
-         if message.content == "test": # If bot sees "test" in chat
+    async def on_message(self, message): # When a message is detected by the bot
+         if message.content.lower() == "test": # If bot sees "test" in chat
                 await message.reply("Testing, 1, 2, 3!") # It will reply with "Testing, 1, 2, 3!"
-         if message.content == "hello": # If bot sees "hello" in chat
+         if message.content.lower() == "hello": # If bot sees "hello" in chat
                 await message.reply("Hewo!") # It will reply with "Hewo!"
 
 def setup(bot):
     bot.add_cog(General(bot))
-
-# Knees weak
