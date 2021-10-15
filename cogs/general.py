@@ -36,8 +36,8 @@ class General(commands.Cog):
         embed.set_author (name = 'Server Information', icon_url=ctx.author.avatar_url)
         # For loop to add fields (More code efficient)
         fieldlist = [['Server Name', ctx.guild.name], ['Server Owner', ctx.guild.owner.mention], ['Server Member Count', len([m for m in ctx.guild.members if not m.bot])], ['Bot Creator', '<@701817552778559510>']]
-        for i in fieldlist:
-            embed.add_field (name = fieldlist[0], value=fieldlist[1])
+        for i in range(len(fieldlist)):
+            embed.add_field (name = fieldlist[i][0], value=fieldlist[i][1])
         await ctx.reply (embed=embed)
 
     # --Bot replying to a message if it contains a trigger word--    
