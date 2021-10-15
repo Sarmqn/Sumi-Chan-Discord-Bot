@@ -112,8 +112,6 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
             await ctx.send('User is not banned!')
         else:
             await ctx.send(f'**{userID}** has been unbanned.\nReason: {reason}.')
-    else:
-        pass
         
         # ---KICK---
     @commands.command('kick', aliases = ['Kick', 'remove', 'bye']) # Kicks a user that is mentioned
