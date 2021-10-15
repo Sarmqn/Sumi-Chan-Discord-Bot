@@ -104,7 +104,7 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
         # ---UNBAN---
     @commands.command('unban', aliases = ['Unban', 'comeback']) #Unban command
     @commands.has_permissions(ban_members=True)
-    async def unban(self, ctx, id: int, *reason: str = None):
+    async def unban(self, ctx, id: int, *, reason: str = None):
         userID = await ctx.self.bot.fetch_user(id) # Gets user's ID
         try:
             await ctx.guild.unban(userID, reason=reason)
