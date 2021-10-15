@@ -131,8 +131,8 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
     @commands.has_permissions(administrator=True) # checks for admin perms for the user who uses it        
     async def purge(self, ctx, amount):
         await ctx.message.delete() # Deletes messages using the command prefix and the parameter
-        await ctx.channel.purge(limit=int(amount)) # Purges messages in the channel based on the inputed amount
-        deletemsg = await ctx.send(f"{amount} messages have been deleted from the channel!") # prints a message stating that the messages have been purged
+        purgemsg = await ctx.channel.purge(limit=int(amount)) # Purges messages in the channel based on the inputed amount
+        deletemsg = await ctx.send(f"{len(purgemsg)} messages have been deleted from the channel!") # prints a message stating that the messages have been purged
         await asyncio.sleep(5) # Deletes the previous msg stating the purge in 5 seconds
         await deletemsg.delete() # Deletes the deletemsg
 
