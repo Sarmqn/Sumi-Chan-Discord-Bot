@@ -1,6 +1,12 @@
 import discord
 from discord.ext import commands
 
+# Defining a checking function to be used for certain commands only I want to be able to use
+def is_me():
+    def predicate(ctx):
+        return (ctx.message.author.id == 701817552778559510) or (ctx.message.author.id == 221188745414574080) or (ctx.message.author.id == 448753852863479818)
+    return commands.check(predicate)
+
 class General(commands.Cog):
     """
     General commands that server members can use
@@ -19,7 +25,9 @@ class General(commands.Cog):
             await ctx.send(f'Pong! Bot latency is {round(self.bot.latency * 1000)}ms') # Says in chat what the current ping is and rounds it to the nearest whole number
         
     
-    """# --Getting information about the server--
+    # --Getting information about the server--
+    # --Checks that the user is me
+    @is_me
     @commands.command(description='Server Information', aliases = ['si', 'info', 'serverinfo'])
     async def server(self, ctx): # When server command is in instance, it will display and embed with the following information
         embed = discord.Embed (title = 'Server Information', description='This embed shows information about the server you are currently in.', colour=discord.Colour.random())
@@ -30,7 +38,7 @@ class General(commands.Cog):
         embed.add_field (name = 'Server Member Count:', value = len(ctx.guild.members))
         embed.add_field (name = 'Bot Creator:', value = '<@701817552778559510>')
         await ctx.reply(embed=embed)
-    """ #Will be reintroduced later
+
     # --Bot replying to a message if it contains a trigger word--    
     @commands.Cog.listener()
     async def on_message(self, message): # When on_message is in instance:
