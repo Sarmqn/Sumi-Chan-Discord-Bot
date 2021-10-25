@@ -1,7 +1,7 @@
 # --Importing all necessary libraries--
 import discord
 from discord.ext import commands
-from pretty_help import PrettyHelp, DefaultMenu
+# from pretty_help import PrettyHelp, DefaultMenu
 import os
 
 # --Load intents--
