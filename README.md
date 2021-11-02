@@ -19,9 +19,7 @@ It will be a powerful bot that will be able to complete many tasks, essentially 
 ## **Work In Progress Features(WIP)**
 
 - Setting up new music features removing old one
-- Setting auto role to "Member" role
 - Warns
-- Economy Game with a Database
 - Hypixel API!!!
 
 ## **Requirements set for the bot**
