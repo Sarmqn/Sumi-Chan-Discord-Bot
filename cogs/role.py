@@ -41,7 +41,6 @@ class Reactions(commands.Cog, name = "ReactionRoles"):
         await message.clear_reactions()
 
         desc = ""
-        reaction_roles = await self.bot.reaction_roles.get_all()
         reaction_roles = list(filter(lambda r: r['guild_id'] == guild_id, info))
         for item in reaction_roles:
             role = guild.get_role(item["role"])
