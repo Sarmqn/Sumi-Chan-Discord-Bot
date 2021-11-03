@@ -79,16 +79,16 @@ class MyHelp(commands.HelpCommand):
         # Gets the part to remove from each signature to only get the subcommand name
         tostrip = f'_{group.name} '
         # Since subcommands are required, begin the arguments (`<something|another_possible_one|a_third>`) with "<"
-        arg_subcmds = ''
+        arg_subcmds = '<'
         # For each element in the array
         for i in command_signatures:
             # Remove all backticks (`) and replace the occuring value of tostrip with nothing. Add it to the string as well as a |
             arg_subcmds += f"{i.replace(tostrip, '').strip('`')}|"
         # Remove the last "|" and add the last ">"
-        arg_subcmds = f'<{arg_subcmds[:-1]}>'
+        arg_subcmds = f'{arg_subcmds[:-1]}>'
         print(arg_subcmds)
         # If there were no subcommands
-        if arg_subcmds == '<>':
+        if arg_subcmds == '>':
             arg_subcmds = None
         else:
             # Surround it with backticks for the codeblock in Discord
