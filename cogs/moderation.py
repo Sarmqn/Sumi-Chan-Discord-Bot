@@ -1,7 +1,6 @@
 import discord
 from discord import *
 from discord.ext import commands
-from discord.utils import get
 import asyncio
 
 class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of commands.Cog
