@@ -14,11 +14,11 @@ class Genshin(commands.Cog, name=' Genshin Impact'):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.group(invoke_without_command=True, aliases=['gi', 'g', 'genshinimpact', 'genshin_impact'])
+    @commands.group(invoke_without_command=True, aliases=['gi', 'g', 'genshinimpact', 'genshin_impact'], description='Get information about Genshin Impact! Use `sc!help genshin` for subcommands.')
     async def genshin(self, ctx):
       await ctx.reply('A Genshin command in the works.')
 
-    @genshin.command(aliases=['ch', 'char'])
+    @genshin.command(aliases=['ch', 'char'], description='Get character profiles.')
     async def character(self, ctx, character = None, *arguments):
         if character is None:
             embed = discord.Embed(title='Character Profiles', description='Learn more about characters in Genshin! For a list of available characters use `sc!genshin characters`.')
