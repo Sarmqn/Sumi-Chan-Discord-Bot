@@ -86,7 +86,7 @@ class MyHelp(commands.HelpCommand):
             arg_subcmds += f"{i.replace(tostrip, '').strip('`')}|"
         # Remove the last "|" and add the last ">"
         arg_subcmds = f'<{arg_subcmds[:-1]}>'
-         print(arg_subcmds)
+        print(arg_subcmds)
         # If there were no subcommands
         if arg_subcmds == '<>':
             arg_subcmds = None
