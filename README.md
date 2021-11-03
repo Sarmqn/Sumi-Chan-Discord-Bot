@@ -18,10 +18,10 @@ It will be a powerful bot that will be able to complete many tasks, essentially 
 
 ## **Work In Progress Features(WIP)**
 
-- Setting up new music features removing old one
 - Warns
 - Hypixel API Usage
 - Genshin API Usage
+- Reaction Roles with a DB
 
 ## **Requirements set for the bot**
 
