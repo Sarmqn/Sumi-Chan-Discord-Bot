@@ -20,7 +20,8 @@ It will be a powerful bot that will be able to complete many tasks, essentially 
 
 - Setting up new music features removing old one
 - Warns
-- Hypixel API!!!
+- Hypixel API Usage
+- Genshin API Usage
 
 ## **Requirements set for the bot**
 
