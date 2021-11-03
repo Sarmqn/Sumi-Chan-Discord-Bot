@@ -1,7 +1,6 @@
 import typing
 import discord
-from discord import mentions
-from discord import reaction
+from discord import *
 from discord.enums import DefaultAvatar
 from discord.ext import commands
 from discord.raw_models import RawReactionClearEmojiEvent
