@@ -64,7 +64,7 @@ class MyHelp(commands.HelpCommand):
             # Joins the array line by line
             desc = '\n'.join(command_signatures)
             # Embed generation
-            embed = discord.Embed(title=f'{cog.qualified_name[cog.qualified_name.find(' ')+1:]} Help', description=f'**{cog.__doc__}**\n\n{desc}', color=random.choice(embedcolours))
+            embed = discord.Embed(title=f'{cog.qualified_name[cog.qualified_name.find(' ')+1:]} Help', description=f'**{cog.__doc__}**\n\n{desc}')
             embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
             # Send embed as a reply
             await self.context.reply(embed=embed)
