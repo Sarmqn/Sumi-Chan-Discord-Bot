@@ -47,7 +47,7 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
         #  ---BAN---
     @commands.command(aliases = ['goaway', 'Ban'])
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member: discord.Member = None, eason: str = None):
+    async def ban(self, ctx, member: discord.Member = None, * reason: str):
         if isinstance(member, discord.Member): # Checks if the argument passed was a discord.Member object.
             pass
         elif isinstance(member, int):
@@ -67,6 +67,9 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
             if member is None:
                 pass
             else:
+                reason = str(reason)
+                if reason == '':
+                    reason = 'N/A'
                 await member.send(f"You were banned from **{ctx.guild}** by **{ctx.author}**.\nReason: {reason}.")
                 await ctx.send(f"{member} has been banned.")
                 await self.log_channel.send(f"{member} has been banned by {ctx.author}.\nReason: {reason}.")
