@@ -25,6 +25,7 @@ async def on_ready(): # When the bot turns on
 cogs = [
     "moderation",
     "general",
+    "genshin",
     "help"
 ]
 
