@@ -14,11 +14,11 @@ class Genshin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.group(invoke_without_command=True)
+    @commands.group(invoke_without_command=True, aliases=['gi', 'g', 'genshinimpact', 'genshin_impact'])
     async def genshin(self, ctx):
       await ctx.reply('A Genshin command in the works.')
 
-    @genshin.command()
+    @genshin.command(aliases=['ch', 'char'])
     async def character(self, ctx, character = None, *arguments):
         if character is None:
             embed = discord.Embed(title='Character Profiles', description='Learn more about characters in Genshin! For a list of available characters use `sc!genshin characters`.')
@@ -26,11 +26,13 @@ class Genshin(commands.Cog):
             character = character.lower()
             response = requests.get(f'https://api.genshin.dev/characters/{character}/')
             if response.status_code == 200:
-                embed = discord.Embed(title=f"{character.capitalize()}'s Profile", description=f'Learn more about {character.capitalize()}!.')
+                embed = discord.Embed(title=f"{character.capitalize()}'s Profile", description=response.json()['description'])
                 embed.set_thumbnail(url=f'https://api.genshin.dev/characters/{character}/icon-big')
                 embed.add_field(name='Vision', value=response.json()['vision'], inline=True)
                 embed.add_field(name='Weapon Type', value=response.json()['weapon'], inline=True)
                 embed.add_field(name='Place of Origin', value=response.json()['nation'], inline=True)
+                embed.add_field(name='Place of Origin', value=response.json()['birthday'][-4:], inline=True)
+                embed.add_field(name='Skills', value='Use `sc!genshin skills {character}`', inline=True)
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed it correctly!', color=discord.Color.from_rgb(200,0,0))
                 embed.set_thumbnail(url=f'https://api.genshin.dev/characters/{character}/icon-big')
