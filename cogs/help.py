@@ -4,9 +4,6 @@ from datetime import datetime
 from discord.ext import commands
 import random
 
-# Set necessary variables
-embedcolours = [discord.Color.from_rgb(217,89,140), discord.Color.from_rgb(241,210,231), discord.Color.from_rgb(243,170,81), discord.Color.from_rgb(252,246,149), discord.Color.from_rgb(86,122,206), discord.Color.from_rgb(183,211,233), discord.Color.from_rgb(187,176,220), discord.Color.from_rgb(219,112,108), discord.Color.from_rgb(241,195,170), discord.Color.from_rgb(206,229,213), discord.Color.from_rgb(254,254,254), discord.Color.from_rgb(167,224,225)]
-
 # Set atributes for the help command
 attributes = {
    'name': "help",
@@ -31,7 +28,7 @@ class MyHelp(commands.HelpCommand):
     # Used when someone only does `_help`
     async def send_bot_help(self, mapping):
         # Generate embed
-        embed = discord.Embed(title="Help", color=random.choice(embedcolours))
+        embed = discord.Embed(title="Help", color=discord.Color.from_rgb(241,210,231))
         # For each cog and it's associated list of commands in `mapping.items`...
         for cog, commands in mapping.items():
             # Filter out the commands that the user isn't allowed to use and sort them alphabetically
@@ -64,7 +61,7 @@ class MyHelp(commands.HelpCommand):
             # Joins the array line by line
             desc = '\n'.join(command_signatures)
             # Embed generation
-            embed = discord.Embed(title=f'{cog.qualified_name[cog.qualified_name.find(' ')+1:]} Help', description=f'**{cog.__doc__}**\n\n{desc}')
+            embed = discord.Embed(title=f"{cog.qualified_name[cog.qualified_name.find(' ')+1:]} Help", description=f'**{cog.__doc__}**\n\n{desc}', colour=discord.Color.from_rgb(241,210,231))
             embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
             # Send embed as a reply
             await self.context.reply(embed=embed)
@@ -105,7 +102,7 @@ class MyHelp(commands.HelpCommand):
              # Joins the array with ", " between each element
             aliases = ', '.join(aliases)
         # Embed generation
-        embed = discord.Embed(title=f'Help for {group.name}', description=f'Displaying help for {group}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
+        embed = discord.Embed(title=f'Help for {group.name}', description=f'Displaying help for {group}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=discord.Color.from_rgb(241,210,231))
         embed.add_field(name=f'Description', value=group.description, inline=False)
         embed.add_field(name=f'Aliases', value=aliases, inline=False)
         # Different depending on if there were subcommands
@@ -123,7 +120,7 @@ class MyHelp(commands.HelpCommand):
         # If the user has access to use the command
         if await self.filter_commands([command], sort=True):
             # Embed generation
-            embed = discord.Embed(title=f"Help for {command.name}", description=f'Displaying help for {command.name}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
+            embed = discord.Embed(title=f"Help for {command.name}", description=f'Displaying help for {command.name}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=discord.Color.from_rgb(241,210,231))
             embed.add_field(name='Description', value=command.description, inline=False)
             # For aliases, same as above
             if len(command.aliases) == 0:
