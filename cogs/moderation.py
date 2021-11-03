@@ -10,15 +10,15 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
     """
     def __init__(self, bot):
         self.bot = bot
-        self.log_channel_id = 699909552757276732
+        self.log_channel_id = 699909552757276732 # Channel ID of where everything will be logged
         self.log_channel = bot.get_channel(699909552757276732)
 
     @commands.Cog.listener() # Detect discord.gg invite links and delete them.
-    async def on_message(self, message): 
-        if not message.author.bot and ('discord.gg/' in message.content) or ('discord.com/invite/' in message.content):
-            await message.delete()
-            await message.channel.send(f"Don't send server invites in this server {message.author.mention}!")
-            await self.log_channel.send(f'{message.author.mention} ({message.author.id}) sent an invite in {message.channel}.')
+    async def on_message(self, message): #When the message is sent
+        if not message.author.bot and ('discord.gg/' in message.content) or ('discord.com/invite/' in message.content): # that includes discord.gg/
+            await message.delete() # Delete that message 
+            await message.channel.send(f"Don't send server invites in this server {message.author.mention}!") # And reply stating that these invites should not be sent in chat
+            await self.log_channel.send(f'{message.author.mention} ({message.author.id}) sent an invite in {message.channel}.') # Pings that the user to let them know
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
@@ -29,10 +29,10 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
         await member.add_roles(role) # Gives new user the aforementioned role
 
     @commands.Cog.listener()
-    async def on_member_remove(self, member):
-        LeaveEmbed = discord.Embed(title=f"See you next time, {member}", description = f"Thanks for being a part of {member.guild.name}!")
-        LeaveEmbed.set_thumbnail(url=member.avatar_url)
-        await self.log_channel.send(embed=LeaveEmbed)
+    async def on_member_remove(self, member): #When a member leaves / is removed from the server
+        LeaveEmbed = discord.Embed(title=f"See you next time, {member}", description = f"Thanks for being a part of {member.guild.name}!") #Send a nice embed
+        LeaveEmbed.set_thumbnail(url=member.avatar_url) # Users profile picture as thumbnail
+        await self.log_channel.send(embed=LeaveEmbed) # Send in the logs channel 
         
     @commands.command()
     @commands.guild_only() # Restricts the command to the guild only
