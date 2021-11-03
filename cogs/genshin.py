@@ -19,7 +19,7 @@ class Genshin(commands.Cog):
       await ctx.reply('A Genshin command in the works.')
 
     @genshin.command()
-    async def character(self, ctx, character = None, *):
+    async def character(self, ctx, character = None, *arguments):
         if character is None:
             embed = discord.Embed(title='Character Profiles', description='Learn more about characters in Genshin! For a list of available characters use `sc!genshin characters`.')
         else:
