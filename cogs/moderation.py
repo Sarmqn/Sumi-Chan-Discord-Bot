@@ -58,13 +58,13 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
             await ctx.send('Not an ID/mention. Try again.')
             member = None
         # If they are trying to ban the bot
-        if member == ctx.guild.me:
+        if member is ctx.guild.me:
             return await ctx.send("Nice try")
         # If they are trying to ban someone with administrator permissions
         if member.guild_permissions.administrator==True:
             return await ctx.send("Whoops! You can't ban them...")
         else:
-            if member == None:
+            if member is None:
                 pass
             else:
                 await member.send(f"You were banned from **{ctx.guild}** by **{ctx.author}**.\nReason: {reason}.")
