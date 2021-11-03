@@ -74,7 +74,7 @@ class MyHelp(commands.HelpCommand):
         # Get an array of command signatures. There is no filter check since the only groups I plan to use will be available to everyone
         command_signatures = [self.get_command_signature(command) for command in group.commands]
         # Gets the part to remove from each signature to only get the subcommand name
-        tostrip = f'_{group.name} '
+        tostrip = f'sc!{group.name} '
         # Since subcommands are required, begin the arguments (`<something|another_possible_one|a_third>`) with "<"
         arg_subcmds = '<'
         # For each element in the array
@@ -83,7 +83,6 @@ class MyHelp(commands.HelpCommand):
             arg_subcmds += f"{i.replace(tostrip, '').strip('`')}|"
         # Remove the last "|" and add the last ">"
         arg_subcmds = f'{arg_subcmds[:-1]}>'
-        print(arg_subcmds)
         # If there were no subcommands
         if arg_subcmds == '>':
             arg_subcmds = None
@@ -129,7 +128,7 @@ class MyHelp(commands.HelpCommand):
                 aliases = []
                 for i in range(len(command.aliases)):
                     aliases.append(f'`{command.aliases[i]}`')
-                    aliases = ', '.join(aliases)
+                aliases = ', '.join(aliases)
             embed.add_field(name='Aliases', value=aliases, inline=False)
             embed.add_field(name='Usage', value=self.get_command_signature(command), inline=False)
             embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
