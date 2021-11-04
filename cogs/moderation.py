@@ -3,7 +3,7 @@ from discord import *
 from discord.ext import commands
 import asyncio
 
-class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of commands.Cog
+class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class called "Logs" as a subclass of commands.Cog
     """
     Moderation commands/listeners for log channels
     """
@@ -139,4 +139,4 @@ class Logs(commands.Cog): # Creates a class called "Logs" as a subclass of comma
 
                                            
 def setup(bot):
-    bot.add_cog(Logs(bot))
+    bot.add_cog(Moderation(bot))
