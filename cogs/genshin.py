@@ -7,7 +7,7 @@ import os
 import json
 import requests
 
-class Genshin(commands.Cog, name=' Genshin Impact'):
+class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Impact'):
     """
     Trying out a Genshin API
     """
