@@ -69,7 +69,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
                 
         #  ---MUTE---    
     @commands.command(aliases = ['Mute', 'shutup', 'quiet'], description="Mute a user.") # Mute command
-    @commands.has_permissions(manage_messages=True, manage_roles=True, mute_members=True)
+    @commands.has_permissions(manage_messages=True, manage_roles=True)
     async def mute(self, ctx, member: discord.Member):
         log_channel = await self.bot.get_channel(699909552757276732)
         role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
@@ -85,7 +85,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
                
         #  ---UNMUTE---    
     @commands.command(aliases = ['Unmute'], description="Unmute a user.") # Unmute command
-    @commands.has_permissions(manage_messages=True, manage_roles=True, mute_members=True)
+    @commands.has_permissions(manage_messages=True, manage_roles=True)
     async def unmute(self, ctx, member: discord.Member):
         log_channel = await self.bot.get_channel(699909552757276732)
         role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
@@ -129,7 +129,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
                        
         # ---PURGE---
     @commands.command(aliases = ['delete'], description="Purge messages in a channel.") # Purge command
-    @commands.has_permissions(administrator=True) # checks for admin perms for the user who uses it        
+    @commands.has_permissions(manage_messages=True) # checks for manage message perms for the user who uses it        
     async def purge(self, ctx, amount: int, * reason: str):
         if isinstance(amount, int):
             log_channel = await self.bot.get_channel(699909552757276732)
