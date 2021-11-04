@@ -33,6 +33,18 @@ class General(commands.Cog, name='💬 General'):
             embed.add_field (name = i[0], value=i[1])
         await ctx.reply (embed=embed)
 
+    @commands.command(description="Create an invite to the server!")
+    @commands.guild_only() # Restricts the command to the guild only
+    async def invite(self, ctx):
+        log_channel = await bot.get_channel(699909552757276732)
+        """
+        Creates an invite link for the server
+        """
+        invite = await ctx.channel.create_invite(reason=f"{ctx.author} used the invite command.", max_uses = 1, unique=True)
+        await ctx.author.send(str(invite)) # This will send the invite link to the user who asked for it
+        embed = discord.Embed(title= "New Invite", description=f"Invite created by {ctx.author}\nInvite Link: {str(invite)}")
+        await log_channel.send(embed=embed) #Logs who created the invite link
+
     # --Bot replying to a message if it contains a trigger word--    
     @commands.Cog.listener()
     async def on_message(self, message): # When a message is detected by the bot
