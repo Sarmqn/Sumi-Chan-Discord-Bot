@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class General(commands.Cog):
+class General(commands.Cog, name='💬 General'):
     """
     General commands that server members can use
     """
