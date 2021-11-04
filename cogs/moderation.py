@@ -35,18 +35,6 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
         LeaveEmbed.set_thumbnail(url=member.avatar_url) # Users profile picture as thumbnail
         await log_channel.send(embed=LeaveEmbed) # Send in the logs channel 
         
-    @commands.command(description="Create an invite to the server!")
-    @commands.guild_only() # Restricts the command to the guild only
-    async def invite(self, ctx):
-        log_channel = await bot.get_channel(699909552757276732)
-        """
-        Creates an invite link for the server
-        """
-        invite = await ctx.channel.create_invite(reason=f"{ctx.author} used the invite command.", max_uses = 1, unique=True)
-        await ctx.author.send(str(invite)) # This will send the invite link to the user who asked for it
-        embed = discord.Embed(title= "New Invite", description=f"Invite created by {ctx.author}\nInvite Link: {str(invite)}")
-        await log_channel.send(embed=embed) #Logs who created the invite link
-        
         #  ---BAN---
     @commands.command(aliases = ['goaway', 'Ban'], description="Ban a user.")
     @commands.has_permissions(ban_members=True)
