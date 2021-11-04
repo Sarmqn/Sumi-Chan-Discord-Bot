@@ -153,12 +153,12 @@ class MyHelp(commands.HelpCommand):
 class Help(commands.Cog, name='🤔 Help'):
     """Get help with commands!"""
     def __init__(self, bot):
-        self.client = bot
+        self.bot = bot
 
        # Setting the cog for the help
         help_command = MyHelp(command_attrs=attributes)
         help_command.cog = self # Instance of YourCog class
-        self.bot.help_command = help_command
+        bot.help_command = help_command
 
 
 # Allows cog to be loaded
