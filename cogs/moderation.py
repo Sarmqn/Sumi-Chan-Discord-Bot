@@ -7,7 +7,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     """
     Moderation commands/listeners for log channels
     """
-    def __init__(self, bot):
+    async def __init__(self, bot):
         self.bot = bot
         self.log_channel_id = 699909552757276732 # Channel ID of where everything will be logged
         self.log_channel = await bot.get_channel(699909552757276732)
