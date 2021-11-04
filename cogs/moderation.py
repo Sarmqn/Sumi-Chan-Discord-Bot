@@ -105,7 +105,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
         # ---UNBAN---
     @commands.command(aliases = ['Unban', 'comeback'], description="Unban a user.") #Unban command
     @commands.has_permissions(ban_members=True)
-    async def unban(self, ctx, id: int, * reason: str = None):
+    async def unban(self, ctx, id: int, * reason: str):
         userID = await ctx.self.bot.fetch_user(id) # Gets user's ID
         try:
             await ctx.guild.unban(userID, reason=reason)
