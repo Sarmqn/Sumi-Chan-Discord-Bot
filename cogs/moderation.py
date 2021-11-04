@@ -10,7 +10,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     def __init__(self, bot):
         self.bot = bot
         self.log_channel_id = 699909552757276732 # Channel ID of where everything will be logged
-        self.log_channel = bot.get_channel(699909552757276732)
+        self.log_channel = await bot.get_channel(699909552757276732)
 
     @commands.Cog.listener() # Detect discord.gg invite links and delete them.
     async def on_message(self, message): #When the message is sent
