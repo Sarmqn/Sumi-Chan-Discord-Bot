@@ -31,13 +31,21 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.add_field(name='Vision', value=response.json()['vision'], inline=True)
                 embed.add_field(name='Weapon Type', value=response.json()['weapon'], inline=True)
                 embed.add_field(name='Place of Origin', value=response.json()['nation'], inline=True)
-                embed.add_field(name='Place of Origin', value=response.json()['birthday'][-4:], inline=True)
+                embed.add_field(name='Birthday', value=response.json()['birthday'][-5:], inline=True)
                 embed.add_field(name='Skills', value='Use `sc!genshin skills {character}`', inline=True)
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed it correctly!', color=discord.Color.from_rgb(200,0,0))
                 embed.set_thumbnail(url=f'https://api.genshin.dev/characters/{character}/icon-big')
         embed.set_author(name='Character Profiles', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
+
+    @genshin.command(aliases=['s', 'skill'], description="Look at a character's skills.")
+    async def skills(self, ctx, * character: str):
+        await ctx.reply('Hi!')
+    @genshin.command(aliases=['c'], description="Look at a character's constellation.")
+    async def constellation(self, ctx, * character: str):
+        await ctx.reply('Hi!')
+    
             
 
 def setup(bot):
