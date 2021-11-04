@@ -38,7 +38,7 @@ class MyHelp(commands.HelpCommand, name='🤔 Help'):
             # If a value is returned (since `None` will be returned if nothing is found)
             if command_signatures:
                 # Get the attribute `qualified_name` of cog, putting "Miscellaneous" if not found
-                cog_name = getattr(cog, "qualified_name", "Miscellaneous")
+                cog_name = getattr(cog, "qualified_name", "❓ Miscellaneous")
                 # Adds an inline field with title of cog name and value of command signatures.
                 embed.add_field(name=f'{cog_name}', value="\n".join(command_signatures), inline=True)
         # More embed generation
