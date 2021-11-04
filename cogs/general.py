@@ -9,7 +9,7 @@ class General(commands.Cog, name='💬 General'):
         self.bot = bot
 
     # --Gets the latency of the bot--
-    @commands.command()
+    @commands.command(description="Check the bot's latency!")
     async def ping(self, ctx): # When the command has been called:
         """
         Checks the current ping for the bot
@@ -22,7 +22,7 @@ class General(commands.Cog, name='💬 General'):
     
     # --Getting information about the server--
     # --Checks that the user is me--
-    @commands.command(description='Server Information', aliases = ['si', 'info', 'serverinfo'])
+    @commands.command(description="Get information about the server you're in.", aliases = ['si', 'info', 'serverinfo'])
     async def server(self, ctx): # When server command is in instance, it will display and embed with the following information
         embed = discord.Embed (title = 'Server Information', description='This embed shows information about the server you are currently in.', colour=discord.Colour.random())
         embed.set_thumbnail (url = 'https://media.discordapp.net/attachments/885197499319603242/895396695532265472/unknown.png')
