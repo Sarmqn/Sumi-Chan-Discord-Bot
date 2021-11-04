@@ -33,7 +33,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
         LeaveEmbed.set_thumbnail(url=member.avatar_url) # Users profile picture as thumbnail
         await self.log_channel.send(embed=LeaveEmbed) # Send in the logs channel 
         
-    @commands.command()
+    @commands.command(description="Create an invite to the server!")
     @commands.guild_only() # Restricts the command to the guild only
     async def invite(self, ctx):
         """
@@ -45,7 +45,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
         await self.log_channel.send(embed=embed) #Logs who created the invite link
         
         #  ---BAN---
-    @commands.command(aliases = ['goaway', 'Ban'])
+    @commands.command(aliases = ['goaway', 'Ban'], description="Ban a user.")
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member: discord.Member = None, * reason: str):
         if isinstance(member, discord.Member): # Checks if the argument passed was a discord.Member object.
@@ -76,7 +76,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
                 await member.ban(reason=reason)
                 
         #  ---MUTE---    
-    @commands.command(aliases = ['Mute', 'shutup', 'quiet']) # Mute command
+    @commands.command(aliases = ['Mute', 'shutup', 'quiet'], description="Mute a user.") # Mute command
     @commands.has_permissions(manage_messages=True, manage_roles=True, mute_members=True)
     async def mute(self, ctx, member: discord.Member):
         role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
@@ -84,28 +84,28 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
             await ctx.send(f'**{member}** is already muted.')
         else:
             role_members = discord.utils.get(ctx.guild.roles, name='Member')
-            await member.remove_roles(role_members)
-            await member.add_roles(role_muted)
+            await member.remove_roles(role_members, reason=f"User muted by {ctx.author}")
+            await member.add_roles(role_muted, reason=f"User muted by {ctx.author}.")
             await ctx.send(f"**{member}** was muted.")
 
                
         #  ---UNMUTE---    
-    @commands.command(aliases = ['Unmute']) # Unmute command
+    @commands.command(aliases = ['Unmute'], description="Unmute a user.") # Unmute command
     @commands.has_permissions(manage_messages=True, manage_roles=True, mute_members=True)
     async def unmute(self, ctx, member: discord.Member):
         role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
         if role_muted in member.roles:
             role_members = discord.utils.get(ctx.guild.roles, name='Member')
-            await member.remove_roles(role_muted)
-            await member.add_roles(role_members)
+            await member.remove_roles(role_muted, reason=f"User unmuted by {ctx.author}.")
+            await member.add_roles(role_members, reason=f"User unmuted by {ctx.author}.")
             await ctx.send(f"**{member}** was unmuted.")
         else:
             await ctx.send(f'**{member}** is not muted.')
 
         # ---UNBAN---
-    @commands.command(aliases = ['Unban', 'comeback']) #Unban command
+    @commands.command(aliases = ['Unban', 'comeback'], description="Unban a user.") #Unban command
     @commands.has_permissions(ban_members=True)
-    async def unban(self, ctx, id: int, *, reason: str = None):
+    async def unban(self, ctx, id: int, * reason: str = None):
         userID = await ctx.self.bot.fetch_user(id) # Gets user's ID
         try:
             await ctx.guild.unban(userID, reason=reason)
@@ -115,27 +115,28 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
             await ctx.send(f'**{userID}** has been unbanned.\nReason: {reason}.')
         
         # ---KICK---
-    @commands.command(aliases = ['Kick', 'remove', 'bye']) # Kicks a user that is mentioned
+    @commands.command(aliases = ['Kick', 'remove', 'bye'], description="Kick a user.") # Kicks a user that is mentioned
     @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx, user: discord.Member):
+    async def kick(self, ctx, user: discord.Member, * reason: str):
         if isinstance(user, discord.Member):
-            await user.kick()
+            await user.kick(reason=reason)
         elif isinstance(user, int) or isinstance(user, str):
             user = guild.get_member(int(userid))
-            await user.kick()
+            await user.kick(reason=reason)
         await ctx.message.add_reaction("👌")
         await ctx.send(f"**{user}** was kicked by {ctx.author.name}!")
         await user.send(f"You were kicked from **{ctx.guild}** by **{ctx.author}**.")
                        
         # ---PURGE---
-    @commands.command(aliases = ['delete']) # Purge command
+    @commands.command(aliases = ['delete'], description="Purge messages in a channel.") # Purge command
     @commands.has_permissions(administrator=True) # checks for admin perms for the user who uses it        
-    async def purge(self, ctx, amount):
-        await ctx.message.delete() # Deletes messages using the command prefix and the parameter
-        purgemsg = await ctx.channel.purge(limit=int(amount)) # Purges messages in the channel based on the inputed amount
-        deletemsg = await ctx.send(f"{len(purgemsg)} messages have been deleted from the channel!") # prints a message stating that the messages have been purged
-        await asyncio.sleep(5) # Deletes the previous msg stating the purge in 5 seconds
-        await deletemsg.delete() # Deletes the deletemsg
+    async def purge(self, ctx, amount: int, * reason: str):
+        if isinstance(amount, int):
+            await ctx.message.delete() # Deletes messages using the command prefix and the parameter
+            purgemsg = await ctx.channel.purge(limit=int(amount), reason=reason) # Purges messages in the channel based on the inputed amount
+            deletemsg = await ctx.send(f"{len(purgemsg)} messages have been deleted from the channel!") # prints a message stating that the messages have been purged
+            await asyncio.sleep(5) # Deletes the previous msg stating the purge in 5 seconds
+            await deletemsg.delete() # Deletes the deletemsg
 
                                            
 def setup(bot):
