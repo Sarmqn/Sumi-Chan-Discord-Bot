@@ -16,7 +16,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     
     @commands.group(invoke_without_command=True, aliases=['gi', 'g', 'genshinimpact', 'genshin_impact'], description='Get information about Genshin Impact! Use `sc!help genshin` for subcommands.')
     async def genshin(self, ctx):
-      await ctx.reply('A Genshin command in the works.')
+      await ctx.reply('Genshin Impact is a free-to-play action RPG developed and published by miHoYo. The game features a fantasy open-world environment and action based combat system using elemental magic, character switching, and gacha monetization system for players to obtain new characters, weapons, and other resources. The game can only be played with an internet connection and features a limited multiplayer mode allowing up to four players in a world.\n\nUse `sc!help genshin` for subcommands!')
 
     @genshin.command(aliases=['ch', 'char'], description='Get character profiles.')
     async def character(self, ctx, character = None, *arguments):
@@ -42,6 +42,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     @genshin.command(aliases=['s', 'skill'], description="Look at a character's skills.")
     async def skills(self, ctx, * character: str):
         await ctx.reply('Hi!')
+
     @genshin.command(aliases=['c'], description="Look at a character's constellation.")
     async def constellation(self, ctx, * character: str):
         await ctx.reply('Hi!')
