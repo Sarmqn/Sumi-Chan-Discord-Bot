@@ -13,7 +13,7 @@ attributes = {
 
 
 # Create class for help message based off the default one, here I'm overwriting existing functions.
-class MyHelp(commands.HelpCommand, name='🤔 Help'):
+class MyHelp(commands.HelpCommand):
     """Get help with commands!"""
     # ^ Docstring.
    
