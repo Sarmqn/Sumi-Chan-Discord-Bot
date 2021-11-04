@@ -150,15 +150,15 @@ class MyHelp(commands.HelpCommand):
             raise error
 
 # Create the cog for the help command to be in the bot
-class Help(commands.Cog, name='Help'):
+class Help(commands.Cog, name='🤔 Help'):
     """Get help with commands!"""
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.client = bot
 
        # Setting the cog for the help
         help_command = MyHelp(command_attrs=attributes)
         help_command.cog = self # Instance of YourCog class
-        self.client.help_command = help_command
+        self.bot.help_command = help_command
 
 
 # Allows cog to be loaded
