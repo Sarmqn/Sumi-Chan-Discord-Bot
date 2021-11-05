@@ -95,7 +95,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.add_field(name='Weapon Type', value=response.json()['weapon'], inline=True)
                 embed.add_field(name='Place of Origin', value=response.json()['nation'], inline=True)
                 # Create datetime.date() object using birthday
-                isoformat = date.fromisoformat(f'2021-{response.json()['birthday'][-5:]}')
+                isoformat = date.fromisoformat('2021-'+response.json()['birthday'][-5:])
                 day = make_ordinal(isoformat.day)
                 month = isoformat.month
                 embed.add_field(name='Birthday', value=f"{day} {month}", inline=True)
