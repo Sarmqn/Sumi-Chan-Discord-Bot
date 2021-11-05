@@ -40,7 +40,6 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                         # Check if the reaction is correct for the page number
                         if ((payload.emoji.name == "➡️") and ((page_number == 1) or (page_number == 2))) or ((payload.emoji.name == "⬅️") and ((page_number == 2) or (page_number == 3))):
                             character = embed.footer.text[:-9]
-                            print(f"_{character}_;")
                             response = requests.get(f'https://api.genshin.dev/characters/{character.lower()}/')
                             if payload.emoji.name == "➡️":
                                 newpagenumber = page_number + 1
@@ -73,7 +72,6 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                                 newEmbed.add_field(name="Upgrades", value=upgradesText, inline=False)
                                 newEmbed.set_thumbnail(url=embed.thumbnail.url)
                             await message.edit(embed=newEmbed)
-                            print("Edited embed.")
                 
     
     @genshin.command(aliases=['ch', 'char'], description='Get character profiles.')
