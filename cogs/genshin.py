@@ -13,7 +13,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     async def genshin(self, ctx):
       await ctx.reply('Genshin Impact is a free-to-play action RPG developed and published by miHoYo. The game features a fantasy open-world environment and action based combat system using elemental magic, character switching, and gacha monetization system for players to obtain new characters, weapons, and other resources. The game can only be played with an internet connection and features a limited multiplayer mode allowing up to four players in a world.\n\nUse `sc!help genshin` for subcommands!', mention_author=False)
 
-    @genshin.Cog.listener() # Listener for pagination
+    @commands.Cog.listener() # Listener for pagination
     async def on_raw_reaction_add(self, payload):
         # Get the message object they reacted to
         message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
