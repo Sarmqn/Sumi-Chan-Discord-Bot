@@ -19,62 +19,53 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
         # Check the bot is the author
         if message.author.id == 773275097221169183:
-            print("Author is the bot")
-            print(message.id)
             try:
                 # Tries to retrieve the embed
                 embed = message.embeds[0]
-                print(embed)
-                print(embed.title)
             except Exception as e:
                 # If the embed doesn't exist (i.e. not a message we are interested in)
-                print("Couldn't get the embed")
-                print(e)
+                pass
             else:
                 # If we get an embed in our message
                 # If the embed is displaying skills
                 if embed.title[-6:] == "Skills":
-                    print("Right embed")
                     # Check if the reaction is one we are interested in
                     if (payload.emoji.name == "➡️") or (payload.emoji.name == "⬅️"):
-                        print("Right reaction")
                         # Get the page number
                         page_number = int(embed.footer.text[-1])
                         # Check if the reaction is correct for the page number
                         if ((payload.emoji.name == "➡️") and ((page_number == 1) or (page_number == 2))) or ((payload.emoji.name == "⬅️") and ((page_number == 2) or (page_number == 3))):
                             character = embed.footer.text[:-9]
-                            print("Getting character name:")
                             print(f"_{character}_;")
                             response = requests.get(f'https://api.genshin.dev/characters/{character.lower()}/')
                             if payload.emoji.name == "➡️":
                                 newpagenumber = page_number + 1
-                                print("Emoji movie right")
                                 newpage = response.json()['skillTalents'][page_number]
-                                message.remove_reaction("➡️", payload.user_id)
+                                await message.remove_reaction("➡️", payload.user_id)
                                 if page_number == 1:
-                                    message.remove_reaction("➡️", 773275097221169183)
-                                    message.add_reaction("⬅️")
-                                    message.add_reaction("➡️")
+                                    await message.remove_reaction("➡️", 773275097221169183)
+                                    await message.add_reaction("⬅️")
+                                    await message.add_reaction("➡️")
                             else:
                                 newpagenumber = page_number - 1
-                                print("Emoji movie left")
                                 newpage = response.json()['skillTalents'][page_number-2]
-                                message.remove_reaction("⬅️", payload.user_id)
+                                await message.remove_reaction("⬅️", payload.user_id)
                                 if page_number == 3:
-                                    message.add_reaction("➡️")
+                                    await message.add_reaction("➡️")
                                 elif page_number == 2:
-                                    message.remove_reaction("⬅️", 773275097221169183)#
-                                print("Kapow reaction stuff left")
+                                    await message.remove_reaction("⬅️", 773275097221169183)#
                             newEmbed = discord.Embed(title=f"{character}'s Skills")
-                            print("Making embed")
                             newEmbed.add_field(name=f"{newpage['name']} ({newpage['unlock']})", value=newpage['description'])
                             newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagenumber))
                             try:
-                                upgrades = newpage['upgrades'][newpagenumber-1]
+                                upgrades = newpage['upgrades']
                             except:
                                 pass
                             else:
-                                newEmbed.add_field(name=upgrades['name'], value=upgrades['value'])
+                                upgradesText = ""
+                                for i in upgrades:
+                                    upgradesText += f"{i['name']}: {i['value']}\n"
+                                newEmbed.add_field(name="Upgrades", value=upgradesText)
                             await message.edit(embed=newEmbed)
                             print("Edited embed.")
                 
