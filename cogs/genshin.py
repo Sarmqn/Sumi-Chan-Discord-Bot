@@ -9,6 +9,9 @@ colours = {"Anemo": discord.Color.from_rgb(166,245,207), "Cryo": discord.Color.f
 def make_ordinal(n: int):
     suffixes = ["th", "st", "nd", "rd"] + (["th"]*6)
     return f"{n}{suffixes[n%10]}"
+def month_name(n: int):
+    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    return months[n-1]
 
 class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Impact'):
     """
@@ -96,9 +99,8 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.add_field(name='Place of Origin', value=response.json()['nation'], inline=True)
                 # Create datetime.date() object using birthday
                 isoformat = date.fromisoformat('2021-'+response.json()['birthday'][-5:])
-                day = make_ordinal(isoformat.day)
-                month = isoformat.month
-                print(month)
+                day = make_ordinal(response.json()['birthday'][-2:])
+                month = month_name(response.json()['birthday'][-5:-3])
                 embed.add_field(name='Birthday', value=f"{day} {month}", inline=True)
                 embed.add_field(name='Skills', value=f'Use `sc!genshin skills {character}`', inline=True)
                 embed.add_field(name='Affiliation', value=response.json()['affiliation'], inline=True)
