@@ -26,6 +26,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 print(message)
                 print(message.embeds)
                 embed = message.embeds[0]
+                embed = discord.Embed.from_data(embed)
                 print(embed)
                 print(embed.embed)
                 print(embed.title)
