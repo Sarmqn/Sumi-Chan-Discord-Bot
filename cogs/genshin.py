@@ -19,7 +19,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
         user = self.bot.get_user(payload.user_id)
         # Check the bot is the author
-        if message.author.id == 773275097221169183:
+        if (message.author.id == 773275097221169183) and (payload.user_id != 773275097221169183):
             try:
                 # Tries to retrieve the embed
                 embed = message.embeds[0]
