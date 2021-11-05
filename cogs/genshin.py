@@ -2,6 +2,9 @@ import discord, discord.utils, asyncio, os, json, requests
 from discord import errors
 from discord.ext import commands
 
+
+colours = {"Anemo": discord.Color.from_rgb(166,245,207), "Cryo": discord.Color.from_rgb(189,254,254), "Dendro": discord.Color.from_rgb(176,233,36), "Electro": discord.Color.from_rgb(210,154,254), "Geo": discord.Color.from_rgb(247,214,98), "Hydro": discord.Color.from_rgb(12,228,252), "Pyro": discord.Color.from_rgb(255,167,104)}
+
 class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Impact'):
     """
     Trying out a Genshin API
@@ -55,9 +58,10 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                                     await message.add_reaction("➡️")
                                 elif page_number == 2:
                                     await message.remove_reaction("⬅️", self.bot)#
-                            newEmbed = discord.Embed(title=f"{character}'s Skills")
-                            newEmbed.add_field(name=f"{newpage['name']} ({newpage['unlock']})", value=newpage['description'])
+                            newEmbed = discord.Embed(title=f"{character}'s Skills", colour=colours[response.json()['vision']])
+                            newEmbed.add_field(name=f"{newpage['name']} ({newpage['unlock']})", value=newpage['description'], inline=False)
                             newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagenumber))
+                            newEmbed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character.lower()}/icon-big")
                             try:
                                 upgrades = newpage['upgrades']
                             except:
@@ -66,7 +70,8 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                                 upgradesText = ""
                                 for i in upgrades:
                                     upgradesText += f"{i['name']}: {i['value']}\n"
-                                newEmbed.add_field(name="Upgrades", value=upgradesText)
+                                newEmbed.add_field(name="Upgrades", value=upgradesText, inline=False)
+                                newEmbed.set_thumbnail(url=embed.thumbnail.url)
                             await message.edit(embed=newEmbed)
                             print("Edited embed.")
                 
@@ -82,7 +87,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 rarity = ''
                 for i in range(response.json()['rarity']):
                     rarity += '⭐'
-                embed = discord.Embed(title=f"{character.capitalize()}'s Profile", description=f"{response.json()['description']}\n**Rarity:** {rarity}")
+                embed = discord.Embed(title=f"{character.capitalize()}'s Profile", description=f"{response.json()['description']}\n**Rarity:** {rarity}", colour=colours[response.json()['vision']])
                 embed.set_thumbnail(url=f'https://api.genshin.dev/characters/{character}/icon-big')
                 embed.add_field(name='Vision', value=response.json()['vision'], inline=True)
                 embed.add_field(name='Weapon Type', value=response.json()['weapon'], inline=True)
@@ -93,7 +98,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.add_field(name='Constellations', value=f"**{response.json()['constellation']}**\nUse `sc!genshin constellation {character}`", inline=True)
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
-                embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
+                embed.set_image(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
             else:
                 embed = discord.Embed(title='Character Profiles', description='Uh oh, an error has occured!\nThe developer has been informed and will work on this issue ASAP!', color=discord.Color.from_rgb(200,0,0))
                 self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the character command.\nArguments: {character}")
@@ -107,7 +112,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         else:
             character = character.lower()
             response = requests.get(f'https://api.genshin.dev/characters/{character}/')
-            embed = discord.Embed(title=f"{character.capitalize()}'s Skills")
+            embed = discord.Embed(title=f"{character.capitalize()}'s Skills", colour=colours[response.json()['vision']])
             if response.status_code == 200:
                 skills = response.json()['skillTalents']
                 try:
@@ -122,9 +127,10 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=skills[0]['description'], inline=False)
                 embed.add_field(name="Upgrades", value=upgradesText, inline=False)
                 embed.set_footer(text=f"{character.capitalize()} | Page 1")
+                embed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character}/icon-big")
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
-                embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
+                embed.set_image(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
             else:
                 embed = discord.Embed(title='Character Profiles', description='Uh oh, an error has occured!\nThe developer has been informed and will work on this issue ASAP!', color=discord.Color.from_rgb(200,0,0))
                 self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the character command.\nArguments: {character}")
