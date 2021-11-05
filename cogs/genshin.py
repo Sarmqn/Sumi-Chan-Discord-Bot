@@ -23,17 +23,16 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             print(message.id)
             try:
                 # Tries to retrieve the embed
-                print(message)
-                print(message.embeds)
                 embed = message.embeds[0]
+                print(embed)
+                print(embed.title)
                 embed = discord.Embed.from_data(embed)
                 print(embed)
-                print(embed.embed)
                 print(embed.title)
-            except:
+            except as e:
                 # If the embed doesn't exist (i.e. not a message we are interested in)
                 print("Couldn't get the embed")
-                pass
+                print(e)
             else:
                 # If we get an embed in our message
                 # If the embed is displaying skills
