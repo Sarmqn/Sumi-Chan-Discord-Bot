@@ -11,6 +11,7 @@ intents.members = True
 class SumiChan(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix="sc!", description="Nice handy bot that will help around", intents=intents, help_command=None) # Super class
+        self.id = 773275097221169183
 
 bot = SumiChan()
 
