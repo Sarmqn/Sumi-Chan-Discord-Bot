@@ -4,3 +4,4 @@ discord.py[voice]
 discord-ext-forms
 pymongo
 requests
+pypixel
