@@ -33,7 +33,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             else:
                 # If we get an embed in our message
                 # If the embed is displaying skills
-                if embed.title[:-6] == "Skills":
+                if embed.title[-6:] == "Skills":
                     print("Right embed")
                     # Check if the reaction is one we are interested in
                     if (payload.emoji.name == "➡️") or (payload.emoji.name == "⬅️"):
