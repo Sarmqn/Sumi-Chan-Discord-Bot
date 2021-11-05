@@ -19,25 +19,33 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
         # Check the bot is the author
         if message.author.id == 773275097221169183:
+            print("Author is the bot")
             try:
                 # Tries to retrieve the embed
                 embed = message.embeds[0]
             except:
                 # If the embed doesn't exist (i.e. not a message we are interested in)
+                print("Couldn't get the embed")
                 pass
             else:
                 # If we get an embed in our message
                 # If the embed is displaying skills
                 if embed.title[:-6] == "Skills":
+                    print("Right embed")
                     # Check if the reaction is one we are interested in
                     if (payload.emoji.name == "➡️") or (payload.emoji.name == "⬅️"):
+                        print("Right reaction")
                         # Get the page number
                         page_number = int(embed.footer.text[-1])
                         # Check if the reaction is correct for the page number
                         if ((payload.emoji.name == "➡️") and ((page_number == 1) or (page_number == 2))) or ((payload.emoji.name == "⬅️") and ((page_number == 2) or (page_number == 3))):
                             character = embed.footer.text[:-9]
+                            print("Getting character name:")
+                            print(f"_{character}_;")
                             response = requests.get(f'https://api.genshin.dev/characters/{character.lower()}/')
                             if payload.emoji.name == "➡️":
+                                newpagenumber = page_number + 1
+                                print("Emoji movie right")
                                 newpage = response.json()['skillTalents'][page_number]
                                 message.remove_reaction("➡️", payload.user_id)
                                 if page_number == 1:
@@ -45,14 +53,19 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                                     message.add_reaction("⬅️")
                                     message.add_reaction("➡️")
                             else:
+                                newpagenumber = page_number - 1
+                                print("Emoji movie left")
                                 newpage = response.json()['skillTalents'][page_number-2]
                                 message.remove_reaction("⬅️", payload.user_id)
                                 if page_number == 3:
                                     message.add_reaction("➡️")
                                 elif page_number == 2:
-                                    message.remove_reaction("⬅️", 773275097221169183)
+                                    message.remove_reaction("⬅️", 773275097221169183)#
+                                print("Kapow reaction stuff left")
                             newEmbed = discord.Embed(title=f"{character}'s Skills")
+                            print("Making embed")
                             newEmbed.add_field(name=f"{newpage['name']} ({newpage['unlock']})", value=newpage['description'])
+                            newEmbed.set_footer(text=embed.footer.title[:-1]+str(newpagenumber))
                             try:
                                 upgrades = newpage['upgrades']
                             except:
@@ -60,6 +73,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                             else:
                                 newEmbed.add_field(name=upgrades['name'], value=upgrades['value'])
                             await message.edit(embed=NewEmbed)
+                            print("Edited embed.")
                 
     
     @genshin.command(aliases=['ch', 'char'], description='Get character profiles.')
@@ -106,11 +120,12 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 except:
                     upgradesText = ''
                 else:
-                    upgradesText = "**Upgrades:**"
+                    upgradesText = ""
                     for i in upgrades:
-                        upgradesText += f"\n{i['name']}: {i['value']}"
+                        upgradesText += f"{i['name']}: {i['value']}\n"
                     
-                embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=f"{skills[0]['description']}\n{upgradesText}", inline=True)
+                embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=f"{skills[0]['description']}\n{upgradesText}")
+                embed.add_field(name="Upgrades", value=upgradesText)
                 embed.set_footer(text=f"{character.capitalize()} | Page 1")
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
