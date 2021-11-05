@@ -1,5 +1,4 @@
-import typing
-import discord
+import typing, discord
 from discord import *
 from discord.enums import DefaultAvatar
 from discord.ext import commands
