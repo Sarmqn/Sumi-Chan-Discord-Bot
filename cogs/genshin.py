@@ -15,6 +15,9 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
 
     @commands.Cog.listener() # Listener for pagination
     async def on_raw_reaction_add(self, payload):
+        print(payload)
+        print(payload.emoji)
+        print(f"'{payload.emoji}'")
         # Get the message object they reacted to
         message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
         # Check the bot is the author
@@ -92,11 +95,14 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             if response.status_code == 200:
                 skills = response.json()['skillTalents']
                 try:
-                    upgrades = skills[0]['upgrades'][0]
+                    upgrades = skills[0]['upgrades']
                 except:
                     upgradesText = ''
                 else:
-                    upgradesText = f"**Upgrades:**\n{upgrades['name']}: {upgrades['value']}"
+                    upgradesText = "**Upgrades:**\n"
+                    for i in upgrades:
+                        upgradesText += f"{i['name']}: {i['value']}"
+                    
                 embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=f"{skills[0]['description']}\n{upgradesText}", inline=True)
                 embed.set_footer(text=f"{character.capitalize()} | Page 1")
             elif response.status_code == 404:
