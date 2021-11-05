@@ -1,7 +1,6 @@
-import discord
+import discord, asyncio
 from discord import *
 from discord.ext import commands
-import asyncio
 
 class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class called "Logs" as a subclass of commands.Cog
     """
@@ -126,8 +125,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
         await user.send(f"You were kicked from **{ctx.guild}** by **{ctx.author}**.")
         await user.kick(reason=reason)
         await log_channel.send(f"**{member}** has been kicked by {ctx.author.mention}")
-        
-                       
+                               
         # ---PURGE---
     @commands.command(aliases = ['delete'], description="Purge messages in a channel.") # Purge command
     @commands.has_permissions(manage_messages=True) # checks for manage message perms for the user who uses it        
@@ -140,7 +138,6 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
             await asyncio.sleep(5) # Deletes the previous msg stating the purge in 5 seconds
             await deletemsg.delete() # Deletes the deletemsg
             await log_channel.send(f"**{ctx.channel}** has had {len(purgemsg)} messages purged by {ctx.author.mention}")
-
                                            
 def setup(bot):
     bot.add_cog(Moderation(bot))
