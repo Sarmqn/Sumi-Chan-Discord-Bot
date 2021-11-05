@@ -21,14 +21,18 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             character = character.lower()
             response = requests.get(f'https://api.genshin.dev/characters/{character}/')
             if response.status_code == 200:
-                embed = discord.Embed(title=f"{character.capitalize()}'s Profile", description=response.json()['description'])
+                rarity = ''
+                for i in range(response.json()['rarity']):
+                    rarity += '⭐'
+                embed = discord.Embed(title=f"{character.capitalize()}'s Profile", description=f"{response.json()['description']}\n**Rarity:** {rarity}")
                 embed.set_thumbnail(url=f'https://api.genshin.dev/characters/{character}/icon-big')
                 embed.add_field(name='Vision', value=response.json()['vision'], inline=True)
                 embed.add_field(name='Weapon Type', value=response.json()['weapon'], inline=True)
                 embed.add_field(name='Place of Origin', value=response.json()['nation'], inline=True)
-                embed.add_field(name='Birthday', value=response.json()['birthday'][-5:], inline=True)
+                embed.add_field(name='Birthday', value=f"{response.json()['birthday'][-5:]}\nMM-DD", inline=True)
                 embed.add_field(name='Skills', value=f'Use `sc!genshin skills {character}`', inline=True)
-                embed.add_field(name='Constellations', value=f'Use `sc!genshin constellation {character}`', inline=True)
+                embed.add_field(name='Affiliation', value=response.json()['affiliation'], inline=True)
+                embed.add_field(name='Constellations', value=f'**{response.json()['constellation']}**\nUse `sc!genshin constellation {character}`', inline=True)
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
                 embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
@@ -41,10 +45,11 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     @genshin.command(aliases=['s', 'skill', 't', 'talents'], description="Look at a character's skills.")
     async def skills(self, ctx, character: str = None):
         if character is None:
-            embed = discord.Embed(title='Character Profiles', description="Learn about a Genshin characters' skills! For a list of available characters use `sc!genshin characters`.")
+            embed = discord.Embed(title='Character Skills', description="Learn about a Genshin characters' skills! For a list of available characters use `sc!genshin characters`.")
         else:
             character = character.lower()
             response = requests.get(f'https://api.genshin.dev/characters/{character}/')
+            embed = discord.Embed(title=f"{character.capitalize()}'s Skills", description=".")
             if response.status_code == 200:
                 skills = response.json()['skillTalents']
                 for i in skills:
