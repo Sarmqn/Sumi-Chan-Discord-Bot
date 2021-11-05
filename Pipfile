@@ -10,6 +10,7 @@ asyncio = "*"
 lavalink = "*"
 jishaku = "*"
 requests = "*"
+pymongo = "*"
 
 [dev-packages]
 
