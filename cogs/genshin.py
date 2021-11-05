@@ -19,7 +19,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
       await ctx.reply('Genshin Impact is a free-to-play action RPG developed and published by miHoYo. The game features a fantasy open-world environment and action based combat system using elemental magic, character switching, and gacha monetization system for players to obtain new characters, weapons, and other resources. The game can only be played with an internet connection and features a limited multiplayer mode allowing up to four players in a world.\n\nUse `sc!help genshin` for subcommands!')
 
     @genshin.command(aliases=['ch', 'char'], description='Get character profiles.')
-    async def character(self, ctx, character = None, *arguments):
+    async def character(self, ctx, character = None):
         if character is None:
             embed = discord.Embed(title='Character Profiles', description='Learn more about characters in Genshin! For a list of available characters use `sc!genshin characters`.')
         else:
@@ -32,10 +32,14 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.add_field(name='Weapon Type', value=response.json()['weapon'], inline=True)
                 embed.add_field(name='Place of Origin', value=response.json()['nation'], inline=True)
                 embed.add_field(name='Birthday', value=response.json()['birthday'][-5:], inline=True)
-                embed.add_field(name='Skills', value='Use `sc!genshin skills {character}`', inline=True)
+                embed.add_field(name='Skills', value=f'Use `sc!genshin skills {character}`', inline=True)
+                embed.add_field(name='Constellations', value=f'Use `sc!genshin constellation {character}`', inline=True)
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed it correctly!', color=discord.Color.from_rgb(200,0,0))
-                embed.set_thumbnail(url=f'https://api.genshin.dev/characters/{character}/icon-big')
+                # embed.set_thumbnail(url=f'https://api.genshin.dev/characters/{character}/icon-big') Need to change the URL to EHE TE NANDAYO
+            else:
+                embed = discord.Embed(title='Character Profiles', description='Uh oh, an error has occured!\nThe developer has been informed and will work on this issue ASAP!', color=discord.Color.from_rgb(200,0,0))
+                self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the character command.\nArguments: {character}")
         embed.set_author(name='Character Profiles', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
@@ -43,7 +47,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     async def skills(self, ctx, * character: str):
         await ctx.reply('Hi!')
 
-    @genshin.command(aliases=['c'], description="Look at a character's constellation.")
+    @genshin.command(aliases=['co'], description="Look at a character's constellation.")
     async def constellation(self, ctx, * character: str):
         await ctx.reply('Hi!')
     
