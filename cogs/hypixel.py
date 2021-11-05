@@ -1,8 +1,4 @@
-import requests
-import math
-import discord, hypixel
-import os
-import PyPixel
+import requests, math, discord, hypixel, os, pypixel
 from discord.ext import commands
 
 class Hypixel(commands.Cog):
@@ -32,8 +28,7 @@ def get_level(player_name: str):
   #  return Nothing
   #exp = int(dat["player"]["NetworkEXP"]
   #return math.floor(1 + RPQ_PREFIX + math.sqrt(REVERSE_CONST + GROWTH_DIVIDES_2 * exp)) 
-  
-  
+    
 @commands.command()
 async def level(ctx, name: str):
   lvl = get_level(name)
@@ -41,9 +36,6 @@ async def level(ctx, name: str):
     await ctx.send("Player could not be found, please check for errors and try again. Thank you!")
   else:
     await ctx.send(f"Level for {name}: {lvl}")
-
-
-
 
 #Network Level Calculator
  
