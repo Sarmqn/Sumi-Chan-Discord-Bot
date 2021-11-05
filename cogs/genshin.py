@@ -23,7 +23,10 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             print(message.id)
             try:
                 # Tries to retrieve the embed
+                print(message)
+                print(message.embeds)
                 embed = message.embeds[0]
+                print(embed)
                 print(embed.embed)
                 print(embed.title)
             except:
