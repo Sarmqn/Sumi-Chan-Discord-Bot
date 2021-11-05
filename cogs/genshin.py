@@ -1,9 +1,14 @@
 import discord, discord.utils, asyncio, os, json, requests
 from discord import errors
 from discord.ext import commands
-
+from datetime import datetime
+from datetime import date
 
 colours = {"Anemo": discord.Color.from_rgb(166,245,207), "Cryo": discord.Color.from_rgb(189,254,254), "Dendro": discord.Color.from_rgb(176,233,36), "Electro": discord.Color.from_rgb(210,154,254), "Geo": discord.Color.from_rgb(247,214,98), "Hydro": discord.Color.from_rgb(12,228,252), "Pyro": discord.Color.from_rgb(255,167,104)}
+
+def make_ordinal(n: int):
+    suffixes = ["th", "st", "nd", "rd"] + (["th"]*5)
+    return f"{n}{suffixes[n%10]"
 
 class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Impact'):
     """
@@ -89,7 +94,11 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.add_field(name='Vision', value=response.json()['vision'], inline=True)
                 embed.add_field(name='Weapon Type', value=response.json()['weapon'], inline=True)
                 embed.add_field(name='Place of Origin', value=response.json()['nation'], inline=True)
-                embed.add_field(name='Birthday', value=f"{response.json()['birthday'][-5:]}\nMM-DD", inline=True)
+                # Create datetime.date() object using birthday
+                isoformat = date.fromisoformat(f'2021-{response.json()['birthday'][-5:]}')
+                day = make_ordinal(isoformat.day)
+                month = isoformat.month
+                embed.add_field(name='Birthday', value=f"{day} {month}", inline=True)
                 embed.add_field(name='Skills', value=f'Use `sc!genshin skills {character}`', inline=True)
                 embed.add_field(name='Affiliation', value=response.json()['affiliation'], inline=True)
                 embed.add_field(name='Constellations', value=f"**{response.json()['constellation']}**\nUse `sc!genshin constellation {character}`", inline=True)
