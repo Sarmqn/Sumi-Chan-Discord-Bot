@@ -116,14 +116,15 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 try:
                     upgrades = skills[0]['upgrades']
                 except:
-                    upgradesText = ''
+                    upgradesText = None
                 else:
                     upgradesText = ""
                     for i in upgrades:
                         upgradesText += f"{i['name']}: {i['value']}\n"
                     
                 embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=skills[0]['description'], inline=False)
-                embed.add_field(name="Upgrades", value=upgradesText, inline=False)
+                if upgradesText is not None:
+                    embed.add_field(name="Upgrades", value=upgradesText, inline=False)
                 embed.set_footer(text=f"{character.capitalize()} | Page 1")
                 embed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character}/icon-big")
             elif response.status_code == 404:
