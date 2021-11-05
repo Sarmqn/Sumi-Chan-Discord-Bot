@@ -1,12 +1,7 @@
-import discord
+import discord, discord.utils, asyncio, os, json
 from discord import errors
 from discord.ext import commands
-import discord.utils
 from discord.utils import get
-import asyncio
-import os
-import json
-
 
 async def add_rr(messageID: int, roleID: int, emoteID):
     if os.path.isfile("roles.json"):
