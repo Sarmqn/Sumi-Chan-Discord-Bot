@@ -8,7 +8,7 @@ colours = {"Anemo": discord.Color.from_rgb(166,245,207), "Cryo": discord.Color.f
 
 def make_ordinal(n: int):
     suffixes = ["th", "st", "nd", "rd"] + (["th"]*5)
-    return f"{n}{suffixes[n%10]"
+    return f"{n}{suffixes[n%10]}"
 
 class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Impact'):
     """
@@ -110,6 +110,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the character command.\nArguments: {character}")
         embed.set_author(name='Character Profiles', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed, mention_author=False)
+
 
         
     @genshin.command(aliases=['chars', 'chs'], description="List of valid character names, sorted alphabetically.")
