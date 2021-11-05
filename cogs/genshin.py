@@ -32,7 +32,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.add_field(name='Birthday', value=f"{response.json()['birthday'][-5:]}\nMM-DD", inline=True)
                 embed.add_field(name='Skills', value=f'Use `sc!genshin skills {character}`', inline=True)
                 embed.add_field(name='Affiliation', value=response.json()['affiliation'], inline=True)
-                embed.add_field(name='Constellations', value=f'**{response.json()['constellation']}**\nUse `sc!genshin constellation {character}`', inline=True)
+                embed.add_field(name='Constellations', value=f"**{response.json()['constellation']}**\nUse `sc!genshin constellation {character}`", inline=True)
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
                 embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
