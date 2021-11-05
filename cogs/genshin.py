@@ -20,9 +20,12 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         # Check the bot is the author
         if message.author.id == 773275097221169183:
             print("Author is the bot")
+            print(message.id)
             try:
                 # Tries to retrieve the embed
+                print(message.embeds)
                 embed = message.embeds[0]
+                print(embed)
             except:
                 # If the embed doesn't exist (i.e. not a message we are interested in)
                 print("Couldn't get the embed")
@@ -124,7 +127,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                     for i in upgrades:
                         upgradesText += f"{i['name']}: {i['value']}\n"
                     
-                embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=f"{skills[0]['description']}\n{upgradesText}")
+                embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=skills[0]['description'])
                 embed.add_field(name="Upgrades", value=upgradesText)
                 embed.set_footer(text=f"{character.capitalize()} | Page 1")
             elif response.status_code == 404:
