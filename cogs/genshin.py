@@ -92,7 +92,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             if response.status_code == 200:
                 skills = response.json()['skillTalents']
                 try:
-                    upgrades = skills[0]['upgrades']
+                    upgrades = skills[0]['upgrades'][0]
                 except:
                     upgradesText = ''
                 else:
