@@ -17,6 +17,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     async def on_raw_reaction_add(self, payload):
         # Get the message object they reacted to
         message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
+        user = self.bot.get_user(payload.user_id)
         # Check the bot is the author
         if message.author.id == 773275097221169183:
             try:
@@ -41,19 +42,19 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                             if payload.emoji.name == "➡️":
                                 newpagenumber = page_number + 1
                                 newpage = response.json()['skillTalents'][page_number]
-                                await message.remove_reaction("➡️", payload.user_id)
+                                await message.remove_reaction("➡️", user)
                                 if page_number == 1:
-                                    await message.remove_reaction("➡️", 773275097221169183)
+                                    await message.remove_reaction("➡️", self.bot)
                                     await message.add_reaction("⬅️")
                                     await message.add_reaction("➡️")
                             else:
                                 newpagenumber = page_number - 1
                                 newpage = response.json()['skillTalents'][page_number-2]
-                                await message.remove_reaction("⬅️", payload.user_id)
+                                await message.remove_reaction("⬅️", user)
                                 if page_number == 3:
                                     await message.add_reaction("➡️")
                                 elif page_number == 2:
-                                    await message.remove_reaction("⬅️", 773275097221169183)#
+                                    await message.remove_reaction("⬅️", self.bot)#
                             newEmbed = discord.Embed(title=f"{character}'s Skills")
                             newEmbed.add_field(name=f"{newpage['name']} ({newpage['unlock']})", value=newpage['description'])
                             newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagenumber))
