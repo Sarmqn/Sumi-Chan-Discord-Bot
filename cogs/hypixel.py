@@ -13,9 +13,11 @@ GROWTH_DIVIDES_2 = 2 / GROWTH
 API_KEY = os.environ.get("API_KEY")
 hypixel = PyPixel.Hypixel(API_KEY=f"{API_KEY}")
 
-def get_level(player_name: str):
-  url = "https://api.hypixel.net/player?key=" + API_KEY +  "&name=" + player_name
-  
+def level(player_name: str): # Player Level command
+    data = requests.get(url = "https://api.hypixel.net/player", params = {"key": API_KEY,"name": player_name}).json(): # Create an api get request to recieve data about the players account
+    
+                                                                          
+                                                             
   # From https://hypixel.net/threads/python-how-to-get-a-person%E2%80%99s-network-level-from-their-network-exp.3242392/
   hypixel_data = requests.get(url).json()
   network_experience = hypixel_data["player"]["networkExp"]
