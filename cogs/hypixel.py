@@ -1,4 +1,4 @@
-import requests, math, discord, os, pypixel
+import requests, math, discord, os, PyPixel
 from discord.ext import commands
 
 class Hypixel(commands.Cog):
