@@ -7,7 +7,7 @@ class Hypixel(commands.Cog):
 
 def level(player_name: str): # Player Level command
     data = requests.get(url = "https://api.hypixel.net/player", params = {"key": API_KEY,"name": player_name}).json() # Create an api get request to recieve data about the players account
-    await ctx.send(data)
+    return data
     
 def setup(bot):
     bot.add_cog(Hypixel(bot))
