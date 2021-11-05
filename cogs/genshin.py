@@ -68,7 +68,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                             newEmbed = discord.Embed(title=f"{character}'s Skills")
                             print("Making embed")
                             newEmbed.add_field(name=f"{newpage['name']} ({newpage['unlock']})", value=newpage['description'])
-                            newEmbed.set_footer(text=embed.footer.title[:-1]+str(newpagenumber))
+                            newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagenumber))
                             try:
                                 upgrades = newpage['upgrades']
                             except:
