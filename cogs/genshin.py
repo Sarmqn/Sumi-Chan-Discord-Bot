@@ -7,6 +7,11 @@ from datetime import date
 colours = {"Anemo": discord.Color.from_rgb(166,245,207), "Cryo": discord.Color.from_rgb(189,254,254), "Dendro": discord.Color.from_rgb(176,233,36), "Electro": discord.Color.from_rgb(210,154,254), "Geo": discord.Color.from_rgb(247,214,98), "Hydro": discord.Color.from_rgb(12,228,252), "Pyro": discord.Color.from_rgb(255,167,104)}
 
 def make_ordinal(n: int):
+    print(n)
+    print(n%5)
+    print(n%10)
+    print(n%30)
+    print(n%100)
     suffixes = ["th", "st", "nd", "rd"] + (["th"]*5)
     return f"{n}{suffixes[n%10]}"
 
@@ -96,8 +101,10 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.add_field(name='Place of Origin', value=response.json()['nation'], inline=True)
                 # Create datetime.date() object using birthday
                 isoformat = date.fromisoformat('2021-'+response.json()['birthday'][-5:])
+                print(isoformat)
                 day = make_ordinal(isoformat.day)
                 month = isoformat.month
+                print(month)
                 embed.add_field(name='Birthday', value=f"{day} {month}", inline=True)
                 embed.add_field(name='Skills', value=f'Use `sc!genshin skills {character}`', inline=True)
                 embed.add_field(name='Affiliation', value=response.json()['affiliation'], inline=True)
