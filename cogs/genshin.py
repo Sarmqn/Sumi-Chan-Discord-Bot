@@ -38,7 +38,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                         page_number = int(embed.footer.text[-1])
                         # Check if the reaction is correct for the page number
                         if ((payload.emoji == "➡️") and ((page_number == 1) or (page_number == 2))) or ((payload.emoji == "⬅️") and ((page_number == 2) or (page_number == 3))):
-                            character = embed.footer.text[:-7]
+                            character = embed.footer.text[:-9]
                             response = requests.get(f'https://api.genshin.dev/characters/{character.lower()}/')
                             if payload.emoji == "➡️":
                                 newpage = response.json()['skillTalents'][page_number]
