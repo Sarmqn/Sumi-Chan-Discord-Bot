@@ -51,7 +51,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                     upgradesText = ''
                     for j in i['upgrades']:
                         upgradesText += f"{j['name']}: {j['value']}"
-                    embed.add_field(name=f"{i['name']} ({i['unlock'})", value=f"{i['description']}\n**Upgrades:**\n{upgradesText}", inline=True)
+                    embed.add_field(name=f"{i['name']} ({i['unlock']})", value=f"{i['description']}\n**Upgrades:**\n{upgradesText}", inline=True)
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
                 embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
