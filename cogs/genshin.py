@@ -1,11 +1,6 @@
-import discord
+import discord, discord.utils, asyncio, os, json, requests
 from discord import errors
 from discord.ext import commands
-import discord.utils
-import asyncio
-import os
-import json
-import requests
 
 class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Impact'):
     """
@@ -52,6 +47,5 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         await ctx.reply('Hi!')
     
             
-
 def setup(bot):
     bot.add_cog(Genshin(bot))
