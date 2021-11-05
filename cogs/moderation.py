@@ -14,14 +14,14 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     @commands.Cog.listener() # Detect discord.gg invite links and delete them.
     async def on_message(self, message): #When the message is sent
         if not message.author.bot and ('discord.gg/' in message.content) or ('discord.com/invite/' in message.content): # that includes discord.gg/
-            log_channel = await self.bot.get_channel(699909552757276732)
+            log_channel = self.bot.get_channel(699909552757276732)
             await message.delete() # Delete that message 
             await message.channel.send(f"Don't send server invites in this server {message.author.mention}!") # And reply stating that these invites should not be sent in chat
             await log_channel.send(f'{message.author.mention} ({message.author.id}) sent an invite in {message.channel}.') # Pings that the user to let them know
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        log_channel = await self.bot.get_channel(699909552757276732)
+        log_channel = self.bot.get_channel(699909552757276732)
         JoinEmbed = discord.Embed(title=f"Welcome {member}!", description = f"Thanks for joining {member.guild.name}! We hope you enjoy your stay!")
         JoinEmbed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to be the user's profile picture.
         await log_channel.send(embed=JoinEmbed)
@@ -30,7 +30,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
 
     @commands.Cog.listener()
     async def on_member_remove(self, member): #When a member leaves / is removed from the server
-        log_channel = await self.bot.get_channel(699909552757276732)
+        log_channel = self.bot.get_channel(699909552757276732)
         LeaveEmbed = discord.Embed(title=f"See you next time, {member}", description = f"Thanks for being a part of {member.guild.name}!") #Send a nice embed
         LeaveEmbed.set_thumbnail(url=member.avatar_url) # Users profile picture as thumbnail
         await log_channel.send(embed=LeaveEmbed) # Send in the logs channel 
@@ -39,7 +39,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     @commands.command(aliases = ['goaway', 'Ban'], description="Ban a user.")
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member: discord.Member = None, * reason: str):
-        log_channel = await self.bot.get_channel(699909552757276732)
+        log_channel = self.bot.get_channel(699909552757276732)
         if isinstance(member, discord.Member): # Checks if the argument passed was a discord.Member object.
             pass
         elif isinstance(member, int):
@@ -71,7 +71,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     @commands.command(aliases = ['Mute', 'shutup', 'quiet'], description="Mute a user.") # Mute command
     @commands.has_permissions(manage_messages=True, manage_roles=True)
     async def mute(self, ctx, member: discord.Member):
-        log_channel = await self.bot.get_channel(699909552757276732)
+        log_channel = self.bot.get_channel(699909552757276732)
         role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
         if role_muted in member.roles:
             await ctx.send(f'**{member}** is already muted.')
@@ -87,7 +87,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     @commands.command(aliases = ['Unmute'], description="Unmute a user.") # Unmute command
     @commands.has_permissions(manage_messages=True, manage_roles=True)
     async def unmute(self, ctx, member: discord.Member):
-        log_channel = await self.bot.get_channel(699909552757276732)
+        log_channel = self.bot.get_channel(699909552757276732)
         role_muted = discord.utils.get(ctx.guild.roles, name='Muted')
         if role_muted in member.roles:
             role_members = discord.utils.get(ctx.guild.roles, name='Member')
@@ -102,7 +102,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     @commands.command(aliases = ['Unban', 'comeback'], description="Unban a user.") #Unban command
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, id: int, * reason: str):
-        log_channel = await self.bot.get_channel(699909552757276732)
+        log_channel = self.bot.get_channel(699909552757276732)
         userID = await ctx.self.bot.fetch_user(id) # Gets user's ID
         try:
             await ctx.guild.unban(userID, reason=reason)
@@ -116,7 +116,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     @commands.command(aliases = ['Kick', 'remove', 'bye'], description="Kick a user.") # Kicks a user that is mentioned
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, user: discord.Member, * reason: str):
-        log_channel = await self.bot.get_channel(699909552757276732)
+        log_channel = self.bot.get_channel(699909552757276732)
         if isinstance(user, discord.Member):
             await user.kick(reason=reason)
         elif isinstance(user, int) or isinstance(user, str):
@@ -132,7 +132,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     @commands.has_permissions(manage_messages=True) # checks for manage message perms for the user who uses it        
     async def purge(self, ctx, amount: int, * reason: str):
         if isinstance(amount, int):
-            log_channel = await self.bot.get_channel(699909552757276732)
+            log_channel = self.bot.get_channel(699909552757276732)
             await ctx.message.delete() # Deletes messages using the command prefix and the parameter
             purgemsg = await ctx.channel.purge(limit=int(amount), reason=reason) # Purges messages in the channel based on the inputed amount
             deletemsg = await ctx.send(f"{len(purgemsg)} messages have been deleted from the channel!") # prints a message stating that the messages have been purged
