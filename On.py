@@ -1,8 +1,7 @@
 # --Importing all necessary libraries--
-import discord
+import discord, os, pymongo
+from pymongo import MongoClient
 from discord.ext import commands
-# from pretty_help import PrettyHelp, DefaultMenu
-import os
 
 # --Load intents--
 intents = discord.Intents.default()
@@ -32,21 +31,13 @@ cogs = [
 for cog in cogs:
     bot.load_extension("cogs." + cog)
     print("Loaded: " + cog)
-
-    """
-#Database use currently commented out until finished    
-if __name__ == "__main__":
-    bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(Str(bot.connection_url))
-    bot.db = bot.mongo["Documents"]
-    bot.config = Document(bot.db, "config")
-    bot.reaction_roles = Document(bot.db, "Reaction_Roles")
     
-for file in os.listdir(cmd + "/cogs"):
-    if file.endswith(".py") and not file.startswith("_"):
-        bot.load_extension(f"cogs.{file[:-3]}")
-  
+    
+"""
+cluster = MongoClient("DBURL") # Using DBURL as the URL will be hidden as a secret
+db = cluster["UserData"]
+collection = db["UserData"]
  """ 
-  
 # --Start bot--
 bot_token = os.environ.get("TOKEN")
 bot.run(bot_token)
