@@ -120,7 +120,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     @genshin.command(aliases=['s', 'skill', 't', 'talents'], description="Look at a character's skills.")
     async def skills(self, ctx, character: str = None):
         if character is None:
-            embed = discord.Embed(title='Character Skills', description="Learn about a Genshin characters' skills! For a list of available characters use `sc!genshin characters`.", colour)
+            embed = discord.Embed(title='Character Skills', description="Learn about a Genshin characters' skills! For a list of available characters use `sc!genshin characters`.", colour=discord.Color.from_rgb(241,210,231))
         else:
             character = character.lower()
             response = requests.get(f'https://api.genshin.dev/characters/{character}/')
