@@ -11,6 +11,7 @@ lavalink = "*"
 jishaku = "*"
 requests = "*"
 pymongo = "*"
+pypixel = "*"
 
 [dev-packages]
 
