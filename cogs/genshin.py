@@ -102,10 +102,15 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         embed.set_author(name='Character Profiles', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed, mention_author=False)
 
+        
+    @genshin.command(aliases=['chars'. 'chs'], description="List of valid character names, sorted alphabetically.")
+    async def characters(self, ctx):
+        embed = discord.Embed(title='Available Characters', description="Albedo\nAloy\nAmber\nAyaka\nBarbara\nBeidou\nBennett\nChongyun\nDiluc\nDiona\nEula\nFischl\nGanyu\nHu-Tao\nJean\nKaeya\nKazuha\nKeqing\nKlee\nKokomi\nLisa\nMona\nNingguang\nNoelle\nQiqi\nRaiden\nRazor\nRosaria\nSara\nSayu\nSucrose\nTartaglia\nTraveler-Anemo\nTraveler-Electro\nTraveler-Geo\nVenti\nXiangling\nXiao\nXingqiu\nXinyan\nYanfei\nYoimiya\nZhongli", colour=discord.Color.from_rgb(241,210,231))
+        await ctx.reply(embed=embed, mention_author=False)
     @genshin.command(aliases=['s', 'skill', 't', 'talents'], description="Look at a character's skills.")
     async def skills(self, ctx, character: str = None):
         if character is None:
-            embed = discord.Embed(title='Character Skills', description="Learn about a Genshin characters' skills! For a list of available characters use `sc!genshin characters`.")
+            embed = discord.Embed(title='Character Skills', description="Learn about a Genshin characters' skills! For a list of available characters use `sc!genshin characters`.", colour)
         else:
             character = character.lower()
             response = requests.get(f'https://api.genshin.dev/characters/{character}/')
