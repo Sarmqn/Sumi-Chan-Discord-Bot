@@ -23,9 +23,9 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             print(message.id)
             try:
                 # Tries to retrieve the embed
-                print(message.embeds)
                 embed = message.embeds[0]
-                print(embed)
+                print(embed.embed)
+                print(embed.title)
             except:
                 # If the embed doesn't exist (i.e. not a message we are interested in)
                 print("Couldn't get the embed")
@@ -127,8 +127,8 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                     for i in upgrades:
                         upgradesText += f"{i['name']}: {i['value']}\n"
                     
-                embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=skills[0]['description'])
-                embed.add_field(name="Upgrades", value=upgradesText)
+                embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=skills[0]['description'], inline=False)
+                embed.add_field(name="Upgrades", value=upgradesText, inline=False)
                 embed.set_footer(text=f"{character.capitalize()} | Page 1")
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
