@@ -75,7 +75,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                                 pass
                             else:
                                 newEmbed.add_field(name=upgrades['name'], value=upgrades['value'])
-                            await message.edit(embed=NewEmbed)
+                            await message.edit(embed=newEmbed)
                             print("Edited embed.")
                 
     
