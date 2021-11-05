@@ -1,9 +1,6 @@
 discord.py
 discord-pretty-help
 discord.py[voice]
-lavalink
-jishaku
 discord-ext-forms
-PyNaCl
-youtube_dl
+pymongo
 requests
