@@ -17,7 +17,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
             log_channel = self.bot.get_channel(699909552757276732)
             await message.delete() # Delete that message 
             await message.channel.send(f"Don't send server invites in this server {message.author.mention}!") # And reply stating that these invites should not be sent in chat
-            await log_channel.send(f'{message.author.mention} ({message.author.id}) sent an invite in {message.channel}.') # Pings that the user to let them know
+            await log_channel.send(f'{message.author.mention} (`{message.author.id}`) sent an invite in {message.channel.mention}.') # Pings that the user to let them know
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
@@ -121,11 +121,12 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
             await user.kick(reason=reason)
         elif isinstance(user, int) or isinstance(user, str):
             user = guild.get_member(int(userid))
-            await user.kick(reason=reason)
         await ctx.message.add_reaction("👌")
         await ctx.send(f"**{user}** was kicked by {ctx.author.name}!")
         await user.send(f"You were kicked from **{ctx.guild}** by **{ctx.author}**.")
+        await user.kick(reason=reason)
         await log_channel.send(f"**{member}** has been kicked by {ctx.author.mention}")
+        
                        
         # ---PURGE---
     @commands.command(aliases = ['delete'], description="Purge messages in a channel.") # Purge command
