@@ -15,9 +15,6 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
 
     @commands.Cog.listener() # Listener for pagination
     async def on_raw_reaction_add(self, payload):
-        print(payload)
-        print(payload.emoji)
-        print(f"'{payload.emoji}'")
         # Get the message object they reacted to
         message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
         # Check the bot is the author
@@ -33,17 +30,27 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 # If the embed is displaying skills
                 if embed.title[:-6] == "Skills":
                     # Check if the reaction is one we are interested in
-                    if (payload.emoji == "➡️") or (payload.emoji == "⬅️"):
+                    if (payload.emoji.name == "➡️") or (payload.emoji.name == "⬅️"):
                         # Get the page number
                         page_number = int(embed.footer.text[-1])
                         # Check if the reaction is correct for the page number
-                        if ((payload.emoji == "➡️") and ((page_number == 1) or (page_number == 2))) or ((payload.emoji == "⬅️") and ((page_number == 2) or (page_number == 3))):
+                        if ((payload.emoji.name == "➡️") and ((page_number == 1) or (page_number == 2))) or ((payload.emoji.name == "⬅️") and ((page_number == 2) or (page_number == 3))):
                             character = embed.footer.text[:-9]
                             response = requests.get(f'https://api.genshin.dev/characters/{character.lower()}/')
-                            if payload.emoji == "➡️":
+                            if payload.emoji.name == "➡️":
                                 newpage = response.json()['skillTalents'][page_number]
+                                message.remove_reaction("➡️", payload.user_id)
+                                if page_number == 1:
+                                    message.remove_reaction("➡️", 773275097221169183)
+                                    message.add_reaction("⬅️")
+                                    message.add_reaction("➡️")
                             else:
                                 newpage = response.json()['skillTalents'][page_number-2]
+                                message.remove_reaction("⬅️", payload.user_id)
+                                if page_number == 3:
+                                    message.add_reaction("➡️")
+                                elif page_number == 2:
+                                    message.remove_reaction("⬅️", 773275097221169183)
                             newEmbed = discord.Embed(title=f"{character}'s Skills")
                             newEmbed.add_field(name=f"{newpage['name']} ({newpage['unlock']})", value=newpage['description'])
                             try:
@@ -99,9 +106,9 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 except:
                     upgradesText = ''
                 else:
-                    upgradesText = "**Upgrades:**\n"
+                    upgradesText = "**Upgrades:**"
                     for i in upgrades:
-                        upgradesText += f"{i['name']}: {i['value']}"
+                        upgradesText += f"\n{i['name']}: {i['value']}"
                     
                 embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=f"{skills[0]['description']}\n{upgradesText}", inline=True)
                 embed.set_footer(text=f"{character.capitalize()} | Page 1")
