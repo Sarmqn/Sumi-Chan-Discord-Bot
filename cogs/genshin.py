@@ -43,7 +43,12 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                                 newpage = response.json()['skillTalents'][page_number-2]
                             newEmbed = discord.Embed(title=f"{character}'s Skills")
                             newEmbed.add_field(name=f"{newpage['name']} ({newpage['unlock']})", value=newpage['description'])
-                            newEmbed.add_field(name=newpage['upgrades']['name'], value=newpage['upgrades']['value'])
+                            try:
+                                upgrades = newpage['upgrades']
+                            except:
+                                pass
+                            else:
+                                newEmbed.add_field(name=upgrades['name'], value=upgrades['value'])
                             await message.edit(embed=NewEmbed)
                 
     
@@ -86,11 +91,13 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             embed = discord.Embed(title=f"{character.capitalize()}'s Skills")
             if response.status_code == 200:
                 skills = response.json()['skillTalents']
-                for i in skills:
+                try:
+                    upgrades = skills[0]['upgrades']
+                except:
                     upgradesText = ''
-                    for j in i['upgrades']:
-                        upgradesText += f"{j['name']}: {j['value']}"
-                    embed.add_field(name=f"{i['name']} ({i['unlock']})", value=f"{i['description']}\n**Upgrades:**\n{upgradesText}", inline=True)
+                else:
+                    upgradesText = f"**Upgrades:**\n{upgrades['name']}: {upgrades['value']}"
+                embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=f"{skills[0]['description']}\n{upgradesText}", inline=True)
                 embed.set_footer(text=f"{character.capitalize()} | Page 1")
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Profiles', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
