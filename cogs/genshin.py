@@ -57,8 +57,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                                     await message.add_reaction("➡️")
                                 elif page_number == 2:
                                     await message.remove_reaction("⬅️", self.bot)#
-                            newEmbed = discord.Embed(title=f"{character}'s Skills", colour=colours[response.json()['vision']])
-                            newEmbed.add_field(name=f"{newpage['name']} ({newpage['unlock']})", value=newpage['description'], inline=False)
+                            newEmbed = discord.Embed(title=f"{character}'s Skills", description=f"**{newpage['name']} ({newpage['unlock']})**\n{newpage['description']}", colour=colours[response.json()['vision']])
                             newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagenumber))
                             newEmbed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character.lower()}/icon-big")
                             try:
@@ -110,9 +109,9 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         else:
             character = character.lower()
             response = requests.get(f'https://api.genshin.dev/characters/{character}/')
-            embed = discord.Embed(title=f"{character.capitalize()}'s Skills", colour=colours[response.json()['vision']])
             if response.status_code == 200:
                 skills = response.json()['skillTalents']
+                embed = discord.Embed(title=f"{character.capitalize()}'s Skills", description=f"**{skills[0]['name']} ({skills[0]['unlock']})**\n{skills[0]['description']}", colour=colours[response.json()['vision']])
                 try:
                     upgrades = skills[0]['upgrades']
                 except:
@@ -121,8 +120,6 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                     upgradesText = ""
                     for i in upgrades:
                         upgradesText += f"{i['name']}: {i['value']}\n"
-                    
-                embed.add_field(name=f"{skills[0]['name']} ({skills[0]['unlock']})", value=skills[0]['description'], inline=False)
                 if upgradesText is not None:
                     embed.add_field(name="Upgrades", value=upgradesText, inline=False)
                 embed.set_footer(text=f"{character.capitalize()} | Page 1")
