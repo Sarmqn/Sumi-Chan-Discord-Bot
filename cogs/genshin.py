@@ -29,7 +29,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed = discord.Embed.from_data(embed)
                 print(embed)
                 print(embed.title)
-            except as e:
+            except Exception as e:
                 # If the embed doesn't exist (i.e. not a message we are interested in)
                 print("Couldn't get the embed")
                 print(e)
