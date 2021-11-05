@@ -70,7 +70,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                             newEmbed.add_field(name=f"{newpage['name']} ({newpage['unlock']})", value=newpage['description'])
                             newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagenumber))
                             try:
-                                upgrades = newpage['upgrades']
+                                upgrades = newpage['upgrades'][newpagenumber-1]
                             except:
                                 pass
                             else:
