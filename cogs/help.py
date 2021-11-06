@@ -74,7 +74,7 @@ class MyHelp(commands.HelpCommand):
         # Get an array of command signatures. There is no filter check since the only groups I plan to use will be available to everyone
         command_signatures = [self.get_command_signature(command) for command in group.commands]
         # Gets the part to remove from each signature to only get the subcommand name
-        tostrip = f'sc!{group.name} '
+        tostrip = f'`sc!{group.name} '
         # Since subcommands are required, begin the arguments (`<something|another_possible_one|a_third>`) with "<"
         arg_subcmds = ''
         # For each element in the array
@@ -83,7 +83,7 @@ class MyHelp(commands.HelpCommand):
             print(i)
             print(arg_subcmds)
             # Remove all backticks (`) and replace the occuring value of tostrip with nothing. Add it to the string as well as a |
-            arg_subcmds += f"`{i.replace(tostrip, '').strip('`')}`|"
+            arg_subcmds += f"`{i[len(tostrip)-1:].replace('`', '')}`|"
         # Remove the last "|" and add the last ">"
         arg_subcmds = arg_subcmds[:-1]
         # If there were no subcommands
