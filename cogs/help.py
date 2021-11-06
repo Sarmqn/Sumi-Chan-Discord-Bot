@@ -25,7 +25,7 @@ class MyHelp(commands.HelpCommand):
         else:
             return '`{0.clean_prefix}{1.qualified_name}` `{1.signature}`'.format(self, command)
     
-    # Used when someone only does `_help`
+    # Used when someone only does `sc!help`
     async def send_bot_help(self, mapping):
         # Generate embed
         embed = discord.Embed(title="Help", color=discord.Color.from_rgb(241,210,231))
@@ -46,7 +46,7 @@ class MyHelp(commands.HelpCommand):
         # Send the embed as a reply
         await self.context.reply(embed=embed)
                 
-    # Used when someone does "_help <cog name>"
+    # Used when someone does "sc!help <cog name>"
     async def send_cog_help(self, cog):
         # Get an array of commands
         commands = [command for command in cog.get_commands()]
@@ -69,7 +69,7 @@ class MyHelp(commands.HelpCommand):
         else:
             await self.context.reply(f'No category called "{cog.qualified_name}" found.')
     
-    # Used when someone does "_help <group name>", such as "_help suggest".
+    # Used when someone does "sc!help <group name>", such as "sc!help genshin".
     async def send_group_help(self, group):
         # Get an array of command signatures. There is no filter check since the only groups I plan to use will be available to everyone
         command_signatures = [self.get_command_signature(command) for command in group.commands]
@@ -78,10 +78,7 @@ class MyHelp(commands.HelpCommand):
         # Since subcommands are required, begin the arguments (`<something|another_possible_one|a_third>`) with "<"
         arg_subcmds = ''
         # For each element in the array
-        print(command_signatures)
         for i in command_signatures:
-            print(i)
-            print(arg_subcmds)
             # Remove all backticks (`) and replace the occuring value of tostrip with nothing. Add it to the string as well as a |
             arg_subcmds += f"`{i[len(tostrip):].replace('`', '')}`|"
         # Remove the last "|" and add the last ">"
@@ -114,7 +111,7 @@ class MyHelp(commands.HelpCommand):
         await self.context.reply(embed=embed)
 
     
-    # Used when someone does "_help <command name>"
+    # Used when someone does "sc!help <command name>"
     async def send_command_help(self, command):
         # If the user has access to use the command
         if await self.filter_commands([command], sort=True):
