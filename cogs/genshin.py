@@ -63,7 +63,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                                     await message.add_reaction("➡️")
                                 elif page_number == 2:
                                     await message.remove_reaction("⬅️", self.bot)#
-                            newEmbed = discord.Embed(title=f"{character}'s Skills", description=f"**{newpage['name']} ({newpage['unlock']})**\n{newpage['description']}", colour=colours[response.json()['vision']])
+                            newEmbed = discord.Embed(title=f"{response.json()['name']}'s Skills", description=f"**{newpage['name']} ({newpage['unlock']})**\n{newpage['description']}", colour=colours[response.json()['vision']])
                             newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagenumber))
                             newEmbed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character.lower()}/icon-big")
                             try:
@@ -125,7 +125,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             response = requests.get(f'https://api.genshin.dev/characters/{character}/')
             if response.status_code == 200:
                 skills = response.json()['skillTalents']
-                embed = discord.Embed(title=f"{character.capitalize()}'s Skills", description=f"**{skills[0]['name']} ({skills[0]['unlock']})**\n{skills[0]['description']}", colour=colours[response.json()['vision']])
+                embed = discord.Embed(title=f"{response.json()['name']}'s Skills", description=f"**{skills[0]['name']} ({skills[0]['unlock']})**\n{skills[0]['description']}", colour=colours[response.json()['vision']])
                 try:
                     upgrades = skills[0]['upgrades']
                 except:
