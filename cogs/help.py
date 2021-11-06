@@ -89,9 +89,6 @@ class MyHelp(commands.HelpCommand):
         # If there were no subcommands
         if arg_subcmds == '':
             arg_subcmds = None
-        else:
-            # Surround it with backticks for the codeblock in Discord
-            arg_subcmds = f'`{arg_subcmds}`'
         # Checks if the group has aliases
         if len(group.aliases) == 0:
             aliases = None
