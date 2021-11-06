@@ -76,15 +76,18 @@ class MyHelp(commands.HelpCommand):
         # Gets the part to remove from each signature to only get the subcommand name
         tostrip = f'sc!{group.name} '
         # Since subcommands are required, begin the arguments (`<something|another_possible_one|a_third>`) with "<"
-        arg_subcmds = '<'
+        arg_subcmds = ''
         # For each element in the array
+        print(command_signatures)
         for i in command_signatures:
+            print(i)
+            print(arg_subcmds)
             # Remove all backticks (`) and replace the occuring value of tostrip with nothing. Add it to the string as well as a |
             arg_subcmds += f"{i.replace(tostrip, '').strip('`')}|"
         # Remove the last "|" and add the last ">"
-        arg_subcmds = f'{arg_subcmds[:-1]}>'
+        arg_subcmds = arg_subcmds[:-1]
         # If there were no subcommands
-        if arg_subcmds == '>':
+        if arg_subcmds == '':
             arg_subcmds = None
         else:
             # Surround it with backticks for the codeblock in Discord
@@ -106,9 +109,9 @@ class MyHelp(commands.HelpCommand):
         embed.add_field(name=f'Aliases', value=aliases, inline=False)
         # Different depending on if there were subcommands
         if arg_subcmds:
-           embed.add_field(name=f'Usage', value=f'`_{group.name}` {arg_subcmds}', inline=False)
+           embed.add_field(name=f'Usage', value=f'`sc!{group.name}` {arg_subcmds}', inline=False)
         else:
-           embed.add_field(name=f'Usage', value=f'`_{group}`', inline=False)
+           embed.add_field(name=f'Usage', value=f'`sc!{group}`', inline=False)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         # Send as a reply
         await self.context.reply(embed=embed)
