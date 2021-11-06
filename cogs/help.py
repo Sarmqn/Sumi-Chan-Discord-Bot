@@ -83,7 +83,7 @@ class MyHelp(commands.HelpCommand):
             print(i)
             print(arg_subcmds)
             # Remove all backticks (`) and replace the occuring value of tostrip with nothing. Add it to the string as well as a |
-            arg_subcmds += f"`{i[len(tostrip)-1:].replace('`', '')}`|"
+            arg_subcmds += f"`{i[len(tostrip):].replace('`', '')}`|"
         # Remove the last "|" and add the last ">"
         arg_subcmds = arg_subcmds[:-1]
         # If there were no subcommands
