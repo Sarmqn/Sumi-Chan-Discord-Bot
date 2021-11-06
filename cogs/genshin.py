@@ -51,8 +51,8 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                                 newpagenumber = page_number + 1
                                 newpage = response.json()['skillTalents'][page_number]
                                 await message.remove_reaction("➡️", user)
+                                await message.remove_reaction("➡️", self.bot)
                                 if page_number == 1:
-                                    await message.remove_reaction("➡️", self.bot)
                                     await message.add_reaction("⬅️")
                                     await message.add_reaction("➡️")
                             else:
@@ -62,7 +62,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                                 if page_number == 3:
                                     await message.add_reaction("➡️")
                                 elif page_number == 2:
-                                    await message.remove_reaction("⬅️", self.bot)#
+                                    await message.remove_reaction("⬅️", self.bot)
                             newEmbed = discord.Embed(title=f"{response.json()['name']}'s Skills", description=f"**{newpage['name']} ({newpage['unlock']})**\n{newpage['description']}", colour=colours[response.json()['vision']])
                             newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagenumber))
                             newEmbed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character.lower()}/icon-big")
