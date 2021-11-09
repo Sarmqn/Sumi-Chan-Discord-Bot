@@ -182,17 +182,33 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     @genshin.command(aliases=['f'], description="Get information about food.")
     async def food(self, ctx, * food: str):
         food = ' '.join(food)
+        response = requests.get("https://api.genshin.dev/consumables/food/").json()
+        foodstr = ""
         if food == '':
-            response = requests.get("https://api.genshin.dev/consumables/food/")
-            response = response.json()
-            print(response)
-            foodstr = ""
             for i in response:
-                foodstr += f"{response[i]['name']}, "
+                foodstr += f"{response[i]['name']} ({i}), "
             foodstr = foodstr[:-2]
             embed = discord.Embed(title='List of All Food', description=foodstr, colour=discord.Color.from_rgb(241,210,231))
         else:
-            embed = discord.Embed(title='Food Info', description="Coming soon!", colour=discord.Color.from_rgb(241,210,231))
+            try:
+                fooddict = response[food.lower()]
+            except KeyError:
+                embed = discord.Embed(title=f"Food Info — {fooddict['name']}", description="This food doesn't exist, please make sure you typed it correctly!", colour=discord.Color.from_rgb(241,210,231))
+            else:
+                foodstr = f"{fooddict['description']}\n\n**Rarity:** "
+                for i in range(fooddict['rarity']):
+                    foodstr += '⭐'
+                embed = discord.Embed(title=f"Food Info — {fooddict['name']}", description=foodstr, colour=discord.Color.from_rgb(241,210,231))
+                embed.add_field(name='Food Type', value=fooddict['type'])
+                embed.add_field(name='Effect', value=fooddict['effect'])
+                embed.add_field(name='Proficiency', value=fooddict['proficiency'])
+                if fooddict['hasRecipe'] == True:
+                    recipe = ''
+                    for i in fooddict['recipe']:
+                        recipe += f"Item: {i['item']}\t\tQuantity: {i['quantity']}"
+                    embed.add_field(name='Ingredients', value=recipe)
+                
+        embed.set_author(name='Food Information', icon_url=ctx.author.avatar_url)    
         await ctx.reply(embed=embed, mention_author=False)
 
 def setup(bot):
