@@ -114,10 +114,11 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         
     @genshin.command(aliases=['chars', 'chs'], description="List of valid character names, sorted alphabetically.")
     async def characters(self, ctx):
-        embed = discord.Embed(title='Available Characters', description="Albedo\nAloy\nAmber\nAyaka\nBarbara\nBeidou\nBennett\nChongyun\nDiluc\nDiona\nEula\nFischl\nGanyu\nHu-Tao\nJean\nKaeya\nKazuha\nKeqing\nKlee\nKokomi\nLisa\nMona\nNingguang\nNoelle\nQiqi\nRaiden\nRazor\nRosaria\nSara\nSayu\nSucrose\nTartaglia\nTraveler-Anemo\nTraveler-Electro\nTraveler-Geo\nVenti\nXiangling\nXiao\nXingqiu\nXinyan\nYanfei\nYoimiya\nZhongli", colour=discord.Color.from_rgb(241,210,231))
-        response = requests.get("https://api.genshin.dev/characters/")
-        print(response)
-        print(response.json())
+        response = requests.get("https://api.genshin.dev/characters/").json()
+        for i in range(len(response)):
+            response[i] = response[i].capitalize()
+        description = ', '.join(response)
+        embed = discord.Embed(title='Available Characters', description=description, colour=discord.Color.from_rgb(241,210,231))
         await ctx.reply(embed=embed, mention_author=False)
 
 
@@ -165,7 +166,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 constellations = response.json()['constellations']
                 embed = discord.Embed(title=f"{response.json()['name']}'s Constellations", colour=colours[response.json()['vision']])
                 for i in constellations:
-                    embed.add_field(name=f"{i['name']} (Level {i['level']})", value=i['description'])
+                    embed.add_field(name=f"{i['name']} ({i['unlock']})", value=i['description'])
                 embed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character}/icon-big")
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Constellations', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
@@ -177,5 +178,20 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         await ctx.reply(embed=embed, mention_author=False)
     
             
+        
+    @genshin.command(aliases=['f'], description="Get information about food.")
+    async def food(self, ctx, * food: str):
+        if food is None:
+            response = requests.get("https://api.genshin.dev/consumables/food")
+            response = response.json()
+            foodstr = ""
+            for i in response:
+                foodstr += f"{i['name']}, "
+            foodstr = foodstr[:-2]
+            embed = discord.Embed(title='List of All Food', description=foodstr, colour=discord.Color.from_rgb(241,210,231))
+        else:
+            embed = discord.Embed(title='Food Info', description="Coming soon!", colour=discord.Color.from_rgb(241,210,231))
+        await ctx.reply(embed=embed, mention_author=False)
+
 def setup(bot):
     bot.add_cog(Genshin(bot))
