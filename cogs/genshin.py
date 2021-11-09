@@ -171,9 +171,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed = discord.Embed(title='Character Constellations', description='Uh oh, an error has occured!\nThe developer has been informed and will work on this issue ASAP!', color=discord.Color.from_rgb(200,0,0))
                 self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the constellation command.\nArguments: {character}")
         embed.set_author(name='Character Constellations', icon_url=ctx.author.avatar_url)
-        skillsEmbed = await ctx.reply(embed=embed, mention_author=False)
-        if response.status_code == 200:
-            await skillsEmbed.add_reaction("➡️")
+        await ctx.reply(embed=embed, mention_author=False)
     
             
 def setup(bot):
