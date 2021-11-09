@@ -162,7 +162,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 constellations = response.json()['constellations']
                 embed = discord.Embed(title=f"{response.json()['name']}'s Constellations", colour=colours[response.json()['vision']])
                 for i in constellations:
-                    embed.add_field(name=f"{i['name']} (Level {i['level'})", value=i['description'])
+                    embed.add_field(name=f"{i['name']} (Level {i['level']})", value=i['description'])
                 embed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character}/icon-big")
             elif response.status_code == 404:
                 embed = discord.Embed(title='Character Constellations', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
