@@ -181,9 +181,8 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         
     @genshin.command(aliases=['f'], description="Get information about food.")
     async def food(self, ctx, * food: str):
-        print(type(food))
-        print(food)
-        if food == '()':
+        food = ' '.join(food)
+        if food == '':
             response = requests.get("https://api.genshin.dev/consumables/food")
             response = response.json()
             foodstr = ""
