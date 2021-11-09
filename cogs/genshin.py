@@ -205,7 +205,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 if fooddict['hasRecipe'] == True:
                     recipe = ''
                     for i in fooddict['recipe']:
-                        recipe += f"Item: {i['item']}\t\tQuantity: {i['quantity']}"
+                        recipe += f"{i['quantity']}x {i['item']}\n"
                     embed.add_field(name='Ingredients', value=recipe)
                 
         embed.set_author(name='Food Information', icon_url=ctx.author.avatar_url)    
