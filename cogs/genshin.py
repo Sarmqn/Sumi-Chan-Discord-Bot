@@ -115,6 +115,9 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     @genshin.command(aliases=['chars', 'chs'], description="List of valid character names, sorted alphabetically.")
     async def characters(self, ctx):
         embed = discord.Embed(title='Available Characters', description="Albedo\nAloy\nAmber\nAyaka\nBarbara\nBeidou\nBennett\nChongyun\nDiluc\nDiona\nEula\nFischl\nGanyu\nHu-Tao\nJean\nKaeya\nKazuha\nKeqing\nKlee\nKokomi\nLisa\nMona\nNingguang\nNoelle\nQiqi\nRaiden\nRazor\nRosaria\nSara\nSayu\nSucrose\nTartaglia\nTraveler-Anemo\nTraveler-Electro\nTraveler-Geo\nVenti\nXiangling\nXiao\nXingqiu\nXinyan\nYanfei\nYoimiya\nZhongli", colour=discord.Color.from_rgb(241,210,231))
+        response = requests.get("https://api.genshin.dev/characters/")
+        print(response)
+        print(response.json())
         await ctx.reply(embed=embed, mention_author=False)
 
 
