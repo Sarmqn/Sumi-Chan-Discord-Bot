@@ -183,11 +183,12 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     async def food(self, ctx, * food: str):
         food = ' '.join(food)
         if food == '':
-            response = requests.get("https://api.genshin.dev/consumables/food")
+            response = requests.get("https://api.genshin.dev/consumables/food/")
             response = response.json()
+            print(response)
             foodstr = ""
             for i in response:
-                foodstr += f"{i['name']}, "
+                print(i)
             foodstr = foodstr[:-2]
             embed = discord.Embed(title='List of All Food', description=foodstr, colour=discord.Color.from_rgb(241,210,231))
         else:
