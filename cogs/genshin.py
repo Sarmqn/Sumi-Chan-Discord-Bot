@@ -3,12 +3,12 @@ from discord import errors
 from discord.ext import commands
 
 colours = {"Anemo": discord.Color.from_rgb(166,245,207), "Cryo": discord.Color.from_rgb(189,254,254), "Dendro": discord.Color.from_rgb(176,233,36), "Electro": discord.Color.from_rgb(210,154,254), "Geo": discord.Color.from_rgb(247,214,98), "Hydro": discord.Color.from_rgb(12,228,252), "Pyro": discord.Color.from_rgb(255,167,104)}
+suffixes = ["th", "st", "nd", "rd"] + (["th"]*6)
+months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 def make_ordinal(n: int):
-    suffixes = ["th", "st", "nd", "rd"] + (["th"]*6)
     return f"{n}{suffixes[n%10]}"
 def month_name(n: int):
-    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     return months[n-1]
 
 class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Impact'):
@@ -116,6 +116,8 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     async def characters(self, ctx):
         embed = discord.Embed(title='Available Characters', description="Albedo\nAloy\nAmber\nAyaka\nBarbara\nBeidou\nBennett\nChongyun\nDiluc\nDiona\nEula\nFischl\nGanyu\nHu-Tao\nJean\nKaeya\nKazuha\nKeqing\nKlee\nKokomi\nLisa\nMona\nNingguang\nNoelle\nQiqi\nRaiden\nRazor\nRosaria\nSara\nSayu\nSucrose\nTartaglia\nTraveler-Anemo\nTraveler-Electro\nTraveler-Geo\nVenti\nXiangling\nXiao\nXingqiu\nXinyan\nYanfei\nYoimiya\nZhongli", colour=discord.Color.from_rgb(241,210,231))
         await ctx.reply(embed=embed, mention_author=False)
+
+
     @genshin.command(aliases=['s', 'skill', 't', 'talents'], description="Look at a character's skills.")
     async def skills(self, ctx, character: str = None):
         if character is None:
@@ -143,15 +145,35 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.set_image(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
             else:
                 embed = discord.Embed(title='Character Profiles', description='Uh oh, an error has occured!\nThe developer has been informed and will work on this issue ASAP!', color=discord.Color.from_rgb(200,0,0))
-                self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the character command.\nArguments: {character}")
+                self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the skills command.\nArguments: {character}")
         embed.set_author(name='Character Skills', icon_url=ctx.author.avatar_url)
         skillsEmbed = await ctx.reply(embed=embed, mention_author=False)
         if response.status_code == 200:
             await skillsEmbed.add_reaction("➡️")
 
-    @genshin.command(aliases=['co'], description="Look at a character's constellation.")
-    async def constellation(self, ctx, * character: str):
-        await ctx.reply('Hi!')
+    @genshin.command(aliases=['co', 'const'], description="Look at a character's constellation.")
+    async def constellation(self, ctx, character: str):
+        if character is None:
+            embed = discord.Embed(title='Character Constellations', description="Learn about a Genshin characters' constellations! For a list of available characters use `sc!genshin characters`.", colour=discord.Color.from_rgb(241,210,231))
+        else:
+            character = character.lower()
+            response = requests.get(f'https://api.genshin.dev/characters/{character}/')
+            if response.status_code == 200:
+                constellations = response.json()['constellations']
+                embed = discord.Embed(title=f"{response.json()['name']}'s Constellations", colour=colours[response.json()['vision']])
+                for i in constellations:
+                    embed.add_field(name=f"{i['name']} (Level {i['level'})", value=i['description'])
+                embed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character}/icon-big")
+            elif response.status_code == 404:
+                embed = discord.Embed(title='Character Constellations', description='That person does not exist! Please make sure you typed their name correctly!', color=discord.Color.from_rgb(200,0,0))
+                embed.set_image(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
+            else:
+                embed = discord.Embed(title='Character Constellations', description='Uh oh, an error has occured!\nThe developer has been informed and will work on this issue ASAP!', color=discord.Color.from_rgb(200,0,0))
+                self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the constellation command.\nArguments: {character}")
+        embed.set_author(name='Character Constellations', icon_url=ctx.author.avatar_url)
+        skillsEmbed = await ctx.reply(embed=embed, mention_author=False)
+        if response.status_code == 200:
+            await skillsEmbed.add_reaction("➡️")
     
             
 def setup(bot):
