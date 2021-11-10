@@ -201,7 +201,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed = discord.Embed(title=f"Food Info — {fooddict['name']}", description=foodstr, colour=discord.Color.from_rgb(241,210,231))
                 embed.add_field(name='Food Type', value=fooddict['type'])
                 embed.add_field(name='Effect', value=fooddict['effect'])
-                embed.add_field(name='Proficiency', value=fooddict['proficiency'])
+                embed.add_field(name='Proficiency', value=f"Cook {fooddict['proficiency']}x for Automatic Cooking.")
                 if fooddict['hasRecipe'] == True:
                     recipe = ''
                     for i in fooddict['recipe']:
