@@ -8,7 +8,7 @@ class NotSetup(commands.CommandError):
     "An exception for when the reaction roles are not setup within a Discord Server (primarily my own)"
     pass
 
-def setup():
+def setup_db():
     async def wrap_function(ctx): # Wrapping function around command check for CTX
         info = await ctx.bot.config.find(ctx.guild.id) # looking within the data base to see if it is setup
         if info is None:
@@ -104,7 +104,7 @@ class Reactions(commands.Cog, name = "ReactionRoles"):
     @reactionroles.command(name="toggle")
     @commands.guild_only()
     @commands.has_guild_permissions(administrator = True)
-    @setup()
+    @setup_db()
     async def rr_toggle(self, ctx):
         """Toggleable reaction roles for the guild in use"""
         info = await self.bot.config.find(ctx.guild.id)
@@ -117,7 +117,7 @@ class Reactions(commands.Cog, name = "ReactionRoles"):
     @reactionroles.command(name="add")
     @commands.guild_only()
     @commands.has_guild_permissions(manage_roles = True)
-    @setup()
+    @setup_db()
     async def rr_add(self, ctx, emoji:typing.Union[discord.Emoji, str], *, role: discord.Role):
         """Adding a new reaction role to users"""
         reacts = await self.get_current_reactions(ctx.guild.id)
@@ -143,7 +143,7 @@ class Reactions(commands.Cog, name = "ReactionRoles"):
     @reactionroles.command(name="remove")
     @commands.guild_only()
     @commands.has_guild_permissions(manage_roles = True)
-    @setup()
+    @setup_db()
     async def rr_remove(self, ctx, emoji: typing.Union[discord.Emoji, str]):
         """Remove an existing reaction role"""
         if not isinstance(emoji, discord.Emoji):
