@@ -186,7 +186,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         foodstr = ""
         if food == '':
             for i in response:
-                foodstr += f"{response[i]['name']} ({i}), "
+                foodstr += f"{response[i]['name']} (`{i}`), "
             foodstr = foodstr[:-2]
             embed = discord.Embed(title='List of All Food', description=foodstr, colour=discord.Color.from_rgb(241,210,231))
         else:
