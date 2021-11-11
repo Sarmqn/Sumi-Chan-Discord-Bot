@@ -218,7 +218,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         potstr = ""
         if potion == '':
             for i in response:
-                potstr += f"{response[i]['name']} (`{i}`), "
+                potstr += f"{response[i]['name']}, "
             potstr = potstr[:-2]
             embed = discord.Embed(title='List of All Potions', description=potstr, colour=discord.Color.from_rgb(241,210,231))
         else:
