@@ -211,5 +211,36 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         embed.set_author(name='Food Information', icon_url=ctx.author.avatar_url)    
         await ctx.reply(embed=embed, mention_author=False)
 
+    @genshin.command(aliases=['p', 'pot', 'potion'], description="Get information about potions.")
+    async def potions(self, ctx, * potion: str):
+        potion = '-'.join(potion)
+        response = requests.get("https://api.genshin.dev/consumables/potions/").json()
+        potstr = ""
+        if potion == '':
+            for i in response:
+                potstr += f"{response[i]['name']} (`{i}`), "
+            potstr = potstr[:-2]
+            embed = discord.Embed(title='List of All Food', description=potstr, colour=discord.Color.from_rgb(241,210,231))
+        else:
+            try:
+                potiondict = response[potion.lower()]
+            except KeyError:
+                embed = discord.Embed(title=f"Food Info — {potiondict['name']}", description="This potion doesn't exist, please make sure you typed it correctly!", colour=discord.Color.from_rgb(241,210,231))
+            else:
+                potstr = f"{potiondict['description']}\n\n**Rarity:** "
+                for i in range(potiondict['rarity']):
+                    potstr += '⭐'
+                embed = discord.Embed(title=f"Food Info — {potiondict['name']}", description=potstr, colour=discord.Color.from_rgb(241,210,231))
+                embed.add_field(name='Food Type', value=potiondict['type'])
+                embed.add_field(name='Effect', value=potiondict['effect'])
+                embed.add_field(name='Proficiency', value=f"Cook {potiondict['proficiency']}x for Automatic Cooking.")
+                recipe = ''
+                for i in potiondict['crafting']:
+                    recipe += f"{i['quantity']}x {i['item']}\n"
+                embed.add_field(name='Materials', value=recipe)
+                
+        embed.set_author(name='Potion Information', icon_url=ctx.author.avatar_url)    
+        await ctx.reply(embed=embed, mention_author=False)
+
 def setup(bot):
     bot.add_cog(Genshin(bot))
