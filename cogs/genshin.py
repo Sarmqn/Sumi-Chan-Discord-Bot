@@ -227,7 +227,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             except KeyError:
                 embed = discord.Embed(title=f"Food Info — {potiondict['name']}", description="This potion doesn't exist, please make sure you typed it correctly!", colour=discord.Color.from_rgb(241,210,231))
             else:
-                potstr = f"{potiondict['description']}\n\n**Rarity:** "
+                potstr = f"{potiondict['effect']}\n\n**Rarity:** "
                 for i in range(potiondict['rarity']):
                     potstr += '⭐'
                 embed = discord.Embed(title=f"Food Info — {potiondict['name']}", description=potstr, colour=discord.Color.from_rgb(241,210,231))
