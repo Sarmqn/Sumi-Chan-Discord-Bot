@@ -241,7 +241,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         embed.set_author(name='Potion Information', icon_url=ctx.author.avatar_url)    
         await ctx.reply(embed=embed, mention_author=False)
 
-    @genshin.command(aliases=['e', 'element'], description="Find out more about elements and their reactions.")
+    @genshin.command(aliases=['e', 'element', 'r', 'reactions'], description="Find out more about elements and their reactions.")
     async def elements(self, ctx, * element: str):
         element = ' '.join(element).lower()
         if element == '':
@@ -263,6 +263,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             else:
                 embed = discord.Embed(title='Elemental Info', description='Uh oh, an error has occured!\nThe developer has been informed and will work on this issue ASAP!', color=discord.Color.from_rgb(200,0,0))
                 self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the elemental info command.\nArguments: {element}")
+        embed.set_author(name='Elemental Reactions', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed, mention_author=False)
                     
                 
