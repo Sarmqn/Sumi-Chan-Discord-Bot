@@ -194,6 +194,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 fooddict = response[food.lower()]
             except KeyError:
                 embed = discord.Embed(title=f"Food Info — {fooddict['name']}", description="This food doesn't exist, please make sure you typed it correctly!", colour=discord.Color.from_rgb(241,210,231))
+                embed.set_image(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
             else:
                 foodstr = f"{fooddict['description']}\n\n**Rarity:** "
                 for i in range(fooddict['rarity']):
@@ -226,6 +227,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 potiondict = response[potion.lower()]
             except KeyError:
                 embed = discord.Embed(title=f"Potion Info — {potion}", description="This potion doesn't exist, please make sure you typed it correctly!", colour=discord.Color.from_rgb(241,210,231))
+                embed.set_image(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
             else:
                 potstr = f"{potiondict['effect']}\n\n**Rarity:** "
                 for i in range(potiondict['rarity']):
@@ -239,5 +241,27 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         embed.set_author(name='Potion Information', icon_url=ctx.author.avatar_url)    
         await ctx.reply(embed=embed, mention_author=False)
 
+    @genshin.command(aliases=['e', 'element'], description="Find out more about elements and their reactions.")
+    async def elements(self, ctx, * element: str):
+        element = ' '.join(element).lower()
+        if element == '':
+            response = requests.get("https://api.genshin.dev/elements/").json()
+            elementstr = ''
+            for i in response:
+                elementstr += f"{i.capitalize()}\n"
+            embed = discord.Embed(title='List of All Elements', description=elementstr, colour=discord.Color.from_rgb(241,210,231))
+        else:
+            response = requests.get(f"https://api.genshin.dev/elements/{element}")
+            if response.status_code == 404:
+                embed = discord.Embed(title=f"Elemental Info — {element}", description="This element doesn't exist, please make sure you typed it correctly!", colour=discord.Color.from_rgb(241,210,231))
+                embed.set_image(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
+            elif response.status_code == 200:
+                embed = discord.Embed(title=f"Elemental Info — {element}", colour=colours[element.capitalize()])
+                for i in response.json()['reactions']:
+                    embed.add_field(name=i['name'], value=f"{i['description']}\nElement(s): {', '.join(i['elements'])}", inline=True)
+        await ctx.reply(embed=embed, mention_author=False)
+                    
+                
+                
 def setup(bot):
     bot.add_cog(Genshin(bot))
