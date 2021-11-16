@@ -256,9 +256,13 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed = discord.Embed(title=f"Elemental Info — {element}", description="This element doesn't exist, please make sure you typed it correctly!", colour=discord.Color.from_rgb(241,210,231))
                 embed.set_image(url='https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png')
             elif response.status_code == 200:
-                embed = discord.Embed(title=f"Elemental Info — {element}", colour=colours[element.capitalize()])
+                embed = discord.Embed(title=f"Elemental Info — {response.json()['name']}", colour=colours[element.capitalize()])
                 for i in response.json()['reactions']:
                     embed.add_field(name=i['name'], value=f"{i['description']}\nElement(s): {', '.join(i['elements'])}", inline=True)
+                embed.set_thumbnail(url=f"https://api.genshin.dev/elements/{element}/icon")
+            else:
+                embed = discord.Embed(title='Elemental Info', description='Uh oh, an error has occured!\nThe developer has been informed and will work on this issue ASAP!', color=discord.Color.from_rgb(200,0,0))
+                self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the elemental info command.\nArguments: {element}")
         await ctx.reply(embed=embed, mention_author=False)
                     
                 
