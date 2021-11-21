@@ -274,9 +274,8 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             response = requests.get("https://api.genshin.dev/weapons/").json()
             weaponstr = ''
             for i in response:
-                weaponstr += f"{i.replace('-', ' ').capitalize()}, "
+                weaponstr += f"{i}, "
             embed = discord.Embed(title='List of All Weapons', description=weaponstr, colour=discord.Color.from_rgb(241,210,231))
-            embed.set_footer(text="Replace all non-alphabetical characters with dashes (-)!")
         else:
             response = requests.get(f"https://api.genshin.dev/weapons/{weapon}")
             if response.status_code == 404:
@@ -290,7 +289,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 embed.add_field(name="Sub Stat", value=response['subStat'], inline=True)
                 embed.add_field(name="Passive Ability", value=f"**{response['passiveName']}**\n{response['passiveDesc']}", inline=True)
                 embed.add_field(name="Unlock", value=response['location'].replace("Gacha", "Wishes"), inline=True)
-                embed.set_thumbnail(url=f"https://api.genshin.dev/elements/{weapon}/icon")
+                embed.set_thumbnail(url=f"https://api.genshin.dev/weapons/{weapon}/icon")
             else:
                 embed = discord.Embed(title='Weapon Info', description='Uh oh, an error has occured!\nThe developer has been informed and will work on this issue ASAP!', color=discord.Color.from_rgb(200,0,0))
                 self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the weapon info command.\nArguments: {weapon}")
