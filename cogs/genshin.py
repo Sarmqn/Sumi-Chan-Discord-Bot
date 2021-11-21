@@ -274,8 +274,9 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             response = requests.get("https://api.genshin.dev/weapons/").json()
             weaponstr = ''
             for i in response:
-                weaponstr += f"{i.replace('-', ' ').capitalize()} (`{i}`)\n"
+                weaponstr += f"{i.replace('-', ' ').capitalize()}, "
             embed = discord.Embed(title='List of All Weapons', description=weaponstr, colour=discord.Color.from_rgb(241,210,231))
+            embed.set_footer(text="Replace all non-alphabetical characters with dashes (-)!")
         else:
             response = requests.get(f"https://api.genshin.dev/weapons/{weapon}")
             if response.status_code == 404:
