@@ -24,7 +24,7 @@ class General(commands.Cog, name='💬 General'):
     @commands.command(description="Get information about the server you're in.", aliases = ['si', 'info', 'serverinfo'])
     async def server(self, ctx): # When server command is in instance, it will display and embed with the following information
         embed = discord.Embed (title = 'Server Information', description='This embed shows information about the server you are currently in.', colour=discord.Colour.random())
-        embed.set_thumbnail (url = 'https://media.discordapp.net/attachments/885197499319603242/895396695532265472/unknown.png')
+        embed.set_image (url = 'https://cdn.discordapp.com/attachments/678552360905211934/912412553039192135/EiVj0xaVkAIl20Y.png' )
         embed.set_author (name = 'Server Information', icon_url=ctx.author.avatar_url)
         # For loop to add fields (More code efficient)
         fieldlist = [['Server Name', ctx.guild.name], ['Server Owner', ctx.guild.owner.mention], ['Server Member Count', len([m for m in ctx.guild.members if not m.bot])], ['Bot Creator', '<@701817552778559510>']]
