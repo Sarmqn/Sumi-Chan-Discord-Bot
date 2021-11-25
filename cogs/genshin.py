@@ -32,7 +32,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 if pagen == 1:
                     remove = ("➡️", user), ("➡️", self.bot)
                 if 1 < newpagen and newpagen < nopages:
-                    add = ("⬅️"), "➡️")
+                    add = ("⬅️", "➡️")
                 if newpagen == nopages:
                     remove = ("➡️", user), ("➡️", self.bot)
                     add = ("⬅️")
