@@ -47,7 +47,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                     add = ("➡️")
                 elif page_number == 2:
                     remove = ("⬅️", self.bot), ("⬅️", user)
-        if embed.title[:-6] = "Skills"
+        if embed.title[:-6] == "Skills"
             response = requests.get(f"https://api.genshin.dev/characters/{embed.footer.text[:-9].lower().replace(' ', '-')}/")
             newpage = response.json()['skillTalents'][index]
             newEmbed = discord.Embed(title=f"{response.json()['name']}'s Skills", description=f"**{newpage['name']} ({newpage['unlock']})**\n{newpage['description']}", colour=colours[response.json()['vision']])
