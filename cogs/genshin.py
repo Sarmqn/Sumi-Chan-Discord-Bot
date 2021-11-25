@@ -67,7 +67,8 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             response = requests.get(f"https://api.genshin.dev/weapons/").json()
             weaponstr = ''
             for i in range(round(len(response)/2), len(response)):
-                weaponstr = f"{response[i].replace('-s', "'s").replace('-', ' ').title()} (`{response[i]}`), "
+                strss = response[i].replace('-s', "'s").replace('-', ' ').title()
+                weaponstr = f"{strss} (`{response[i]}`), "
                 newEmbed = discord.Embed(title='List of All Weapons', description=weaponstr, colour=discord.Color.from_rgb(241,210,231))
                 newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagen))
             return newEmbed, add, remove
