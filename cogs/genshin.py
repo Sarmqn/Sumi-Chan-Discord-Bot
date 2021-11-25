@@ -69,8 +69,8 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             for i in range(round(len(response)/2), len(response)):
                 strss = response[i].replace('-s', "'s").replace('-', ' ').title()
                 weaponstr = f"{strss} (`{response[i]}`), "
-                newEmbed = discord.Embed(title='List of All Weapons', description=weaponstr, colour=discord.Color.from_rgb(241,210,231))
-                newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagen))
+            newEmbed = discord.Embed(title='List of All Weapons', description=weaponstr, colour=discord.Color.from_rgb(241,210,231))
+            newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagen))
             return newEmbed, add, remove
         else:
             return None
@@ -98,9 +98,9 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 else:
                     response = None
                     if embed.title[-6:] == "Skills":
-                        response = paging_system(embed, 3, int(embed.footer.text[-1]), payload)
+                        response = self.paging_system(embed, 3, int(embed.footer.text[-1]), payload)
                     elif embed.title == "List of All Weapons":
-                        response = paging_system(embed, 2, int(embed.footer.text[-1]), payload)
+                        response = self.paging_system(embed, 2, int(embed.footer.text[-1]), payload)
             if response is None:
                 pass
             else:
@@ -309,10 +309,14 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         if weapon == '':
             response = requests.get("https://api.genshin.dev/weapons/").json()
             weaponstr = ''
-            for i in response:
-                weaponstr += f"{i}, "
+            for i in range(round(len(response)/2)):
+                strss = response[i].replace('-s', "'s").replace('-', ' ').title()
+                weaponstr = f"{strss} (`{response[i]}`), "
             embed = discord.Embed(title='List of All Weapons', description=weaponstr, colour=discord.Color.from_rgb(241,210,231))
             embed.set_footer(text="Page 1")
+            embed.set_author(name='Weapon Stats', icon_url=ctx.author.avatar_url)
+            msg = await ctx.reply(embed=embed, mention_author=False)
+            await msg.add_reaction("➡️")
         else:
             response = requests.get(f"https://api.genshin.dev/weapons/{weapon}")
             if response.status_code == 404:
@@ -330,9 +334,10 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             else:
                 embed = discord.Embed(title='Weapon Info', description='Uh oh, an error has occured!\nThe developer has been informed and will work on this issue ASAP!', color=discord.Color.from_rgb(200,0,0))
                 self.bot.get_user(221188745414574080).send(f"There was a {response.status_code} code from the Genshin API in the weapon info command.\nArguments: {weapon}")
-        embed.set_author(name='Weapon Stats', icon_url=ctx.author.avatar_url)
+                embed.set_author(name='Weapon Stats', icon_url=ctx.author.avatar_url)
+                await ctx.reply(embed=embed, mention_author=False)
         
-        await ctx.reply(embed=embed, mention_author=False)
+        
                     
                 
                 
