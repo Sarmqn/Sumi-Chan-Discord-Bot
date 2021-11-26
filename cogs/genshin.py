@@ -315,7 +315,8 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             weaponstr = ''
             
             for i in range(round(len(response)/2)):
-                if "-s" in response:
+                
+                if "-s" in response[i]:
                     strss = requests.get(f"https://api.genshin.dev/weapons/{response[i]}").json()['name']
                 else:
                     strss = response[i].replace('-', ' ').title()
