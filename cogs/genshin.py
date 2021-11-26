@@ -98,8 +98,12 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 else:
                     response = None
                     if embed.title[-6:] == "Skills":
+                        print(embed)
+                        print(payload)
                         response = self.paging_system(embed, 3, int(embed.footer.text[-1]), payload)
                     elif embed.title == "List of All Weapons":
+                        print(embed)
+                        print(payload)
                         response = self.paging_system(embed, 2, int(embed.footer.text[-1]), payload)
             if response is None:
                 pass
@@ -309,9 +313,10 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         if weapon == '':
             response = requests.get("https://api.genshin.dev/weapons/").json()
             weaponstr = ''
+            
             for i in range(round(len(response)/2)):
-                strss = response[i].replace('-s', "'s").replace('-', ' ').title()
-                weaponstr = f"{strss} (`{response[i]}`), "
+                strss = requests.get(f"https://api.genshin.dev/weapons/{response[i]}").json()['name']
+                weaponstr += f"{strss} (`{response[i]}`), "
             embed = discord.Embed(title='List of All Weapons', description=weaponstr, colour=discord.Color.from_rgb(241,210,231))
             embed.set_footer(text="Page 1")
             embed.set_author(name='Weapon Stats', icon_url=ctx.author.avatar_url)
