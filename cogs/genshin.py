@@ -323,7 +323,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                 else:
                     strss = response[i].replace('-', ' ').title()
                 weaponstr += f"{strss} (`{response[i]}`), "
-            embed = discord.Embed(title='List of All Weapons', description=weaponstr, colour=discord.Color.from_rgb(241,210,231))
+            embed = discord.Embed(title='List of All Weapons', description=weaponstr[:-2], colour=discord.Color.from_rgb(241,210,231))
             embed.set_footer(text="Page 1")
             embed.set_author(name='Weapon Stats', icon_url=ctx.author.avatar_url)
             msg = await ctx.reply(embed=embed, mention_author=False)
