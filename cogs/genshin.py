@@ -22,7 +22,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     
     
     async def paging_system(self, embed, nopages, pagen, * payload):
-        print(payload)
+        payload = payload[0]
         user = self.bot.get_user(payload.user_id)
         if payload.emoji.name == "➡️":
             newpagen = pagen + 1
