@@ -105,10 +105,12 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                         print(embed)
                         print(payload)
                         response = self.paging_system(embed, 2, int(embed.footer.text[-1]), payload)
-            if response is None:
-                pass
-            else:
+            try:
                 newEmbed, add, remove = response
+            except Exception as e:
+                print(e)
+                print(response)
+            else:
                 if remove[0] != "➡️" or remove[0] != "⬅️":
                     for i in remove:
                         if i[0] != "➡️" or i[0] != "⬅️":
