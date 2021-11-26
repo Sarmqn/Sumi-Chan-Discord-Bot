@@ -100,11 +100,11 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                     if embed.title[-6:] == "Skills":
                         print(embed)
                         print(payload)
-                        response = self.paging_system(embed, 3, int(embed.footer.text[-1]), payload)
+                        response = await self.paging_system(embed, 3, int(embed.footer.text[-1]), payload)
                     elif embed.title == "List of All Weapons":
                         print(embed)
                         print(payload)
-                        response = self.paging_system(embed, 2, int(embed.footer.text[-1]), payload)
+                        response = await self.paging_system(embed, 2, int(embed.footer.text[-1]), payload)
             try:
                 newEmbed, add, remove = response
             except Exception as e:
