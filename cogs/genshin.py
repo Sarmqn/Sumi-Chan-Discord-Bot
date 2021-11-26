@@ -21,7 +21,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         self.bot = bot
     
     
-    async def paging_system(embed, nopages, pagen, payload):
+    async def paging_system(embed, nopages, pagen, * payload):
         user = self.bot.get_user(payload.user_id)
         if payload.emoji.name == "➡️":
             newpagen = pagen + 1
@@ -315,7 +315,10 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
             weaponstr = ''
             
             for i in range(round(len(response)/2)):
-                strss = requests.get(f"https://api.genshin.dev/weapons/{response[i]}").json()['name']
+                if "-s" in response:
+                    strss = requests.get(f"https://api.genshin.dev/weapons/{response[i]}").json()['name']
+                else:
+                    strss = response[i].replace('-', ' ').title()
                 weaponstr += f"{strss} (`{response[i]}`), "
             embed = discord.Embed(title='List of All Weapons', description=weaponstr, colour=discord.Color.from_rgb(241,210,231))
             embed.set_footer(text="Page 1")
