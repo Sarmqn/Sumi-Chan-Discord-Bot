@@ -24,6 +24,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     async def paging_system(self, embed, nopages, pagen, * payload):
         payload = payload[0]
         user = self.bot.get_user(payload.user_id)
+        
         if payload.emoji.name == "➡️":
             newpagen = pagen + 1
             if newpagen not in range(1, nopages+1):
@@ -108,17 +109,25 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
                         response = await self.paging_system(embed, 2, int(embed.footer.text[-1]), payload)
             try:
                 newEmbed, add, remove = response
+                print(response)
             except Exception as e:
                 print(e)
                 print(response)
             else:
+                print(newEmbed)
+                print(add)
+                print(remove)
                 if remove[0] != "➡️" or remove[0] != "⬅️":
                     for i in remove:
+                        print(i)
                         if i[0] != "➡️" or i[0] != "⬅️":
+                            for j in i:
+                                prit(j)
                                 await message.remove_reaction(j[0], j[1])
                 else:
                     await message.remove_reaction(remove[0], remove[1])
                 for i in add:
+                    print(add)
                     await message.add_reaction(i)
                 await message.edit(embed=newEmbed)
                 
