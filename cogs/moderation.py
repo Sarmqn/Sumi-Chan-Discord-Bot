@@ -129,15 +129,17 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
         # ---PURGE---
     @commands.command(aliases = ['delete'], description="Purge messages in a channel.") # Purge command
     @commands.has_permissions(manage_messages=True) # checks for manage message perms for the user who uses it        
-    async def purge(self, ctx, amount: int, * reason: str):
+    async def purge(self, ctx, amount: int, * rsn):
         if isinstance(amount, int):
+            rsn = ' '.join(rsn)
             log_channel = self.bot.get_channel(699909552757276732)
             await ctx.message.delete() # Deletes messages using the command prefix and the parameter
-            purgemsg = await ctx.channel.purge(limit=int(amount), reason=reason) # Purges messages in the channel based on the inputed amount
-            deletemsg = await ctx.send(f"{len(purgemsg)} messages have been deleted from the channel!") # prints a message stating that the messages have been purged
-            await asyncio.sleep(5) # Deletes the previous msg stating the purge in 5 seconds
-            await deletemsg.delete() # Deletes the deletemsg
-            await log_channel.send(f"**{ctx.channel}** has had {len(purgemsg)} messages purged by {ctx.author.mention}")
+            purgemsg = await ctx.channel.purge(limit=int(amount), reason=rsn)
+            deletemsg = await ctx.send(f"{len(purgemsg)} messages have been deleted from the channel!", delete_after=5) # prints a message stating that the messages have been purged that will be deleted after 5 seconds
+            logmsg = ''
+            for i in purgemsg:
+                logmsg += f"{i.author}: {i.content}\n"
+            await log_channel.send(f"{ctx.author.mention} purged {len(purgemsg)} messages in {ctx.channel}.\n\n{logmsg}")
                                            
 def setup(bot):
     bot.add_cog(Moderation(bot))
