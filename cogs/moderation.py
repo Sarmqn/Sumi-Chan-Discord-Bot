@@ -136,9 +136,12 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
             await ctx.message.delete() # Deletes messages using the command prefix and the parameter
             purgemsg = await ctx.channel.purge(limit=int(amount), reason=rsn)
             deletemsg = await ctx.send(f"{len(purgemsg)} messages have been deleted from the channel!", delete_after=5) # prints a message stating that the messages have been purged that will be deleted after 5 seconds
-            logmsg = ''
-            for i in purgemsg:
-                logmsg += f"{i.author}: {i.content}\n"
+            if purgemsg != []:
+                logmsg = ''
+                for i in purgemsg:
+                    logmsg += f"{i.author}: {i.content}\n"
+            else:
+                logmsg = 'None.'
             await log_channel.send(f"{ctx.author.mention} purged {len(purgemsg)} messages in {ctx.channel}.\n\n{logmsg}")
                                            
 def setup(bot):
