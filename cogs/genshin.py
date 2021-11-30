@@ -19,7 +19,7 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
     """
     def __init__(self, bot):
         self.bot = bot
-        self.id = bot.user.id
+        self.id = bot.id
     
     
     async def paging_system(self, embed, nopages, pagen, * payload):
