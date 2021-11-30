@@ -41,7 +41,5 @@ collection = db["UserData"]
  """ 
 # --Start bot--
 bot_token = os.environ.get("TOKEN")
-print(bot_token)
 bot.run(bot_token)
 
-# To drop bombs
