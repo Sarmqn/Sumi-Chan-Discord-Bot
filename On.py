@@ -17,9 +17,9 @@ bot = SumiChan()
 
 @bot.event
 async def on_ready(): # When the bot turns on
-    print("Roaring to go") # Lets the bot owner know when the bot is ready, it will print out that it's "Roaring to go".
+    print("https://www.youtube.com/watch?v=7uKcjGIxT-M") # Lets the bot owner know when the bot is ready, it will print out that it's "Roaring to go".
     await bot.change_presence(activity = discord.Game(name="Matane!")) # A Discord Rich Presense that will say the bot is playing "Matane!"
-    "await bot.change_presence(activity = discord.Activity(type=discord.ActivityType.listening, name='Matane!'))" # A Discord Rich Presense that will say, commented out to try a new one
+    "await bot.change_presence(activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayo!'))" # A Discord Rich Presense that will say, commented out to try a new one
 
 # --Loading all cogs--
 cogs = [
@@ -41,5 +41,8 @@ collection = db["UserData"]
  """ 
 # --Start bot--
 bot_token = os.environ.get("TOKEN")
-bot.run(bot_token)
+try:
+    bot.run(bot_token)
+except discord.errors.LoginFailure:
+    print("Refresh the token! Matane!")
 
