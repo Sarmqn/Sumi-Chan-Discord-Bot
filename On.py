@@ -22,7 +22,7 @@ async def on_ready(): # When the bot turns on
 
 @bot.command()
 @commands.is_owner()
-async def testactiv(id: int):
+async def testactiv(ctx, id: int):
     print(ctx.guild.get_member(id).activities)
 
 
