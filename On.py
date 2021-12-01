@@ -26,7 +26,8 @@ async def on_ready(): # When the bot turns on
 async def testactiv(ctx, id: int):
     print(ctx.guild.get_member(id).activities)
     for i in ctx.guild.get_member(id).activities:
-        print (i.type)
+        print(i.type)
+        print(i.assets)
 
 
 # --Loading all cogs--
