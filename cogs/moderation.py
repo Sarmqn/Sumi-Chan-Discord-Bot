@@ -35,7 +35,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
         await log_channel.send(embed=LeaveEmbed) # Send in the logs channel 
         
         #  ---BAN---
-    @commands.command(aliases = ['goaway', 'Ban'], description="Ban a user.")
+    @commands.command(aliases = ['goaway'], description="Ban a user.")
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member: discord.Member = None, * reason: str):
         log_channel = self.bot.get_channel(699909552757276732)
@@ -67,7 +67,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
                 await member.ban(reason=reason)
                 
         #  ---MUTE---    
-    @commands.command(aliases = ['Mute', 'shutup', 'quiet'], description="Mute a user.") # Mute command
+    @commands.command(aliases = ['shutup', 'quiet'], description="Mute a user.") # Mute command
     @commands.has_permissions(manage_messages=True, manage_roles=True)
     async def mute(self, ctx, member: discord.Member):
         log_channel = self.bot.get_channel(699909552757276732)
@@ -83,7 +83,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
 
                
         #  ---UNMUTE---    
-    @commands.command(aliases = ['Unmute'], description="Unmute a user.") # Unmute command
+    @commands.command(description="Unmute a user.") # Unmute command
     @commands.has_permissions(manage_messages=True, manage_roles=True)
     async def unmute(self, ctx, member: discord.Member):
         log_channel = self.bot.get_channel(699909552757276732)
@@ -98,7 +98,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
             await ctx.send(f'**{member}** is not muted.')
 
         # ---UNBAN---
-    @commands.command(aliases = ['Unban', 'comeback'], description="Unban a user.") #Unban command
+    @commands.command(aliases = ['comeback'], description="Unban a user.") #Unban command
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, id: int, * reason: str):
         log_channel = self.bot.get_channel(699909552757276732)
@@ -112,7 +112,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
             await log_channel.send(f"**{member}** has been unbanned by {ctx.author.mention}")
         
         # ---KICK---
-    @commands.command(aliases = ['Kick', 'remove', 'bye'], description="Kick a user.") # Kicks a user that is mentioned
+    @commands.command(aliases = ['remove', 'bye'], description="Kick a user.") # Kicks a user that is mentioned
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, user: discord.Member, * reason: str):
         log_channel = self.bot.get_channel(699909552757276732)
