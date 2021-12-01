@@ -7,7 +7,7 @@ from discord.ext import commands
 intents = discord.Intents.all()
 
 # --Class for my bot Sumi-Chan--
-activity = discord.Activity(type=3, name="Rent-A-Girlfriend", url="https://www.youtube.com/watch?v=-v8M0KNgKwY", application_id=869328857734451250, details="Watch me!", assets={"large_image": "sumi", "large_text": "Blushing", "small_image": "youtube", "small_text": "Youtube"}, emoji=discord.PartialEmoji(name="😊"), session_id="f0951b495cd0f8156eb7c5c95905c44d")
+activity = discord.Activity(type=3, name="Rent-A-Girlfriend", url="https://www.youtube.com/watch?v=-v8M0KNgKwY", application_id=869328857734451250, details="Watch me!", assets={"large_image": "sumi", "large_text": "Blushing", "small_image": "youtube", "small_text": "Youtube"}, emoji="<:xp3do:835896955950596097>", session_id="f0951b495cd0f8156eb7c5c95905c44d")
 # activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayou!')
 class SumiChan(commands.Bot):
     def __init__(self):
