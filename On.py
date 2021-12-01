@@ -8,10 +8,12 @@ intents = discord.Intents.default()
 intents.members = True
 
 # --Class for my bot Sumi-Chan--
+activity = discord.CustomActivity(emoji="👋", name="Ohayou!", type="custom")
+# activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayo!')
 class SumiChan(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix="sc!", description="Nice handy bot that will help around", intents=intents, help_command=None, allowed_mentions = discord.AllowedMentions(everyone = False, roles = False), strip_after_prefix=True, case_insensitive=True, activity=activity, status=discord.Status.online) # Super class
-        self.id = 773275097221169183
+        self.id = 869328857734451250
 
 bot = SumiChan()
 
@@ -38,8 +40,7 @@ db = cluster["UserData"]
 collection = db["UserData"]
  """ 
 # --Start bot--
-activity = discord.CustomActivity(emoji="👋", name="Ohayou!", type="custom")
-# activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayo!')
+
 bot_token = os.environ.get("TOKEN")
 try:
     bot.run(bot_token)
