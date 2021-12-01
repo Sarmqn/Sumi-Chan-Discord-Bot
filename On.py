@@ -4,8 +4,7 @@ from pymongo import MongoClient
 from discord.ext import commands
 
 # --Load intents--
-intents = discord.Intents.default()
-intents.members = True
+intents = discord.Intents.all()
 
 # --Class for my bot Sumi-Chan--
 activity = discord.Streaming(platform="Youtube", name="Rent-A-Girlfriend", url="https://www.youtube.com/watch?v=-v8M0KNgKwY", state="Watch me!", assets={"large_image": "sumi", "large_text": "Blushing", "small_image": "youtube", "small_text": "Youtube"})
