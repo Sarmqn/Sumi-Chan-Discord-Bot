@@ -129,12 +129,11 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
         # ---PURGE---
     @commands.command(aliases = ['delete'], description="Purge messages in a channel.") # Purge command
     @commands.has_permissions(manage_messages=True) # checks for manage message perms for the user who uses it        
-    async def purge(self, ctx, amount: int, * rsn):
+    async def purge(self, ctx, amount: int):
         if isinstance(amount, int):
-            rsn = ' '.join(rsn)
             log_channel = self.bot.get_channel(699909552757276732)
             await ctx.message.delete() # Deletes messages using the command prefix and the parameter
-            purgemsg = await ctx.channel.purge(limit=int(amount), reason=rsn)
+            purgemsg = await ctx.channel.purge(limit=int(amount))
             deletemsg = await ctx.send(f"{len(purgemsg)} messages have been deleted from the channel!", delete_after=5) # prints a message stating that the messages have been purged that will be deleted after 5 seconds
             if purgemsg != []:
                 logmsg = ''
