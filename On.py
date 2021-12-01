@@ -45,4 +45,6 @@ try:
     bot.run(bot_token, allowed_mentions = discord.AllowedMentions(everyone = False, roles = False), strip_after_prefix=True, case_insensitive=True, activity=activity, status=discord.Status.online)
 except discord.errors.LoginFailure:
     print("Refresh the token! Matane!")
+except Exception as e:
+    print(e)
 
