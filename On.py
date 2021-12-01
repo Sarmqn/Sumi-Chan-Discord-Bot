@@ -18,7 +18,7 @@ bot = SumiChan()
 @bot.event
 async def on_ready(): # When the bot turns on
     print("https://www.youtube.com/watch?v=7uKcjGIxT-M") # Lets the bot owner know when the bot is ready, it will print out that it's "Roaring to go".
-    await bot.change_presence(activity = discord.CustomActivity(emoji="👋", text="Ohayou!", type="custom")) # A Discord Rich Presense that will say the bot is playing "Matane!"
+    await bot.change_presence(activity = discord.CustomActivity(emoji="👋", name="Ohayou!", type="custom")) # A Discord Rich Presense that will say the bot is playing "Matane!"
     "await bot.change_presence(activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayo!'))" # A Discord Rich Presense that will say, commented out to try a new one
 
 # --Loading all cogs--
