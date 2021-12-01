@@ -1,6 +1,6 @@
 # **Sumi-Chan Discord Bot** 😀
 
-This bot has been created for the discord server Social Hub owned by Ramen Shop#4515, for people who play on the Hypixel Server on the popular game Minecraft.
+This bot has been created for the discord server Social Hub owned by Sarman#4733, for people who play on the Hypixel Server on the popular game Minecraft.
 I will work to continously post updates on this repository. I hope to expand it so it can be used by any server and hopefully become a hit.
 
 It will be a powerful bot that will be able to complete many tasks, essentially an all-purpose bot hosted on GitHub Pages. {Discord.py}
@@ -46,7 +46,7 @@ It will be a powerful bot that will be able to complete many tasks, essentially 
 Form of Contact | Contact
 ------------ | -------------
 Email | sarmanchowdhury@gmail.com
-Discord | Ramen Shop#4515
+Discord | Sarman#4733
 Dev.to | @Sarmqn
 
 ## Credits ❤️:
