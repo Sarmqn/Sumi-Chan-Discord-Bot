@@ -8,7 +8,7 @@ intents = discord.Intents.default()
 intents.members = True
 
 # --Class for my bot Sumi-Chan--
-activity = discord.Streaming(platform="Youtube", name="Rent-A-Girlfriend", url="https://www.youtube.com/watch?v=-v8M0KNgKwY")
+activity = discord.Streaming(platform="Youtube", name="Rent-A-Girlfriend", url="https://www.youtube.com/watch?v=-v8M0KNgKwY", assets={"large_image": "sumi", "large_text": "Blushing", "small_image": "youtube", "small_text": "Youtube"})
 # activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayou!')
 class SumiChan(commands.Bot):
     def __init__(self):
