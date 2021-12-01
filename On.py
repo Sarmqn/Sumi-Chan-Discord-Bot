@@ -18,8 +18,6 @@ bot = SumiChan()
 @bot.event
 async def on_ready(): # When the bot turns on
     print("https://www.youtube.com/watch?v=7uKcjGIxT-M") # Lets the bot owner know when the bot is ready, it will print out that it's "Roaring to go".
-    await bot.change_presence(activity = discord.CustomActivity(emoji="👋", name="Ohayou!", type="custom")) # A Discord Rich Presense that will say the bot is playing "Matane!"
-    "await bot.change_presence(activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayo!'))" # A Discord Rich Presense that will say, commented out to try a new one
 
 # --Loading all cogs--
 cogs = [
@@ -40,9 +38,11 @@ db = cluster["UserData"]
 collection = db["UserData"]
  """ 
 # --Start bot--
+activity = discord.CustomActivity(emoji="👋", name="Ohayou!", type="custom")
+# activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayo!')
 bot_token = os.environ.get("TOKEN")
 try:
-    bot.run(bot_token)
+    bot.run(bot_token, allowed_mentions = discord.AllowedMentions(everyone = False, roles = False), strip_after_prefix=True, case_insensitive=True, activity=activity, status=discord.Status.online)
 except discord.errors.LoginFailure:
     print("Refresh the token! Matane!")
 
