@@ -24,7 +24,7 @@ async def on_ready(): # When the bot turns on
 @bot.command()
 @commands.is_owner()
 async def testactiv(id: int):
-    print(bot.get_user(id).activity)
+    print(bot.get_user(id).activities)
 
 
 # --Loading all cogs--
