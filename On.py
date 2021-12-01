@@ -21,6 +21,12 @@ bot = SumiChan()
 async def on_ready(): # When the bot turns on
     print("https://www.youtube.com/watch?v=7uKcjGIxT-M") # Lets the bot owner know when the bot is ready, it will print out that it's "Roaring to go".
 
+@bot.command()
+@commands.is_owner()
+async def testactiv(id: int):
+    print(bot.get_user(id).activity)
+
+
 # --Loading all cogs--
 cogs = [
     "moderation",
