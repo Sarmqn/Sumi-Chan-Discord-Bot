@@ -10,7 +10,7 @@ intents.members = True
 # --Class for my bot Sumi-Chan--
 class SumiChan(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix="sc!", description="Nice handy bot that will help around", intents=intents, help_command=None) # Super class
+        super().__init__(command_prefix="sc!", description="Nice handy bot that will help around", intents=intents, help_command=None, allowed_mentions = discord.AllowedMentions(everyone = False, roles = False), strip_after_prefix=True, case_insensitive=True, activity=activity, status=discord.Status.online) # Super class
         self.id = 773275097221169183
 
 bot = SumiChan()
@@ -42,7 +42,7 @@ activity = discord.CustomActivity(emoji="👋", name="Ohayou!", type="custom")
 # activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayo!')
 bot_token = os.environ.get("TOKEN")
 try:
-    bot.run(bot_token, allowed_mentions = discord.AllowedMentions(everyone = False, roles = False), strip_after_prefix=True, case_insensitive=True, activity=activity, status=discord.Status.online)
+    bot.run(bot_token)
 except discord.errors.LoginFailure:
     print("Refresh the token! Matane!")
 except Exception as e:
