@@ -8,7 +8,7 @@ intents = discord.Intents.default()
 intents.members = True
 
 # --Class for my bot Sumi-Chan--
-activity = discord.Activity(type="watching", name="Rent-A-Girlfriend")
+activity = discord.Activity(type=4, name="Rent-A-Girlfriend")
 # activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayou!')
 class SumiChan(commands.Bot):
     def __init__(self):
