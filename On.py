@@ -8,7 +8,7 @@ intents = discord.Intents.all()
 
 # --Class for my bot Sumi-Chan--
 activity = discord.Activity(type=3, name="Rent-A-Girlfriend", url="https://www.youtube.com/watch?v=-v8M0KNgKwY", application_id=869328857734451250, details="Watch me!", assets={"large_image": "sumi", "large_text": "Blushing", "small_image": "youtube", "small_text": "Youtube"})
-activity = discord.Activity(type=3, name="Rent-A-Girlfriend", url="https://www.youtube.com/watch?v=-v8M0KNgKwY", application_id=839885828510580756, details="Watch me!", assets={"large_image": "dubusq2", "large_text": "Blushing", "small_image": "available", "small_text": "Youtube"})
+activity = discord.Activity(type=3, name="Rent-A-Girlfriend", url="https://www.youtube.com/watch?v=-v8M0KNgKwY", application_id=839885828510580756, details="Watch me!", large_image_url="https://cdn.discordapp.com/attachments/678552360905211934/915691811937349662/541ab3dd58502e78d64a863cb3c5e368.png", large_image_text="Blushing")
 # activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayou!')
 class SumiChan(commands.Bot):
     def __init__(self):
