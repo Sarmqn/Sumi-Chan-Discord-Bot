@@ -7,13 +7,12 @@ name = "pypi"
 "discord.py" = {extras = ["voice"], version = "*"}
 discord-pretty-help = "*"
 asyncio = "*"
-lavalink = "*"
-jishaku = "*"
 requests = "*"
 pymongo = "*"
 pypixel = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.9.7"
