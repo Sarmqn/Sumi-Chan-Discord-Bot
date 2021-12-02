@@ -4,6 +4,9 @@ from discord.enums import DefaultAvatar
 from discord.ext import commands
 from discord.raw_models import RawReactionClearEmojiEvent
 
+con = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
+print(con)
+
 class NotSetup(commands.CommandError):
     "An exception for when the reaction roles are not setup within a Discord Server (primarily my own)"
     pass
