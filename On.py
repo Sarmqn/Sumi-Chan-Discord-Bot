@@ -34,7 +34,7 @@ cogs = [
     "moderation",
     "general",
     "genshin",
-    "role"
+    "role",
     "help"
 ]
 
