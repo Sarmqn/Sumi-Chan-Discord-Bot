@@ -1,4 +1,4 @@
-import typing, discord
+import typing, discord, os, psycopg2-binary
 from discord import *
 from discord.enums import DefaultAvatar
 from discord.ext import commands
