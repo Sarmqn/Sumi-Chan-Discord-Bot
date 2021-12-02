@@ -1,0 +1,32 @@
+{
+    "server id":    {
+                        "message id":   {
+                                            "reaction": "role id",
+                                            "reaction": "role id"
+                                        },
+                        "message id2":  {
+                                            "reaction": "role id",
+                                            "reaction": "role id"
+                                        }
+                    },
+    "server id2":    {
+                        "message id":   {
+                                           "reaction": "role id",
+                                           "reaction": "role id"
+                                        },
+                        "message id2":  {
+                                            "reaction":"role id",
+                                            "reaction": "role id"
+                                        }
+                    },
+    "server id3":    {
+                        "message id":   {
+                                            "reaction": "role id",
+                                            "reaction": "role id"
+                                        },
+                        "message id2":  {
+                                            "reaction":"role id",
+                                            "reaction": "role id"
+                                        }
+                    }
+}
