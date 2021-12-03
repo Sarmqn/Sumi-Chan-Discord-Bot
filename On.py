@@ -31,11 +31,12 @@ async def testactiv(ctx, id: int):
 
 # --Loading all cogs--
 cogs = [
-    "moderation",
+    "entertainment",
     "general",
     "genshin",
-    "role",
-    "help"
+    "help",
+    "moderation",
+    "role"
 ]
 
 for cog in cogs:
