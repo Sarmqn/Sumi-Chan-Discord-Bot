@@ -10,7 +10,7 @@ class Miscellaneous(commands.Cog, name = " 👻 Miscellaneous"):
     
   @commands.command(description="Displays the user's profile picture!", aliases = ["dp", "av", "pfp"])
   async def avatar(self, ctx, *, dp: discord.Member=None):
-    if not member: 
+    if not dp: 
       dp = ctx.message
       URL = dp.avatar_url
     await ctx.send(URL)
