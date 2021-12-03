@@ -1,5 +1,5 @@
 import discord
-from discord import commands
+from discord.ext import commands
 
 class Micellaneous (commands.Cog, name = "Miscellaneous"):
   """
