@@ -15,13 +15,15 @@ It will be a powerful bot that will be able to complete many tasks, essentially 
 - General moderation (bans, mutes, purge, kicks)
 - Help command displaying available commands
 - ServerInformation command
+- Viewing user's profile pictures command
+- Genshin API based commands
 
 ## **Work In Progress Features(WIP)**
 
 - Warns
 - Hypixel API Usage
-- Genshin API Usage
 - Reaction Roles with a DB
+- weird image / fun based commands
 
 ## **Requirements set for the bot**
 
