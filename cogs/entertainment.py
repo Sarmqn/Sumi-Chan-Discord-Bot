@@ -3,6 +3,11 @@ from discord.ext import commands
 import random
 
 slapGIFs = ["https://cdn.discordapp.com/attachments/737096050598346866/906223201166704640/ehe_te_nandayo.png"]
+HugGIFs = [""]
+KissGIFs = [""]
+SmilingGIFs = [""]
+TickleGIFs = [""]
+HugGIFs = [""]
 
 class Entertainment(commands.Cog, name="💣 Entertainment"):
     """
@@ -21,12 +26,43 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
         slapEmbed = discord.Embed(title= "Ouch!", description=f"{ctx.author} slapped {user}!", colour=discord.Color.from_rgb(241,210,231))
         slapEmbed.set_thumbnail(url=random.choice(slapGIFs))
         await ctx.reply(embed=slapEmbed, mention_author=False)
+        
+    @commands.command(description = "Hugs the tagged user!")
+    async def hug(self, ctx, *, user:discord.Member=None):
+        
+        
+        
+        await ctx.reply(embed=, mention_author=False)
+    
+    @commands.command(description = "Kisses the tagged user!")
+    async def kiss(self, ctx, *, user:dicsord.Member=None):  
+        
+        
+        
+        await ctx.reply(embed=, mention_author=False)
 
-
-
-
-
-
+        
+    @commands.command(description = "Smiles at the tagged user!")
+    async def smile(self, ctx, *, user:discord.Member=None):  
+        
+        
+        
+        await ctx.reply(embed=, mention_author=False)
+    
+    @commands.command(description = "Tickles the tagged user!")
+    async def tickle(self, ctx, *, user:discord.Member=None):  
+        
+        
+        
+        await ctx.reply(embed=, mention_author=False)
+    
+    @commands.command(description = "Holds Hands with the tagged user!")
+    async def hh(self,ctx, *, user:discord.Member=None): 
+        
+        
+        
+        await ctx.reply(embed=, mention_author=False)
+        
 
 
 def setup(bot):
