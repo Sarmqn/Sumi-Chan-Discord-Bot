@@ -9,10 +9,10 @@ class Miscellaneous(commands.Cog, name = " 👻 Miscellaneous"):
     self.bot = bot
     
   @commands.command(description="Displays the user's profile picture!", aliases = ["dp", "av", "pfp"])
-  async def avatar(self, ctx, *, dp: discord.Member=None):
-    if not dp: 
-      dp = ctx.message
-      URL = dp.avatar_url
+  async def avatar(self, ctx, *, member: discord.Member=None):
+    if not member: 
+      member = ctx.message
+      URL = member.avatar_url
     await ctx.send(URL)
       
   @commands.command(decription = "Changes the nickname for the tagged user within this server!", aliases = ["nickname", "changename", "name"])
