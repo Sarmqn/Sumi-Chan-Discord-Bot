@@ -35,7 +35,8 @@ cogs = [
     "general",
     "genshin",
     "help",
-    "moderation"
+    "moderation",
+    "Misc"
 ]
 
 for cog in cogs:
