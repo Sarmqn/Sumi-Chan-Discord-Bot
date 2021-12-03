@@ -12,7 +12,7 @@ class Miscellaneous(commands.Cog, name = " 👻 Miscellaneous"):
   async def avatar(self, ctx, *, member: discord.Member=None):
     if not member: 
       member = ctx.author
-      URL = member.avatar_url
+    URL = member.avatar_url
     await ctx.send(URL)
       
   @commands.command(decription = "Changes the nickname for the tagged user within this server!", aliases = ["nickname", "changename", "name"])
