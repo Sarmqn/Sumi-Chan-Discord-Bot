@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class Miscellaneous (commands.Cog, name = "Miscellaneous"):
+class Miscellaneous (commands.Cog, name = " 👻 Miscellaneous"):
   """
   Miscellaneous commands
   """
