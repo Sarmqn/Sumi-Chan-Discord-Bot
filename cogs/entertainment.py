@@ -26,7 +26,11 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
         slapEmbed = discord.Embed(title= "Ouch!", description=f"{ctx.author} slapped {user}!", colour=discord.Color.from_rgb(241,210,231))
         slapEmbed.set_thumbnail(url=random.choice(slapGIFs))
         await ctx.reply(embed=slapEmbed, mention_author=False)
-        
+    
+    
+    """
+    
+    --- WIP---
     @commands.command(description = "Hugs the tagged user!")
     async def hug(self, ctx, *, user:discord.Member=None):
         
@@ -63,7 +67,7 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
         
         await ctx.reply(embed=, mention_author=False)
         
-
+"""
 
 def setup(bot):
     bot.add_cog(Entertainment(bot))
