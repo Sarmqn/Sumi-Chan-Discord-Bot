@@ -13,7 +13,7 @@ class Miscellaneous (commands.Cog, name = "Miscellaneous"):
       URL = dp.avatar_url
       await ctx.send(URL)
       
-    @commands.command(decription = "Changes the nickname for the tagged user within this server!", aliases = ["nickname", "Nick", "changename", "name")
+    @commands.command(decription = "Changes the nickname for the tagged user within this server!", aliases = ["nickname", "Nick", "changename", "name"])
     async def nick(ctx, nick, member: discord.Member=None):
       await member.edit(nick=nick)
       await ctx.send(f"{member.mention}'s nickname in {ctx.guild.name} has been changed")
