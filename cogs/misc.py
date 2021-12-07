@@ -23,7 +23,7 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
         await ctx.send(member.avatar_url) # Sends the of the member to post in chat
       
       
-  """
+    """
     @commands.command(decription = "Changes the nickname for the tagged user within this server!", aliases = ["nickname", "changename", "name"])
     @commands.has_permissions(change_nickname=True)
     async def nick(ctx, member: discord.Member=None, *, nick=None): # Nickname command
@@ -38,7 +38,7 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
                 original_nick = member.nick
                 await member.edit(nick=nick) # member edits nickname
                 await ctx.send(f"{member.mention}'s nickname has been changed from {original_nick} to {nick}.") # send in chat that nickname has been changed
-  """    
+    """    
       
       
 def setup(bot):
