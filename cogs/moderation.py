@@ -21,9 +21,10 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     @commands.Cog.listener()
     async def on_member_join(self, member):
         gen_channel = self.bot.get_channel(678356960151863340)
-        JoinEmbed = discord.Embed(title=f"Welcome {member}!", description = f"Thanks for joining {member.guild.name}! We hope you enjoy your stay!")
+        JoinEmbed = discord.Embed(title=f"Welcome {member}!", description = f"Thanks for joining {member.guild.name}! We hope you enjoy your stay!\nGo to <#715859030039330847> for some roles!")
         JoinEmbed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to be the user's profile picture.
-        await gen_channel.send(embed=JoinEmbed)
+        msg = await gen_channel.send(member.mention, embed=JoinEmbed)
+        await msg.add_reaction("🎉")
         role = discord.utils.get(member.guild.roles, id=678551601740251136) # Gets the role object given an ID and list
         await member.add_roles(role) # Gives new user the aforementioned role
 
