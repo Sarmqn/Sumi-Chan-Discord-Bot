@@ -31,7 +31,7 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
             nick = ' '.join(nick)
         if nick is None:
             pass
-        if member is None:
+        elif member is None:
             pass
         else:
             if (isinstance(member, discord.Member) or isinstance(member, discord.User)) and (len(nick.strip()) <= 32):
