@@ -11,22 +11,15 @@ activity = discord.Streaming(name="Rent-A-Girlfriend", url="https://www.youtube.
 # activity = discord.Activity(type=discord.ActivityType.listening, name='Ohayou!')
 class SumiChan(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix="sc!", description="Nice handy bot that will help around", intents=intents, help_command=None, allowed_mentions = discord.AllowedMentions(everyone = False, roles = False), strip_after_prefix=True, case_insensitive=True, activity=activity, status=discord.Status.online) # Super class
+        # Calling the __init__ (constructor) function of the superclass (commands.Bot) with given parameters
+        super().__init__(command_prefix="sc!", description="Nice handy bot that will help around", intents=intents, help_command=None, allowed_mentions = discord.AllowedMentions(everyone = False, roles = False), strip_after_prefix=True, case_insensitive=True, activity=activity, status=discord.Status.online)
         self.id = 869328857734451250
 
 bot = SumiChan()
 
 @bot.event
 async def on_ready(): # When the bot turns on
-    print("https://www.youtube.com/watch?v=7uKcjGIxT-M") # Lets the bot owner know when the bot is ready, it will print out that it's "Roaring to go".
-
-@bot.command()
-@commands.is_owner()
-async def testactiv(ctx, id: int):
-    print(ctx.guild.get_member(id).activities)
-    for i in ctx.guild.get_member(id).activities:
-        print(i.type)
-        print(i.assets)
+    print("Ohayou sensei!") # Lets the bot owner know when the bot is ready, it will print out that it's "Roaring to go".
 
 
 # --Loading all cogs--
@@ -35,27 +28,22 @@ cogs = [
     "general",
     "genshin",
     "help",
-    "moderation",
-    "misc"
+    "misc",
+    "moderation"
 ]
 
 for cog in cogs:
     bot.load_extension("cogs." + cog)
     print("Loaded: " + cog)
     
-    
-"""
-cluster = MongoClient("DBURL") # Using DBURL as the URL will be hidden as a secret
-db = cluster["UserData"]
-collection = db["UserData"]
- """ 
+
 # --Start bot--
 
 bot_token = os.environ.get("TOKEN")
 try:
     bot.run(bot_token)
-except discord.errors.LoginFailure:
-    print("Refresh the token! Matane!")
+except discord.errors.LoginFailure as e:
+    print(f"Can't login! Matane...\n{e}")
 except Exception as e:
     print(e)
 
