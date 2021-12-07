@@ -40,7 +40,10 @@ class MyHelp(commands.HelpCommand):
                 # Get the attribute `qualified_name` of cog, putting "Miscellaneous" if not found
                 cog_name = getattr(cog, "qualified_name", "❓ Miscellaneous")
                 # Adds an inline field with title of cog name and value of command signatures.
-                embed.add_field(name=f'{cog_name}', value="\n".join(command_signatures), inline=True)
+                if cog_name == "❓ Miscellaneous":
+                    pass
+                else:
+                    embed.add_field(name=f'{cog_name}', value="\n".join(command_signatures), inline=True)
         # More embed generation
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         # Send the embed as a reply
