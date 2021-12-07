@@ -19,7 +19,7 @@ bot = SumiChan()
 
 @bot.event
 async def on_ready(): # When the bot turns on
-    print("Ohayou sensei!") # Lets the bot owner know when the bot is ready, it will print out that it's "Roaring to go".
+    print("Ohayou senpai!") # Lets the bot owner know when the bot is ready, it will print out "Ohayou senpai!".
 
 
 # --Loading all cogs--
