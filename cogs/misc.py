@@ -27,15 +27,17 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
     @commands.command(description = "Changes the nickname for the tagged user within this server!", aliases = ["nickname", "changename", "name"])
     @commands.has_permissions(change_nickname=True)
     async def nick(ctx, member: discord.Member=None, *, nick=None): # Nickname command
+        print(member)
+        print(nick)
         try:
             nick = ' '.join(nick)
         except:
             pass
         else:
-            if nick is None:
-                pass
+            if (nick is None) and (member is None):
+                await ctx.send("Please mention a user and state a nickname!")
             elif member is None:
-                pass
+                await ctx.send("Please specify a nickname!")
             else:
                 if (isinstance(member, discord.Member) or isinstance(member, discord.User)) and (len(nick.strip()) <= 32):
                     original_nick = member.nick
