@@ -27,7 +27,7 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
     @commands.command(description="Slap a user!")
     async def slap(self, ctx, *, user: discord.Member=None):
         print(type(user))
-        user = user_check(user)
+        user = await user_check(user)
         slapEmbed = discord.Embed(title= "Ouch!", description=f"{ctx.author} slapped {user}!", colour=discord.Color.from_rgb(241,210,231))
         slapEmbed.set_thumbnail(url=random.choice(slapGIFs))
         await ctx.reply(embed=slapEmbed, mention_author=False)
