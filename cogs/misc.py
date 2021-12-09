@@ -29,15 +29,18 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
     async def nick(ctx, member: discord.Member=None, *, nick=None): # Nickname command
         try:
             nick = ' '.join(nick)
-        if nick is None:
-            pass
-        elif member is None:
-            pass
+        except:
+            await ctx.reply(f"{member.mention}'s nickname is {member.nick}", mention_author = False)
         else:
-            if (isinstance(member, discord.Member) or isinstance(member, discord.User)) and (len(nick.strip()) <= 32):
-                original_nick = member.nick
-                await member.edit(nick=nick) # member edits nickname
-                await ctx.send(f"{member.mention}'s nickname has been changed from {original_nick} to {nick}.") # send in chat that nickname has been changed
+            if nick is None:
+                pass
+            elif member is None:
+                pass
+            else:
+                if (isinstance(member, discord.Member) or isinstance(member, discord.User)) and (len(nick.strip()) <= 32):
+                    original_nick = member.nick
+                    await member.edit(nick=nick) # member edits nickname
+                    await ctx.send(f"{member.mention}'s nickname has been changed from {original_nick} to {nick}.") # send in chat that nickname has been changed
 
       
       
