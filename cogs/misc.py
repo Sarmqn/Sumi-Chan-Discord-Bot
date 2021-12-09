@@ -18,9 +18,9 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
         else:
             member = ctx.author # member is the user who sent the message
         avatarEmbed = discord.Embed(title=f"**{member}**'s Avatar", colour=discord.Color.from_rgb(241,210,231))
-        avatarEmbed.set_thumbnail(url=URL)
+        avatarEmbed.set_thumbnail(url=member.avatar_url)
         avatarEmbed.set_author(name="User Avatar", icon_url=ctx.author.avatar_url)
-        await ctx.send(member.avatar_url) # Sends the of the member to post in chat
+        await ctx.send(embed=avatarEmbed) # Sends the of the member to post in chat
       
       
     """
