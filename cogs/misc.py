@@ -9,7 +9,7 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
       self.bot = bot
     
     @commands.command(description="Displays the user's profile picture!", aliases = ["dp", "av", "pfp"]) 
-    async def avatar(self, ctx, *, member: discord.Member=None): # Avatar command
+    async def avatar(self, ctx, member: discord.Member=None): # Avatar command
         if member is not None:
             if isinstance(member, discord.Member) or isinstance(member, discord.User):
                 pass
@@ -26,7 +26,7 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
 
     @commands.command(description = "Changes the nickname for the tagged user within this server!", aliases = ["nickname", "changename", "name"])
     @commands.has_permissions(change_nickname=True)
-    async def nick(ctx, member: discord.Member=None, *, nick=None): # Nickname command
+    async def nick(ctx, member: discord.Member=None, *nick): # Nickname command
         print(member)
         print(nick)
         try:
@@ -34,9 +34,9 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
         except:
             pass
         else:
-            if (nick is None) and (member is None):
+            if (nick == '') and (member is None):
                 await ctx.send("Please mention a user and state a nickname!")
-            elif member is None:
+            elif (nick == '') or (nick is None):
                 await ctx.send("Please specify a nickname!")
             else:
                 if (isinstance(member, discord.Member) or isinstance(member, discord.User)) and (len(nick.strip()) <= 32):
