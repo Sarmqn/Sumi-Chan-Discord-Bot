@@ -30,7 +30,7 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
         try:
             nick = ' '.join(nick)
         except:
-            await ctx.reply(f"{member.mention}'s nickname is {member.nick}", mention_author = False)
+            pass
         else:
             if nick is None:
                 pass
