@@ -27,7 +27,7 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
     @commands.command(description="Slap a user!")
     async def slap(self, ctx, *, user: discord.Member=None):
         print(type(user))
-        user = await user_check(user)
+        user = await self.user_check(user)
         slapEmbed = discord.Embed(title= "Ouch!", description=f"{ctx.author} slapped {user}!", colour=discord.Color.from_rgb(241,210,231))
         slapEmbed.set_thumbnail(url=random.choice(slapGIFs))
         await ctx.reply(embed=slapEmbed, mention_author=False)
@@ -37,14 +37,14 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
     --- WIP---
     @commands.command(description = "Hugs the tagged user!")
     async def hug(self, ctx, *, user:discord.Member=None):
-        user = user_check(user)
+        user = await self.user_check(user)
         
         
         await ctx.reply(embed=HugEmbed, mention_author=False)
     
     @commands.command(description = "Kisses the tagged user!")
     async def kiss(self, ctx, *, user:dicsord.Member=None):  
-        user = user_check(user)
+        user = await self.user_check(user)
         
         
         await ctx.reply(embed=, mention_author=False)
@@ -52,21 +52,21 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
         
     @commands.command(description = "Smiles at the tagged user!")
     async def smile(self, ctx, *, user:discord.Member=None):  
-        user = user_check(user)
+        user = await self.user_check(user)
         
         
         await ctx.reply(embed=, mention_author=False)
     
     @commands.command(description = "Tickles the tagged user!")
     async def tickle(self, ctx, *, user:discord.Member=None):  
-        user = user_check(user)
+        user = await self.user_check(user)
         
         
         await ctx.reply(embed=, mention_author=False)
     
     @commands.command(aliases = ['handhold', 'hh'], description = "Holds Hands with the tagged user!")
     async def holdhands(self,ctx, *, user:discord.Member=None): 
-        user = user_check(user)
+        user = await self.user_check(user)
         
         
         await ctx.reply(embed=, mention_author=False)
