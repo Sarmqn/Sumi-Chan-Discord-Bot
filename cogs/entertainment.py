@@ -7,7 +7,7 @@ HugGIFs = [""]
 KissGIFs = [""]
 SmilingGIFs = [""]
 TickleGIFs = [""]
-
+PunchGIFs = [""]
 
 
 class Entertainment(commands.Cog, name="💣 Entertainment"):
@@ -70,7 +70,15 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
         
         
         await ctx.reply(embed=, mention_author=False)
+    
+    @commands.command(aliases = ['hit', 'fist'], description = "Punch the tagged user!")
+    async def punch(self,ct, *, user:discord.Member=None):
+        user = await self.user_check(user)
         
+        await ctx.reply(embed =, mention_author=False)
+    
+    
+    
 """
 
 def setup(bot):
