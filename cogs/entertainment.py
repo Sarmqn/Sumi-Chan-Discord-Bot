@@ -3,7 +3,7 @@ from discord.ext import commands
 import random
 
 SlapGIFs = [""]
-HugGIFs = [""]
+HugGIFs = ["https://giphy.com/clips/parksandrec-parks-and-recreation-rec-peacock-tv-cU14kx6qeHqaTK6ZeJ"]
 KissGIFs = [""]
 SmilingGIFs = [""]
 TickleGIFs = [""]
@@ -38,8 +38,8 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
     @commands.command(description = "Hugs the tagged user!")
     async def hug(self, ctx, *, user:discord.Member=None):
         user = await self.user_check(user)
-        
-        
+        hugEmbed = discord.Embed(title = "Awww, here's a hug!", descrpton = "Hugs", format(user, ctx.message.author.name), color=FFB6C1)
+        hugEmbed.set_thumbnail(url=random.choice(HugGIFs)
         await ctx.reply(embed=HugEmbed, mention_author=False)
     
     @commands.command(description = "Kisses the tagged user!")
