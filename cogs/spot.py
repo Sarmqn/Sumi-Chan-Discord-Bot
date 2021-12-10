@@ -8,4 +8,5 @@ class spot(commands.Cog, name = '🎵 Spotify'):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command(description = "
+    @commands.command(description = "")
+    async def spotinfo(self, ctx)
