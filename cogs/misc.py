@@ -26,7 +26,7 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
 
     @commands.command(description = "Changes the nickname for the tagged user within this server!", aliases = ["nickname", "changename", "name"])
     @commands.has_permissions(change_nickname=True)
-    async def nick(ctx, member: discord.Member=None, *nick): # Nickname command
+    async def nick(ctx, member: discord.Member, *nick): # Nickname command
         print(member)
         print(nick)
         try:
