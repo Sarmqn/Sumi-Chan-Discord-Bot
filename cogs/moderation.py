@@ -60,7 +60,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
                 pass
             else:
                 reason = str(reason)
-                if reason == '':
+                if reason == '()' or reason==():
                     reason = 'N/A'
                 await member.send(f"You were banned from **{ctx.guild}** by **{ctx.author}**.\nReason: {reason}.")
                 await ctx.send(f"{member} has been banned.")
