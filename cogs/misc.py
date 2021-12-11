@@ -30,7 +30,7 @@ class Miscellaneous(commands.Cog, name = "👻 Miscellaneous"): # Creating a cla
         print(member)
         print(nick)
         try:
-            nick = ' '.join(nick)
+            nick = ''.join(nick)
         except:
             pass
         else:
