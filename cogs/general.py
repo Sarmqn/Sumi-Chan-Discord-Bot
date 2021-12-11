@@ -35,7 +35,7 @@ class General(commands.Cog, name='💬 General'):
     @commands.command(description="Create an invite to the server!")
     @commands.guild_only() # Restricts the command to the guild only
     async def invite(self, ctx):
-        log_channel = bot.get_channel(699909552757276732)
+        log_channel = self.bot.get_channel(699909552757276732)
         """
         Creates an invite link for the server
         """
