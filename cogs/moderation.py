@@ -103,7 +103,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, id: int, * reason: str):
         log_channel = self.bot.get_channel(699909552757276732)
-        userID = await ctx.self.bot.fetch_user(id) # Gets user's ID
+        userID = await self.bot.fetch_user(id) # Gets user's ID
         try:
             await ctx.guild.unban(userID, reason=reason)
         except discord.errors.NotFound:
