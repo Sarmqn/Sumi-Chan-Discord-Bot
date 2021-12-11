@@ -1,6 +1,5 @@
 # --Importing all necessary libraries--
-import discord, os, pymongo
-from pymongo import MongoClient
+import discord, os
 from discord.ext import commands
 
 # --Load intents--
