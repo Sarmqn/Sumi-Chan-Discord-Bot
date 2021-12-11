@@ -109,6 +109,8 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
         except discord.errors.NotFound:
             await ctx.send('User is not banned!')
         else:
+            if reason == () or reason == ():
+                reason = 'N/A'
             await ctx.send(f'**{userID}** has been unbanned.\nReason: {reason}.')
             await log_channel.send(f"**{member}** has been unbanned by {ctx.author.mention}")
         
