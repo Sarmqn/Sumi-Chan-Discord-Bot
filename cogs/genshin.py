@@ -21,68 +21,6 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         self.bot = bot
         self.id = bot.id
     
-    
-    async def paging_system(self, embed, nopages, pagen, * payload):
-        payload = payload[0]
-        user = self.bot.get_user(payload.user_id)
-        print(embed)
-        print(nopages)
-        print(pagen)
-        print(payload)
-        if payload.emoji.name == "➡️":
-            newpagen = pagen + 1
-            if newpagen not in range(1, nopages+1):
-                return None
-            else:
-                index = pagen
-                if pagen == 1:
-                    remove = ("➡️", user), ("➡️", self.bot)
-                if 1 < newpagen and newpagen < nopages:
-                    add = ("⬅️", "➡️")
-                if newpagen == nopages:
-                    remove = ("➡️", user), ("➡️", self.bot)
-                    add = ("⬅️")
-        else:
-            newpagen = pagen - 1
-            if newpagen not in range(1, nopages+1):
-                return None
-            else:
-                index = pagen - 2
-                if page_number == 3:
-                    remove = ("⬅️", user)
-                    add = ("➡️")
-                elif page_number == 2:
-                    remove = ("⬅️", self.bot), ("⬅️", user)
-        if embed.title[:-6] == "Skills":
-            response = requests.get(f"https://api.genshin.dev/characters/{embed.footer.text[:-9].lower().replace(' ', '-')}/")
-            newpage = response.json()['skillTalents'][index]
-            newEmbed = discord.Embed(title=f"{response.json()['name']}'s Skills", description=f"**{newpage['name']} ({newpage['unlock']})**\n{newpage['description']}", colour=colours[response.json()['vision']])
-            newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagen))
-            newEmbed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character.lower()}/icon-big")
-            try:
-                upgrades = newpage['upgrades']
-            except:
-                pass
-            else:
-                upgradesText = ""
-                for i in upgrades:
-                    upgradesText += f"{i['name']}: {i['value']}\n"
-                newEmbed.add_field(name="Upgrades", value=upgradesText, inline=False)
-            return newEmbed, add, remove
-        elif embed.title == "List of All Weapons":
-            response = requests.get(f"https://api.genshin.dev/weapons/").json()
-            weaponstr = ''
-            for i in range(round(len(response)/2), len(response)):
-                strss = response[i].replace('-s', "'s").replace('-', ' ').title()
-                weaponstr = f"{strss} (`{response[i]}`), "
-            newEmbed = discord.Embed(title='List of All Weapons', description=weaponstr, colour=discord.Color.from_rgb(241,210,231))
-            newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagen))
-            return newEmbed, add, remove
-        else:
-            return None
-    
-    
-    
     @commands.group(invoke_without_command=True, aliases=['gi', 'g', 'genshinimpact', 'genshin_impact'], description='Get information about Genshin Impact! Use `sc!help genshin` for subcommands.')
     async def genshin(self, ctx):
       await ctx.reply('Genshin Impact is a free-to-play action RPG developed and published by miHoYo. The game features a fantasy open-world environment and action based combat system using elemental magic, character switching, and gacha monetization system for players to obtain new characters, weapons, and other resources. The game can only be played with an internet connection and features a limited multiplayer mode allowing up to four players in a world.\n\nUse `sc!help genshin` for subcommands!', mention_author=False)
@@ -93,47 +31,55 @@ class Genshin(commands.Cog, name='<:GenshinImpact:905489184205197322> Genshin Im
         message = await self.bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
         user = self.bot.get_user(payload.user_id)
         # Check the bot is the author
-        if (message.author.id == self.id) and (payload.user_id != self.id):
-            if (payload.emoji.name == "➡️") or (payload.emoji.name == "⬅️"):
-                try:
-                    # Tries to retrieve the embed
-                    embed = message.embeds[0]
-                except Exception as e:
-                    # If the embed doesn't exist (i.e. not a message we are interested in)
-                    pass
-                else:
-                    response = None
-                    if embed.title[-6:] == "Skills":
-                        print(embed)
-                        print(payload)
-                        response = await self.paging_system(embed, 3, int(embed.footer.text[-1]), payload)
-                    elif embed.title == "List of All Weapons":
-                        print(embed)
-                        print(payload)
-                        response = await self.paging_system(embed, 2, int(embed.footer.text[-1]), payload)
+        if (message.author.id == 773275097221169183) and (payload.user_id != 773275097221169183):
             try:
-                newEmbed, add, remove = response
-                print(response)
+                # Tries to retrieve the embed
+                embed = message.embeds[0]
             except Exception as e:
-                print(e)
-                print(response)
+                # If the embed doesn't exist (i.e. not a message we are interested in)
+                pass
             else:
-                print(newEmbed)
-                print(add)
-                print(remove)
-                if remove[0] != "➡️" or remove[0] != "⬅️":
-                    for i in remove:
-                        print(i)
-                        if i[0] != "➡️" or i[0] != "⬅️":
-                            for j in i:
-                                prit(j)
-                                await message.remove_reaction(j[0], j[1])
-                else:
-                    await message.remove_reaction(remove[0], remove[1])
-                for i in add:
-                    print(add)
-                    await message.add_reaction(i)
-                await message.edit(embed=newEmbed)
+                # If we get an embed in our message
+                # If the embed is displaying skills
+                if embed.title[-6:] == "Skills":
+                    # Check if the reaction is one we are interested in
+                    if (payload.emoji.name == "➡️") or (payload.emoji.name == "⬅️"):
+                        # Get the page number
+                        page_number = int(embed.footer.text[-1])
+                        # Check if the reaction is correct for the page number
+                        if ((payload.emoji.name == "➡️") and ((page_number == 1) or (page_number == 2))) or ((payload.emoji.name == "⬅️") and ((page_number == 2) or (page_number == 3))):
+                            character = embed.footer.text[:-9]
+                            response = requests.get(f'https://api.genshin.dev/characters/{character.lower()}/')
+                            if payload.emoji.name == "➡️":
+                                newpagenumber = page_number + 1
+                                newpage = response.json()['skillTalents'][page_number]
+                                await message.remove_reaction("➡️", user)
+                                await message.remove_reaction("➡️", self.bot)
+                                if page_number == 1:
+                                    await message.add_reaction("⬅️")
+                                    await message.add_reaction("➡️")
+                            else:
+                                newpagenumber = page_number - 1
+                                newpage = response.json()['skillTalents'][page_number-2]
+                                await message.remove_reaction("⬅️", user)
+                                if page_number == 3:
+                                    await message.add_reaction("➡️")
+                                elif page_number == 2:
+                                    await message.remove_reaction("⬅️", self.bot)
+                            newEmbed = discord.Embed(title=f"{response.json()['name']}'s Skills", description=f"**{newpage['name']} ({newpage['unlock']})**\n{newpage['description']}", colour=colours[response.json()['vision']])
+                            newEmbed.set_footer(text=embed.footer.text[:-1]+str(newpagenumber))
+                            newEmbed.set_thumbnail(url=f"https://api.genshin.dev/characters/{character.lower()}/icon-big")
+                            try:
+                                upgrades = newpage['upgrades']
+                            except:
+                                pass
+                            else:
+                                upgradesText = ""
+                                for i in upgrades:
+                                    upgradesText += f"{i['name']}: {i['value']}\n"
+                                newEmbed.add_field(name="Upgrades", value=upgradesText, inline=False)
+                                newEmbed.set_thumbnail(url=embed.thumbnail.url)
+                            await message.edit(embed=newEmbed)
                 
     
     @genshin.command(aliases=['ch', 'char'], description='Get character profiles.')
