@@ -1,7 +1,0 @@
-discord.py
-discord-pretty-help
-discord.py[voice]
-discord-ext-forms
-pymongo
-requests
-psycopg2-binary
