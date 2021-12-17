@@ -1,4 +1,4 @@
-## Sumi-Chan
+## Welcome To Sumi-Chan's Website
 ### Sumi Chan is a powerful semi-autonomous discord bot that has been created for the purpose of removing the multiple bots that clog up server member lists. This bot will recieve numerous updates as time passes and hopefully will become a verified bot at some stage.
 
 ## General Information
