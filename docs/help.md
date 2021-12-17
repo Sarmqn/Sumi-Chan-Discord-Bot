@@ -1,13 +1,5 @@
 ---
 title: "Sumi-Chan"
 layout: default
-filename: help.md
+filename: helpcontents.md
 --- 
-
-# Command Groups:
-* Entertainment
-* General
-* Genshin
-* Help
-* Miscellaneous
-* Moderation
