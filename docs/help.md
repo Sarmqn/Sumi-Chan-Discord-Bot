@@ -1,5 +1,5 @@
 ---
-title: "Command Help"
+title: "Sumi-Chan"
 layout: default
 filename: help.md
 --- 
