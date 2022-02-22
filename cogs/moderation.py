@@ -12,7 +12,7 @@ class Moderation(commands.Cog, name='🛠️ Moderation'): # Creates a class cal
 
     @commands.Cog.listener() # Detect discord.gg invite links and delete them.
     async def on_message(self, message): #When the message is sent
-        if not message.author.bot and ('discord.gg/' in message.content) or ('discord.com/invite/' in message.content): # that includes discord.gg/
+        if (not (message.author.bot or message.author.id == 701817552778559510)) and ('discord.gg/' in message.content) or ('discord.com/invite/' in message.content): # that includes discord.gg/
             log_channel = self.bot.get_channel(699909552757276732)
             await message.delete() # Delete that message 
             await message.channel.send(f"Don't send server invites in this server {message.author.mention}!") # And reply stating that these invites should not be sent in chat
