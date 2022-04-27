@@ -10,7 +10,7 @@ class General(commands.Cog, name='💬 General'):
 
     # --Gets the latency of the bot--
     @commands.command(description="Check the bot's latency!")
-    async def ping(self, ctx): # When the command has been called:
+    async def ping(ctx): # When the command has been called:
         """
         Checks the current ping for the bot
         """
