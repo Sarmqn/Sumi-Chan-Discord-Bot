@@ -22,7 +22,7 @@ class General(commands.Cog, name='💬 General'):
     
     # --Getting information about the server--
     @commands.command(description="Get information about the server you're in.", aliases = ['si', 'info', 'serverinfo'])
-    async def server(ctx): # When server command is in instance, it will display and embed with the following information
+    async def server(self, ctx): # When server command is in instance, it will display and embed with the following information
         embed = discord.Embed (title = 'Server Information', description='This embed shows information about the server you are currently in.', colour=discord.Colour.random())
         embed.set_image (url = 'https://cdn.discordapp.com/attachments/678552360905211934/912412553039192135/EiVj0xaVkAIl20Y.png' )
         embed.set_author (name = 'Server Information', icon_url=ctx.author.avatar_url)
