@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import random
 
-SlapGIFs = [""]
+SlapGIFs = ["https://imgur.com/t/slap/SoOlZdu"]
 HugGIFs = ["https://giphy.com/clips/parksandrec-parks-and-recreation-rec-peacock-tv-cU14kx6qeHqaTK6ZeJ"]
 KissGIFs = [""]
 SmilingGIFs = [""]
