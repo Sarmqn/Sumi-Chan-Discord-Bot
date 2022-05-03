@@ -33,7 +33,7 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
         await ctx.reply(embed=slapEmbed, mention_author=False)
     
     
-    """
+    
     --- WIP---
     @commands.command(description = "Hugs the tagged user!")
     async def hug(self, ctx, *, user:discord.Member=None):
@@ -41,7 +41,7 @@ class Entertainment(commands.Cog, name="💣 Entertainment"):
         hugEmbed = discord.Embed(title = "Awww, here's a hug!", descrpton = "Hugs", format(user, ctx.message.author.name), color=FFB6C1)
         hugEmbed.set_thumbnail(url=random.choice(HugGIFs)
         await ctx.reply(embed=HugEmbed, mention_author=False)
-    
+   ''' 
     @commands.command(description = "Kisses the tagged user!")
     async def kiss(self, ctx, *, user:dicsord.Member=None):  
         user = await self.user_check(user)
