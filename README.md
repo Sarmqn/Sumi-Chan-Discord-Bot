@@ -48,7 +48,7 @@ It will be a powerful bot that will be able to complete many tasks, essentially 
 Form of Contact | Contact
 ------------ | -------------
 Email | sarmanchowdhury@gmail.com
-Discord | Sarman#4733
+Discord | Sarman#7667
 Dev.to | @Sarmqn
 
 ## Credits ❤️:
